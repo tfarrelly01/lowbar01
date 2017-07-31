@@ -1,0 +1,36 @@
+{
+  "name": "lowbar01",
+  "version": "1.0.0",
+  "description": "Re-implementation of various methods from the Underscore JS library",
+  "main": "lowbar.js",
+  "scripts": {
+    "test": "mocha spec",
+    "lint": "eslint ./",
+    "posttest": "npm run lint",
+    "precommit": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tfarrelly01/lowbar01.git"
+  },
+  "author": "Tony Farrelly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tfarrelly01/lowbar01/issues"
+  },
+  "homepage": "https://github.com/tfarrelly01/lowbar01#readme",
+  "dependencies": {
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
+    "mocha": "^3.4.2"
+  }
+}
