@@ -81,6 +81,9 @@ describe('_', function () {
     it('returns the first element of an array', function () {
       let result = _.first([1, 2, 3]);
       expect(result).to.equal(1);
+
+      result = _.first(['H', 'E', 'L', 'L', 'O']);
+      expect(result).to.equal('H');
     });
     it('returns the first n elements of an array', function () {
       let result = _.first([1, 2, 3, 4], 1);
@@ -94,6 +97,23 @@ describe('_', function () {
 
       result = _.first([1, 2, 3, 4], 4);
       expect(result).to.eql([1, 2, 3, 4]);
+
+      result = _.first(['H', 'E', 'L', 'L', 'O'], 1);
+      expect(result).to.eql(['H']);
+
+      result = _.first(['H', 'E', 'L', 'L', 'O'], 3);
+      expect(result).to.eql(['H', 'E', 'L']);
+
+      result = _.first(['H', 'E', 'L', 'L', 'O'], 5);
+      expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
+
+    it('returns the first element of a string', function () {
+      let result = _.first('1234');
+      expect(result).to.equal('1');
+
+      result = _.first('HELLO');
+      expect(result).to.equal('H');
     });
 
   });
