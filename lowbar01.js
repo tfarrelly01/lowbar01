@@ -57,6 +57,13 @@ _.each = function (list, iteratee, context) {
   return list;
 };
 
+_.indexOf = function (array, value) {
+  if (arguments.length < 2 || !Array.isArray(array) && typeof array !== 'string') return -1;
+
+  return value;
+
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }

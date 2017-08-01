@@ -491,4 +491,45 @@ describe('_', function () {
       expect(context).to.eql({a: 'changed!', b: 2, c: 3});
     });
   });
+
+  describe('#indexOf', function () {
+    it('is a function', function () {
+      expect(_.indexOf).to.be.a('function');
+     });
+    it('should take at least 2 arguments', function () {
+      expect(_.indexOf.length).to.be.at.least(2);
+    });
+    it('should return -1 if 1st argument passed to function is not an array or a string', function () {
+      let arr = 123;
+      let value = 1;
+      expect(_.indexOf(arr, value)).to.equal(-1);
+
+      value = undefined;
+      expect(_.indexOf(arr, value)).to.equal(-1);
+
+      value = NaN;
+      expect(_.indexOf(arr, value)).to.equal(-1);
+
+      value = 10.234;
+      expect(_.indexOf(arr, value)).to.equal(-1);
+
+      value = new Date();
+      expect(_.indexOf(arr, value)).to.equal(-1);
+
+      value = {a: 1, b: 2};
+      expect(_.indexOf(arr, value)).to.equal(-1);
+
+      value = function () {console.log('hello'); };
+      expect(_.indexOf(arr, value)).to.equal(-1);
+
+      value = null;
+      expect(_.indexOf(arr, value)).to.equal(-1);
+    });
+
+    it('should return -1 is only one argument passed to the function', function () {
+      const arr = [1, 2, 'a', 'b'];
+      expect(_.indexOf(arr)).to.equal(-1);
+    });
+  });
+
 }); 
