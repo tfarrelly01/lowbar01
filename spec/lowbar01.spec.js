@@ -138,6 +138,13 @@ describe('_', function () {
       result = _.first('HELLO', 5);
       expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
     });
+    it('returns the passed array if n greater than length of array', function () {
+      let result = _.first([1, 2, 3, 4], 5);
+      expect(result).to.eql([1, 2, 3, 4]);
+
+      result = _.first(['H', 'E', 'L', 'L', 'O'], 8);
+      expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
   });
 
 }); 
