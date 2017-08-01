@@ -266,6 +266,40 @@ describe('_', function () {
       expect(result).to.eql([]);
     });
 
+    it('returns undefined if first argument is not an array/string and second argument is undefined', function () {
+      let result = _.last(123);
+      expect(result).to.equal(undefined);
+
+      result = _.last(12.23);
+      expect(result).to.equal(undefined);
+
+      result = _.last({a: 1, b: 2});
+      expect(result).to.equal(undefined);
+
+      result = _.last(new Date());
+      expect(result).to.equal(undefined);
+
+      result = _.last(function () { console.log('hello'); });
+      expect(result).to.equal(undefined);
+    });
+
+    it('returns empty array if first argument is not an array/string and second argument is defined', function () {
+      let result = _.last(123, 0);
+      expect(result).to.eql([]);
+
+      result = _.last(12.23, 1);
+      expect(result).to.eql([]);
+
+      result = _.last({a: 1, b: 2}, new Date());
+      expect(result).to.eql([]);
+
+      result = _.last(new Date(), {a: 1, b: 2});
+      expect(result).to.eql([]);
+
+      result = _.last(function () { console.log('hello'); }, [1, 2, 3]);
+      expect(result).to.eql([]);
+    });
+
     it('returns the last element of an array', function () {
       let result = _.last([1, 2, 3]);
       expect(result).to.equal(3);

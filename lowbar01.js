@@ -19,7 +19,7 @@ _.first = function (array, n) {
 _.last = function (array, n) {
   if (arguments.length === 0) return undefined;
 
-  if (array.length === 0) return undefined;
+  if (array.length === undefined || array.length === 0) return n !== undefined ? [] : undefined;
 
   if (n < 1) return [];
 
