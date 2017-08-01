@@ -78,6 +78,25 @@ describe('_', function () {
       expect(_.first).to.be.a('function');
     });
 
+    it('should take at least 1 argument', function () {
+      expect(_.identity.length).to.be.at.least(1);
+    });
+
+    it('returns undefined if no arguments passed to function', function () {
+      let result = _.first();
+      expect(result).to.equal(undefined);
+    });
+
+    it('returns undefined if function recieves an empty array argument', function () {
+      let result = _.first([]);
+      expect(result).to.equal(undefined);
+    });
+
+    it('returns undefined if function recieves an empty string argument', function () {
+      let result = _.first('');
+      expect(result).to.equal(undefined);
+    });
+
     it('returns the first element of an array', function () {
       let result = _.first([1, 2, 3]);
       expect(result).to.equal(1);
