@@ -34,7 +34,7 @@ _.last = function (array, n) {
   return n !== undefined ? array.slice(-n) : array[array.length - 1];
 };
 
-_.each = function (list, iteratee) {
+_.each = function (list, iteratee, context) {
   // Iterates over a list of elements, passing each in turn to an iteratee function. The iteratee is 
   // bound to the context object, if one is passed. Each invocation of iteratee is called with three
   // arguments: 
@@ -45,7 +45,9 @@ _.each = function (list, iteratee) {
   if (arguments.length === 0) return undefined;
 
   if (typeof list !== 'object' && !Array.isArray(list) && typeof list !== 'string'
-  || typeof iteratee !== 'function') return list;
+      || typeof iteratee !== 'function') return list;
+
+  if (context) iteratee = iteratee.bind(context);
 
   if (Array.isArray(list) || typeof list === 'string') {
     for (let i = 0; i < list.length; i++) iteratee(list[i], i, list);

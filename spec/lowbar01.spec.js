@@ -469,6 +469,7 @@ describe('_', function () {
       _.each(str, copyCharsInString);
       expect(newStr).to.eql(str);
     });
+
     it('Passes each index of the object as the first argument to the iteratee', function () {
       const objKeys = [];
       const obj = {a: 1, b: 2, c: 3, d: 4};
@@ -479,6 +480,15 @@ describe('_', function () {
       }
       _.each(Object.keys(obj), putKeyInArray);
       expect(objKeys).to.eql(result);
+    });
+
+    it('binds a context to the iteratee if one is passed', function () {
+      const context = {a: 1, b: 2, c: 3};
+      _.each([1,2,3,4,5], function () {
+        // the value of 'this' in here should be the context object
+        this.a = 'changed!';
+      }, context);
+      expect(context).to.eql({a: 'changed!', b: 2, c: 3});
     });
   });
 }); 
