@@ -4,8 +4,8 @@ _.identity = function (value) {
   return value;
 };
 
-_.first = function (array) {
-  return array[0];
+_.first = function (array, n) {
+  return n !== undefined ? array.slice(0, n) : array[0];
 };
 
 if (typeof module !== 'undefined') {
