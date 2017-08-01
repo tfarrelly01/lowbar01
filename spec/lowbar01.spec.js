@@ -31,6 +31,9 @@ describe('_', function () {
       result = _.identity(123);
       expect(result).to.equal(123);
 
+      result = _.identity(12.34);
+      expect(result).to.equal(12.34);
+
       let input = [1, 2, 3];
       result = _.identity(input);
       expect(result).to.equal(input);
@@ -58,6 +61,10 @@ describe('_', function () {
 
       let int = 123;
       result = (int === _.identity(123));
+      expect(result).to.equal(true);
+
+      let dec = 12.34;
+      result = (dec === _.identity(12.34));
       expect(result).to.equal(true);
 
       let date = new Date();
