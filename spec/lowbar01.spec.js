@@ -301,6 +301,22 @@ describe('_', function () {
       result = _.last('HELLO', 5);
       expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
     });
+    
+    it('returns the passed array if n greater than length of array', function () {
+      let result = _.last([1, 2, 3, 4], 5);
+      expect(result).to.eql([1, 2, 3, 4]);
+
+      result = _.last(['H', 'E', 'L', 'L', 'O'], 8);
+      expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
+
+    it('returns the passed string as an array if n greater than length of string', function () {
+      let result = _.last('1234', 5);
+      expect(result).to.eql(['1', '2', '3', '4']);
+
+      result = _.last('HELLO', 8);
+      expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
 
   });
 
