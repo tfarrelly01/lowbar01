@@ -49,8 +49,10 @@ _.each = function (list, iteratee) {
 
   if (Array.isArray(list) || typeof list === 'string') {
     for (let i = 0; i < list.length; i++) iteratee(list[i], i, list);
+  } else {
+    for (let prop in list) iteratee(list[prop], prop, list);
   }
-
+  
   return list;
 };
 

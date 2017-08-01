@@ -438,5 +438,14 @@ describe('_', function () {
      expect(counter).to.equal(3);
     });
 
+    it('invokes the function as many times as there are properties in the object', function () {
+     let counter = 0;
+     function incrementCounter () {
+       counter++;
+     }
+     const list = {a: 1, b: 2, c: 3};
+     _.each(list, incrementCounter);
+     expect(counter).to.equal(3);
+    });
   });
 }); 
