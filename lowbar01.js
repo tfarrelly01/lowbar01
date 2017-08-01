@@ -49,11 +49,10 @@ _.each = function (list, iteratee, context) {
 
   if (context) iteratee = iteratee.bind(context);
 
-  if (Array.isArray(list) || typeof list === 'string') {
+  if (Array.isArray(list) || typeof list === 'string') 
     for (let i = 0; i < list.length; i++) iteratee(list[i], i, list);
-  } else {
+  else 
     for (let prop in list) iteratee(list[prop], prop, list);
-  }
   
   return list;
 };
