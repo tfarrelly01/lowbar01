@@ -247,6 +247,14 @@ describe('_', function () {
       result = _.last(['H', 'E', 'L', 'L', 'O']);
       expect(result).to.equal('O');
     });
+
+    it('returns the last element of a string', function () {
+      let result = _.last('123');
+      expect(result).to.equal('3');
+
+      result = _.last('HELLO');
+      expect(result).to.equal('O');
+    });
   });
 
 }); 
