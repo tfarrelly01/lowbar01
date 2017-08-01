@@ -97,6 +97,22 @@ describe('_', function () {
       expect(result).to.equal(undefined);
     });
 
+    it('returns an empty array if 1st argument is an array and 2nd argument is zero or less', function () {
+      let result = _.first([1, 2, 3], 0);
+      expect(result).to.eql([]);
+
+      result = _.first([1, 2, 3], -2);
+      expect(result).to.eql([]);
+    });
+
+    it('returns an empty array if 1st argument is a string and 2nd argument is zero or less', function () {
+      let result = _.first('1223', 0);
+      expect(result).to.eql([]);
+
+      result = _.first('1223', -2);
+      expect(result).to.eql([]);
+    });
+
     it('returns the first element of an array', function () {
       let result = _.first([1, 2, 3]);
       expect(result).to.equal(1);
