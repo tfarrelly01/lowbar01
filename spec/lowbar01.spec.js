@@ -447,5 +447,14 @@ describe('_', function () {
      _.each(list, incrementCounter);
      expect(counter).to.equal(3);
     });
+    it('passes each element of the array as the first argument to the iteratee', function () {
+     const newArray = [];
+     function pushElementToArray (element) {
+       newArray.push(element);
+     }
+     const list = [1, 2, 3];
+     _.each(list, pushElementToArray);
+     expect(newArray).to.eql(list);
+    });
   });
 }); 
