@@ -411,6 +411,13 @@ describe('_', function () {
       let iteratee = 123;
       expect(_.each(list, iteratee)).to.equal(list);
     });
-
+    it('Calls the function as many times as there are items in the array', function () {
+     var counter = 0;
+     function incrementCounter () {
+       counter += 1;
+     }
+     _.each([1, 2, 3], incrementCounter);
+     expect(counter).to.equal(3);
+    });
   });
 }); 
