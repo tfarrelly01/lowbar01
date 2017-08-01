@@ -378,20 +378,25 @@ describe('_', function () {
       expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
     });
   });
+
   describe('#each', function () {
     it('is a function', function () {
       expect(_.each).to.be.a('function');
     });
+
     it('should take at least 2 arguments', function () {
       expect(_.each.length).to.be.at.least(2);
     });
+
     it('returns undefined if no arguments passed to function', function () {
       expect(_.each()).to.equal(undefined);
     });
+
     it('returns the value passed to the function if it is the sole argument', function () {
-      let value = [1, 2, 3];
+      const value = [1, 2, 3];
       expect(_.each(value)).to.equal(value);
     });
+
     it('returns the value of the first argument (list) if the first argument is not an array, string  or object', function () {
       let list = 123;
       let iteratee = function (item) { console.log(item); };
@@ -406,18 +411,32 @@ describe('_', function () {
       list = function (item) { console.log(item); };
       expect(_.each(list, iteratee)).to.equal(list);
     });
+
     it('returns the value of the first argument (list) if the second argument (iteratee) is not a function', function () {
-      let list = [1, 2, 3];
-      let iteratee = 123;
+      const list = [1, 2, 3];
+      const iteratee = 123;
       expect(_.each(list, iteratee)).to.equal(list);
     });
-    it('Calls the function as many times as there are items in the array', function () {
-     var counter = 0;
+
+    it('invokes the function as many times as there are items in the array', function () {
+     let counter = 0;
      function incrementCounter () {
        counter += 1;
      }
-     _.each([1, 2, 3], incrementCounter);
+     const list = [1, 2, 3];
+     _.each(list, incrementCounter);
      expect(counter).to.equal(3);
     });
+    
+    it('invokes the function as many times as there are items in the string', function () {
+     let counter = 0;
+     function incrementCounter () {
+       counter += 1;
+     }
+     const list = 'abc';
+     _.each(list, incrementCounter);
+     expect(counter).to.equal(3);
+    });
+
   });
 }); 

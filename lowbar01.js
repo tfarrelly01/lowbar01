@@ -44,11 +44,13 @@ _.each = function (list, iteratee) {
 
   if (arguments.length === 0) return undefined;
 
-  if (typeof list !== 'object' && !Array.isArray(list) || typeof iteratee !== 'function') return list;
+  if (typeof list !== 'object' && !Array.isArray(list) && typeof list !== 'string'
+  || typeof iteratee !== 'function') return list;
 
-  if (Array.isArray(list)) {
+  if (Array.isArray(list) || typeof list === 'string') {
     for (let i = 0; i < list.length; i++) iteratee(list[i], i, list);
   }
+
   return list;
 };
 
