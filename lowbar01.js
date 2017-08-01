@@ -19,6 +19,8 @@ _.first = function (array, n) {
 _.last = function (array, n) {
   if (arguments.length === 0) return undefined;
 
+  if (array.length === 0) return undefined;
+
   if (n < 1) return [];
 
   if (typeof array === 'string') array = array.split('');

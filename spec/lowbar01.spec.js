@@ -240,6 +240,16 @@ describe('_', function () {
       expect(result).to.equal(undefined);
     });
 
+    it('returns undefined if function recieves an empty array argument', function () {
+      let result = _.last([]);
+      expect(result).to.equal(undefined);
+    });
+
+    it('returns undefined if function recieves an empty string argument', function () {
+      let result = _.last('');
+      expect(result).to.equal(undefined);
+    });
+
     it('returns an empty array if 1st argument is an array and 2nd argument is zero or less', function () {
       let result = _.last([1, 2, 3], 0);
       expect(result).to.eql([]);
