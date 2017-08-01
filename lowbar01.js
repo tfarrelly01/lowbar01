@@ -5,21 +5,15 @@ _.identity = function (value) {
 };
 
 _.first = function (array, n) {
-
   if (arguments.length === 0) return undefined;
 
-  if (array.length === undefined || array.length === 0) {
-    if (n !== undefined) return [];
-    else return undefined;
-  }
+  if (array.length === undefined || array.length === 0) return n !== undefined ? [] : undefined;
 
   if (n < 1) return [];
 
   if (typeof array === 'string') array = array.split('');
 
-  return n !== undefined 
-    ? array.slice(0, n) 
-    : array[0];
+  return n !== undefined ? array.slice(0, n) : array[0];
 };
 
 if (typeof module !== 'undefined') {
