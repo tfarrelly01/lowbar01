@@ -447,6 +447,7 @@ describe('_', function () {
      _.each(list, incrementCounter);
      expect(counter).to.equal(3);
     });
+
     it('passes each element of the array as the first argument to the iteratee', function () {
      const newArray = [];
      function pushElementToArray (element) {
@@ -455,6 +456,16 @@ describe('_', function () {
      const list = [1, 2, 3];
      _.each(list, pushElementToArray);
      expect(newArray).to.eql(list);
+    });
+
+    it('passes each element of the string as the first argument to the iteratee', function () {
+     let newStr = '';
+     function copyCharsInString (char) {
+       newStr += char;
+     }
+     const str = 'HELLO THERE';
+     _.each(str, copyCharsInString);
+     expect(newStr).to.eql(str);
     });
   });
 }); 
