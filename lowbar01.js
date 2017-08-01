@@ -5,6 +5,9 @@ _.identity = function (value) {
 };
 
 _.first = function (array, n) {
+
+  if (typeof array === 'string') array = array.split('');
+
   return n !== undefined ? array.slice(0, n) : array[0];
 };
 

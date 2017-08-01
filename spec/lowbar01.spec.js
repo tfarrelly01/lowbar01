@@ -116,6 +116,28 @@ describe('_', function () {
       expect(result).to.equal('H');
     });
 
+    it('returns the first n elements of a string', function () {
+      let result = _.first('1234', 1);
+      expect(result).to.eql(['1']);
+
+      result = _.first('1234', 2);
+      expect(result).to.eql(['1', '2']);
+
+      result = _.first('1234', 3);
+      expect(result).to.eql(['1', '2', '3']);
+
+      result = _.first('1234', 4);
+      expect(result).to.eql(['1', '2', '3', '4']);
+
+      result = _.first('HELLO', 1);
+      expect(result).to.eql(['H']);
+
+      result = _.first('HELLO', 3);
+      expect(result).to.eql(['H', 'E', 'L']);
+
+      result = _.first('HELLO', 5);
+      expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
   });
 
 }); 
