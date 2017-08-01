@@ -248,6 +248,29 @@ describe('_', function () {
       expect(result).to.equal('O');
     });
 
+    it('returns the last n elements of an array', function () {
+      let result = _.last([1, 2, 3, 4], 1);
+      expect(result).to.eql([4]);
+
+      result = _.last([1, 2, 3, 4], 2);
+      expect(result).to.eql([3, 4]);
+
+      result = _.last([1, 2, 3, 4], 3);
+      expect(result).to.eql([2, 3, 4]);
+
+      result = _.last([1, 2, 3, 4], 4);
+      expect(result).to.eql([1, 2, 3, 4]);
+
+      result = _.last(['H', 'E', 'L', 'L', 'O'], 1);
+      expect(result).to.eql(['O']);
+
+      result = _.last(['H', 'E', 'L', 'L', 'O'], 3);
+      expect(result).to.eql(['L', 'L', 'O']);
+
+      result = _.last(['H', 'E', 'L', 'L', 'O'], 5);
+      expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
+
     it('returns the last element of a string', function () {
       let result = _.last('123');
       expect(result).to.equal('3');
@@ -255,6 +278,30 @@ describe('_', function () {
       result = _.last('HELLO');
       expect(result).to.equal('O');
     });
+
+    it('returns the last n elements of a string', function () {
+      let result = _.last('1234', 1);
+      expect(result).to.eql(['4']);
+
+      result = _.last('1234', 2);
+      expect(result).to.eql(['3', '4']);
+
+      result = _.last('1234', 3);
+      expect(result).to.eql(['2', '3', '4']);
+
+      result = _.last('1234', 4);
+      expect(result).to.eql(['1', '2', '3', '4']);
+
+      result = _.last('HELLO', 1);
+      expect(result).to.eql(['O']);
+
+      result = _.last('HELLO', 3);
+      expect(result).to.eql(['L', 'L', 'O']);
+
+      result = _.last('HELLO', 5);
+      expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
+
   });
 
 }); 
