@@ -6,9 +6,14 @@ _.identity = function (value) {
 
 _.first = function (array, n) {
 
-  if (arguments.length === 0 || array.length === 0) return undefined;
+  if (arguments.length === 0) return undefined;
 
-  if (n <= 0) return [];
+  if (array.length === undefined || array.length === 0) {
+    if (n !== undefined) return [];
+    else return undefined;
+  }
+
+  if (n < 1) return [];
 
   if (typeof array === 'string') array = array.split('');
 

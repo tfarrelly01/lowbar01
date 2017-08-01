@@ -113,6 +113,40 @@ describe('_', function () {
       expect(result).to.eql([]);
     });
 
+    it('returns undefined if first argument is not an array/string and second argument is undefined', function () {
+      let result = _.first(123);
+      expect(result).to.equal(undefined);
+
+      result = _.first(12.23);
+      expect(result).to.equal(undefined);
+
+      result = _.first({a: 1, b: 2});
+      expect(result).to.equal(undefined);
+
+      result = _.first(new Date());
+      expect(result).to.equal(undefined);
+
+      result = _.first(function () { console.log('hello'); });
+      expect(result).to.equal(undefined);
+    });
+
+    it('returns empty array if first argument is not an array/string and second argument is defined', function () {
+      let result = _.first(123, 0);
+      expect(result).to.eql([]);
+
+      result = _.first(12.23, 1);
+      expect(result).to.eql([]);
+
+      result = _.first({a: 1, b: 2}, new Date());
+      expect(result).to.eql([]);
+
+      result = _.first(new Date(), {a: 1, b: 2});
+      expect(result).to.eql([]);
+
+      result = _.first(function () { console.log('hello'); }, [1, 2, 3]);
+      expect(result).to.eql([]);
+    });
+
     it('returns the first element of an array', function () {
       let result = _.first([1, 2, 3]);
       expect(result).to.equal(1);
@@ -120,6 +154,7 @@ describe('_', function () {
       result = _.first(['H', 'E', 'L', 'L', 'O']);
       expect(result).to.equal('H');
     });
+
     it('returns the first n elements of an array', function () {
       let result = _.first([1, 2, 3, 4], 1);
       expect(result).to.eql([1]);
@@ -152,7 +187,7 @@ describe('_', function () {
     });
 
     it('returns the first n elements of a string', function () {
-      let result = _.first('1234', 1);
+      let result = _.first('1234', 1.5);
       expect(result).to.eql(['1']);
 
       result = _.first('1234', 2);
