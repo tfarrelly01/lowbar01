@@ -73,4 +73,16 @@ describe('_', function () {
     });
   });
 
+  describe('#first', function () {
+    it('is a function', function () {
+      expect(_.first).to.be.a('function');
+    });
+
+    it('returns the first element of an array', function () {
+      var result = _.first([1, 2, 3]);
+      expect(result).to.equal(1);
+    });
+
+  });
+
 }); 
