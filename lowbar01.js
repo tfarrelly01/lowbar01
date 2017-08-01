@@ -16,6 +16,12 @@ _.first = function (array, n) {
   return n !== undefined ? array.slice(0, n) : array[0];
 };
 
+_.last = function (array) {
+  if (arguments.length === 0) return undefined;
+  
+  return array[array.length - 1];
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }

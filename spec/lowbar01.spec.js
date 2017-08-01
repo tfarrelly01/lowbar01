@@ -79,7 +79,7 @@ describe('_', function () {
     });
 
     it('should take at least 1 argument', function () {
-      expect(_.identity.length).to.be.at.least(1);
+      expect(_.first.length).to.be.at.least(1);
     });
 
     it('returns undefined if no arguments passed to function', function () {
@@ -223,6 +223,29 @@ describe('_', function () {
 
       result = _.first('HELLO', 8);
       expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
+    });
+  });
+
+  describe('#last', function () {
+    it('is a function', function () {
+      expect(_.last).to.be.a('function');
+    });
+
+    it('should take at least 1 argument', function () {
+      expect(_.last.length).to.be.at.least(1);
+    });
+
+    it('returns undefined if no arguments passed to function', function () {
+      let result = _.last();
+      expect(result).to.equal(undefined);
+    });
+
+    it('returns the last element of an array', function () {
+      let result = _.last([1, 2, 3]);
+      expect(result).to.equal(3);
+
+      result = _.last(['H', 'E', 'L', 'L', 'O']);
+      expect(result).to.equal('O');
     });
   });
 
