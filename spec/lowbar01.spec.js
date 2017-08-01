@@ -240,6 +240,22 @@ describe('_', function () {
       expect(result).to.equal(undefined);
     });
 
+    it('returns an empty array if 1st argument is an array and 2nd argument is zero or less', function () {
+      let result = _.last([1, 2, 3], 0);
+      expect(result).to.eql([]);
+
+      result = _.last([1, 2, 3], -2);
+      expect(result).to.eql([]);
+    });
+
+    it('returns an empty array if 1st argument is a string and 2nd argument is zero or less', function () {
+      let result = _.last('1223', 0);
+      expect(result).to.eql([]);
+
+      result = _.last('1223', -2);
+      expect(result).to.eql([]);
+    });
+
     it('returns the last element of an array', function () {
       let result = _.last([1, 2, 3]);
       expect(result).to.equal(3);
@@ -301,7 +317,7 @@ describe('_', function () {
       result = _.last('HELLO', 5);
       expect(result).to.eql(['H', 'E', 'L', 'L', 'O']);
     });
-    
+
     it('returns the passed array if n greater than length of array', function () {
       let result = _.last([1, 2, 3, 4], 5);
       expect(result).to.eql([1, 2, 3, 4]);
