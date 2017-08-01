@@ -404,7 +404,7 @@ describe('_', function () {
 
       list = 12.3;
       expect(_.each(list, iteratee)).to.equal(list);
-            
+
       list = new Date();
       expect(_.each(list, iteratee)).to.equal(list);
 
@@ -419,53 +419,66 @@ describe('_', function () {
     });
 
     it('invokes the function as many times as there are items in the array', function () {
-     let counter = 0;
-     function incrementCounter () {
-       counter += 1;
-     }
-     const list = [1, 2, 3];
-     _.each(list, incrementCounter);
-     expect(counter).to.equal(3);
+      const list = [1, 2, 3];     
+      let counter = 0;
+      function incrementCounter () {
+        counter += 1;
+      }
+      _.each(list, incrementCounter);
+      expect(counter).to.equal(3);
     });
-    
+
     it('invokes the function as many times as there are items in the string', function () {
-     let counter = 0;
-     function incrementCounter () {
-       counter += 1;
-     }
-     const list = 'abc';
-     _.each(list, incrementCounter);
-     expect(counter).to.equal(3);
+      let counter = 0;
+      const list = 'abc';
+      function incrementCounter () {
+        counter += 1;
+      }
+      _.each(list, incrementCounter);
+      expect(counter).to.equal(3);
     });
 
     it('invokes the function as many times as there are properties in the object', function () {
-     let counter = 0;
-     function incrementCounter () {
-       counter++;
-     }
-     const list = {a: 1, b: 2, c: 3};
-     _.each(list, incrementCounter);
-     expect(counter).to.equal(3);
+      const list = {a: 1, b: 2, c: 3};
+      let counter = 0;
+      function incrementCounter () {
+        counter++;
+      }
+      _.each(list, incrementCounter);
+      expect(counter).to.equal(3);
     });
 
     it('passes each element of the array as the first argument to the iteratee', function () {
-     const newArray = [];
-     function pushElementToArray (element) {
-       newArray.push(element);
-     }
-     const list = [1, 2, 3];
-     _.each(list, pushElementToArray);
-     expect(newArray).to.eql(list);
+      const newArray = [];
+      const list = [1, 2, 3];
+
+      function pushElementToArray (element) {
+        newArray.push(element);
+      }
+      _.each(list, pushElementToArray);
+      expect(newArray).to.eql(list);
     });
 
     it('passes each element of the string as the first argument to the iteratee', function () {
-     let newStr = '';
-     function copyCharsInString (char) {
-       newStr += char;
-     }
-     const str = 'HELLO THERE';
-     _.each(str, copyCharsInString);
-     expect(newStr).to.eql(str);
+      let newStr = '';
+      const str = 'HELLO THERE';
+
+      function copyCharsInString (char) {
+        newStr += char;
+      }
+      _.each(str, copyCharsInString);
+      expect(newStr).to.eql(str);
+    });
+    it('Passes each index of the object as the first argument to the iteratee', function () {
+      const objKeys = [];
+      const obj = {a: 1, b: 2, c: 3, d: 4};
+      const result = ['a', 'b', 'c', 'd'];
+
+      function putKeyInArray (key) {
+        objKeys.push(key);
+      }
+      _.each(Object.keys(obj), putKeyInArray);
+      expect(objKeys).to.eql(result);
     });
   });
 }); 
