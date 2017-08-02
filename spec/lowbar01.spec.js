@@ -583,7 +583,7 @@ describe('_', function () {
     });
   });
 
-  describe.only('#filter', function () {
+  describe('#filter', function () {
     it('is a function', function () {
       expect(_.filter).to.be.a('function');
      });
@@ -636,20 +636,27 @@ describe('_', function () {
       expect(_.filter(list)).to.eql(result);
     });
 
-    it('returns array of values that pass the truth test', function () {
+    it('returns array of values from an array that pass the truth test', function () {
       const list = [1, 2, 3, 4, 5, 6];
       const result = [2, 4, 6];
-/*
-      function numDivByTwo (number) {
-        if (number % 2 === 0) numbers.push(number);
-      }
-*/
+
       function numDivByTwo (number) {
         return number % 2 === 0;
       }
 
       const numbers = _.filter(list, numDivByTwo);
       expect(numbers).to.eql(result);
+    });
+
+    it('returns array of values from an object that pass the truth test', function () {
+      const list = {a: 'A', b: 'b', c: 'c', d: 'D', e: 'e'};
+      const result = ['A', 'D'];
+
+      function findUpperCaseChars (char) {
+        return char === char.toUpperCase();
+      }
+      const upperChars = _.filter(list, findUpperCaseChars);
+      expect(upperChars).to.eql(result);
     });
   });
 
