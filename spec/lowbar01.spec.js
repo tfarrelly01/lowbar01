@@ -713,6 +713,17 @@ describe('_', function () {
       expect(upperChars).to.eql(result);
     });
 
+    it('returns array of values from a string where each value DOES NOT pass the truth test', function () {
+      const list = 'aAbbccdDee';
+      const result = ['A', 'D'];
+
+      function findLowerCaseChars (char) {
+        return char === char.toLowerCase();
+      }
+
+      const lowerChars = _.reject(list, findLowerCaseChars);
+      expect(lowerChars).to.eql(result);
+    });
   });
 
 }); 
