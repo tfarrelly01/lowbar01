@@ -57,10 +57,12 @@ _.each = function (list, iteratee, context) {
   return list;
 };
 
-_.indexOf = function (array, value) {
+_.indexOf = function (array, value, isSorted) {
   if (arguments.length < 2 || !Array.isArray(array) && typeof array !== 'string') return -1;
 
-  return array.indexOf(value);
+  isSorted = isSorted || 0;
+  
+  return array.indexOf(value, isSorted);
 };
 
 if (typeof module !== 'undefined') {

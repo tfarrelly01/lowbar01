@@ -550,6 +550,19 @@ describe('_', function () {
       expect(_.indexOf(array, 65)).to.equal(-1);  
       expect(_.indexOf(array, 1000)).to.equal(-1);    
     });
-  });
 
+    it('should search for the first matching value in the array after a given index', function () {
+      const array = [4, 2, 1, 4, 56, 29, 'a', 'Z', 0, 'h', 'I', '|', '@', 56, 'I', '|', 72, 1001];
+      expect(_.indexOf(array, 4)).to.equal(0);
+      expect(_.indexOf(array, 4, 2)).to.equal(3);
+      expect(_.indexOf(array, 4, 4)).to.equal(-1);     
+      expect(_.indexOf(array, 'I', 10)).to.equal(10);
+      expect(_.indexOf(array, 'I', 11)).to.equal(14);
+      expect(_.indexOf(array, '@', 6)).to.equal(12);
+      expect(_.indexOf(array, '@', 13)).to.equal(-1);
+      expect(_.indexOf(array, 56, 5)).to.equal(13);  
+      expect(_.indexOf(array, 1001, 17)).to.equal(17);    
+      expect(_.indexOf(array, 1001, 20)).to.equal(-1); 
+    });
+  });
 }); 
