@@ -98,6 +98,9 @@ _.reject = function (list, predicate, context) {
   if ((!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];
 
+  predicate = predicate || _.identity;  
+
+
   if (context) predicate = predicate.bind(context);
 
   let rejectedList = [];
