@@ -583,7 +583,7 @@ describe('_', function () {
     });
   });
 
-  describe('#filter', function () {
+  describe.only('#filter', function () {
     it('is a function', function () {
       expect(_.filter).to.be.a('function');
      });
@@ -634,6 +634,22 @@ describe('_', function () {
 
       list = {a: '1', b: '2', c: 'c'};
       expect(_.filter(list)).to.eql(result);
+    });
+
+    it('returns array of values that pass the truth test', function () {
+      const list = [1, 2, 3, 4, 5, 6];
+      const result = [2, 4, 6];
+/*
+      function numDivByTwo (number) {
+        if (number % 2 === 0) numbers.push(number);
+      }
+*/
+      function numDivByTwo (number) {
+        return number % 2 === 0;
+      }
+
+      const numbers = _.filter(list, numDivByTwo);
+      expect(numbers).to.eql(result);
     });
   });
 

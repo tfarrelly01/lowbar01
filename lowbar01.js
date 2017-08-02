@@ -78,15 +78,21 @@ _.filter = function (list, predicate) {
   if ((!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];
 
+/*
   if (arguments.length < 2) {
     if (typeof list === 'object') return Object.values(list);
     if (typeof list === 'string') return list.split('');
     return list;
   }
-
-
-  return predicate;
+*/
   
+  predicate = predicate || _.identity;  
+  
+  let filteredList = [];
+  _.each(list, function (item, i, list) {
+    if (predicate(item, i, list)) filteredList.push(item);
+  });
+  return filteredList;
 };
 
 if (typeof module !== 'undefined') {
