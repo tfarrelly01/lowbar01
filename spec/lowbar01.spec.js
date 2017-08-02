@@ -842,11 +842,24 @@ describe('_', function () {
       const result = ['a','b','c','d','e'];
 
       function convertToLowerCase (char) {
-        return char = char.toLowerCase();
+        return char.toLowerCase();
       }
       const lowerChars = _.map(list, convertToLowerCase);
       expect(lowerChars).to.eql(result);
       expect(lowerChars).to.not.eql(list);
+    });
+
+    it('returns an array transformation whilst leaving the original string unmutated', function () {
+      const list = 'aAbbccdDee';
+      const result = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E'];
+
+      function convertToUpperCase (char) {
+        return char.toUpperCase();
+      }
+
+      const upperChars = _.map(list, convertToUpperCase);
+      expect(upperChars).to.eql(result);
+      expect(upperChars).to.not.eql(list);
     });
 
   });
