@@ -131,6 +131,15 @@ _.map = function (list, iteratee, context) {
   return mappedList;
 };
 
+_.contains = function (list, value, fromIndex) {
+
+  if (arguments.length < 2 || !Array.isArray(list) || typeof list !== 'object') return false;
+
+  fromIndex = fromIndex || 0;
+
+  return fromIndex;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }

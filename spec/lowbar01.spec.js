@@ -885,4 +885,48 @@ describe('_', function () {
       expect(context).to.eql({a: 'changed!', b: 2, c: 3});
     });
   });
+
+  describe('#contains', function () {
+    it('is a function', function () {
+      expect(_.contains).to.be.a('function');
+    });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.contains.length).to.be.at.least(2);
+    });
+
+    it('should return false if less than 2 arguments passed to the function', function () {
+      const array = [1, 2, 3];
+      expect(_.contains(array)).to.equal(false);
+
+      const obj = {a: 1, b: 2, c: 3};
+      expect(_.contains(obj)).to.equal(false);
+    });
+
+    it('should return false if first argument is not an array or an object', function () {
+      let value = 12;
+      expect(_.contains(value, 12)).to.equal(false);
+
+      value = 1234.56;
+      expect(_.contains(value, 1234.56)).to.equal(false);
+
+      value = '123456';
+      expect(_.contains(value, '1')).to.equal(false);   
+
+      value = function (a) {return a * 2;};
+      expect(_.contains(value, 'function')).to.equal(false);
+
+      value = new Date();
+      expect(_.contains(value, new Date())).to.equal(false);
+
+      value = undefined;
+      expect(_.contains(value, undefined)).to.equal(false);
+
+      value = NaN;   
+      expect(_.contains(value, NaN)).to.equal(false);
+
+      value = null;
+      expect(_.contains(value, null)).to.equal(false); 
+    });    
+  });
 }); 
