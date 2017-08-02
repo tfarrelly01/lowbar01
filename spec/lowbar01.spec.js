@@ -681,7 +681,7 @@ describe('_', function () {
     });
   });
 
-    describe('#reject', function () {
+  describe('#reject', function () {
     it('is a function', function () {
       expect(_.reject).to.be.a('function');
      });
@@ -690,7 +690,7 @@ describe('_', function () {
       expect(_.reject.length).to.be.at.least(2);
     });
 
-    it('returns array of values from an array where each value passes the truth test', function () {
+    it('returns array of values from an array where each value DOES NOT pass the truth test', function () {
       const list = [1, 2, 3, 4, 5, 6];
       const result = [1, 3, 5];
 
@@ -700,6 +700,17 @@ describe('_', function () {
 
       const numbers = _.reject(list, numDivByTwo);
       expect(numbers).to.eql(result);
+    });
+
+    it('returns array of values from an object where each value DOES NOT pass the truth test', function () {
+      const list = {a: 'A', b: 'b', c: 'c', d: 'D', e: 'e'};
+      const result = ['b', 'c', 'e'];
+
+      function findUpperCaseChars (char) {
+        return char === char.toUpperCase();
+      }
+      const upperChars = _.reject(list, findUpperCaseChars);
+      expect(upperChars).to.eql(result);
     });
 
   });
