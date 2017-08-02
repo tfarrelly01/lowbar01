@@ -582,4 +582,59 @@ describe('_', function () {
       expect(_.indexOf(largeArray, 10000001, true)).to.equal(-1);
     });
   });
+
+  describe('#filter', function () {
+    it('is a function', function () {
+      expect(_.filter).to.be.a('function');
+     });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.filter.length).to.be.at.least(2);
+    });
+
+    it('should return an empty array if list is not of type array, string or object irrespective of number of arguments passed to the function', function () {
+      let value = 123;
+      let func = function (element) { return element > 10;};
+      expect(_.filter(value, func)).to.eql([]);
+      expect(_.filter(value)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.filter(value, func)).to.eql([]);
+      expect(_.filter(value)).to.eql([]);
+
+      value = function (a) {return a * 2;};
+      expect(_.filter(value, func)).to.eql([]);
+      expect(_.filter(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.filter(value, func)).to.eql([]);
+      expect(_.filter(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.filter(value, func)).to.eql([]);
+      expect(_.filter(value)).to.eql([]);
+
+      value = NaN;
+      expect(_.filter(value, func)).to.eql([]);      
+      expect(_.filter(value)).to.eql([]);
+
+      value = null;
+      expect(_.filter(value, func)).to.eql([]); 
+      expect(_.filter(value)).to.eql([]); 
+
+    });
+
+    it('should return an array if only one argument passed to the function which is of type array, string or object', function () {
+      let list = '12c';
+      let result = ['1', '2', 'c'];
+      expect(_.filter(list)).to.eql(result);
+
+      list = ['1','2','c'];
+      expect(_.filter(list)).to.eql(result);
+
+      list = {a: '1', b: '2', c: 'c'};
+      expect(_.filter(list)).to.eql(result);
+    });
+  });
+
 }); 

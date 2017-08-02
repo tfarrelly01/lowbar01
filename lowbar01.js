@@ -10,10 +10,10 @@ _.identity = function (value) {
 _.first = function (array, n) {
   // Returns the first element of an array/string. Passing n will return the first n elements
   // of the array/string.
+
+  // Defensive code to mimic the actual Underscore first method.
   if (arguments.length === 0) return undefined;
-
   if (array.length === undefined || array.length === 0) return n !== undefined ? [] : undefined;
-
   if (n < 1) return [];
 
   if (typeof array === 'string') array = array.split('');
@@ -24,8 +24,9 @@ _.first = function (array, n) {
 _.last = function (array, n) {
   // Returns the last element of an array/string. Passing n will return the last n elements
   // of the array/string.
-  if (arguments.length === 0) return undefined;
 
+  // Defensive code to mimic the actual Underscore last method.
+  if (arguments.length === 0) return undefined;
   if (array.length === undefined || array.length === 0) return n !== undefined ? [] : undefined;
 
   if (n < 1) return [];
@@ -43,8 +44,8 @@ _.each = function (list, iteratee, context) {
   // If list is a JavaScript object, iteratee's arguments are (value, key, list)
   // The list is returned for optional chaining.
 
+  // Defensive code to mimic the actual Underscore each method.
   if (arguments.length === 0) return undefined;
-
   if (typeof list !== 'object' && !Array.isArray(list) && typeof list !== 'string'
       || typeof iteratee !== 'function') return list;
 
@@ -59,11 +60,33 @@ _.each = function (list, iteratee, context) {
 };
 
 _.indexOf = function (array, value, isSorted) {
+  // Returns the index at which value can be found in the array, or -1 if value is not present in the // array. If working with a large array, and that array is already sorted, pass true for isSorted to // use a faster binary search ... or, pass a number as the third argument in order to look for the // first matching value in the array after the given index.
+
+  // Defensive code to mimic the actual Underscore indexOf method.
   if (arguments.length < 2 || !Array.isArray(array) && typeof array !== 'string') return -1;
 
   isSorted = isSorted || 0;
 
   return isSorted === true ? binarySearch(array, value) : simpleSearch(array, value, isSorted);  
+};
+
+_.filter = function (list, predicate) {
+  // Looks through each value in the list, returning an array of all the values that pass
+  // a truth test (predicate).
+
+  // Defensive code to mimic the actual Underscore filter method.
+  if ((!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
+    || (list === null || list instanceof Date)) return [];
+
+  if (arguments.length < 2) {
+    if (typeof list === 'object') return Object.values(list);
+    if (typeof list === 'string') return list.split('');
+    return list;
+  }
+
+
+  return predicate;
+  
 };
 
 if (typeof module !== 'undefined') {
