@@ -89,6 +89,19 @@ _.filter = function (list, predicate, context) {
   return filteredList;
 };
 
+_.reject = function (list, predicate) {
+  // Looks through each value in the list, returning an array WITHOUT all the values that pass
+  // a truth test (predicate).
+
+  // Defensive code to mimic the actual Underscore reject method HERE.
+
+  let rejectedList = [];
+  _.each(list, function (item, i, list) {
+    if (!predicate(item, i, list)) rejectedList.push(item);
+  });
+  return rejectedList;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }

@@ -670,7 +670,7 @@ describe('_', function () {
       const lowerChars = _.filter(list, findLowerCaseChars);
       expect(lowerChars).to.eql(result);
     });
-    
+
     it('binds a context to the predicate', function () {
       const context = {a: 1, b: 2, c: 3};
       _.filter([1,2,3,4,5], function () {
@@ -679,6 +679,29 @@ describe('_', function () {
       }, context);
       expect(context).to.eql({a: 'changed!', b: 2, c: 3});
     });
+  });
+
+    describe('#reject', function () {
+    it('is a function', function () {
+      expect(_.reject).to.be.a('function');
+     });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.reject.length).to.be.at.least(2);
+    });
+
+    it('returns array of values from an array where each value passes the truth test', function () {
+      const list = [1, 2, 3, 4, 5, 6];
+      const result = [1, 3, 5];
+
+      function numDivByTwo (number) {
+        return number % 2 === 0;
+      }
+
+      const numbers = _.reject(list, numDivByTwo);
+      expect(numbers).to.eql(result);
+    });
+
   });
 
 }); 
