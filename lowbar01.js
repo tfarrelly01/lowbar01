@@ -1,3 +1,4 @@
+const {simpleSearch, binarySearch} = require('./src/search');
 const _ = {};
 
 _.identity = function (value) {
@@ -61,8 +62,8 @@ _.indexOf = function (array, value, isSorted) {
   if (arguments.length < 2 || !Array.isArray(array) && typeof array !== 'string') return -1;
 
   isSorted = isSorted || 0;
-  
-  return array.indexOf(value, isSorted);
+
+  return isSorted === true ? binarySearch(array, value) : simpleSearch(array, value, isSorted);  
 };
 
 if (typeof module !== 'undefined') {

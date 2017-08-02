@@ -16,7 +16,7 @@ function simpleSearch (list, num, startIndex) {
 }
 
 function binarySearch (list, num) {
-    
+        
     /* 
     Binary Search
 

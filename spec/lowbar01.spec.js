@@ -2,6 +2,7 @@
 const path = require('path');
 const expect = require('chai').expect;
 const _ = require(path.join(__dirname, '..', './lowbar01.js'));
+const largeArray = [...Array(1000000).keys()];
 
 describe('_', function () {
   'use strict';
@@ -553,7 +554,7 @@ describe('_', function () {
 
     it('should search for the first matching value in the array after a given index', function () {
       const array = [4, 2, 1, 4, 56, 29, 'a', 'Z', 0, 'h', 'I', '|', '@', 56, 'I', '|', 72, 1001];
-      expect(_.indexOf(array, 4)).to.equal(0);
+      expect(_.indexOf(array, 4, 0)).to.equal(0);
       expect(_.indexOf(array, 4, 2)).to.equal(3);
       expect(_.indexOf(array, 4, 4)).to.equal(-1);     
       expect(_.indexOf(array, 'I', 10)).to.equal(10);
@@ -563,6 +564,22 @@ describe('_', function () {
       expect(_.indexOf(array, 56, 5)).to.equal(13);  
       expect(_.indexOf(array, 1001, 17)).to.equal(17);    
       expect(_.indexOf(array, 1001, 20)).to.equal(-1); 
+    });
+
+    it('should invoke the faster binarySearch algorithm (isSorted === true) returning the index position where the first instance of the number is found for large sorted arrays', function () {
+      expect(_.indexOf(largeArray, 0, true)).to.equal(0);
+      expect(_.indexOf(largeArray, 250000, true)).to.equal(250000);
+      expect(_.indexOf(largeArray, 124000, true)).to.equal(124000);
+      expect(_.indexOf(largeArray, 333000, true)).to.equal(333000);
+      expect(_.indexOf(largeArray, 449000, true)).to.equal(449000);
+      expect(_.indexOf(largeArray, 750000, true)).to.equal(750000);
+      expect(_.indexOf(largeArray, 999999, true)).to.equal(999999);
+    });
+
+    it('should invoke the faster binarySearch algorithm (isSorted === true) returning -1 if the element is not found for large sorted arrays', function () {
+      expect(_.indexOf(largeArray, -1, true)).to.equal(-1);
+      expect(_.indexOf(largeArray, 10000000, true)).to.equal(-1);
+      expect(_.indexOf(largeArray, 10000001, true)).to.equal(-1);
     });
   });
 }); 
