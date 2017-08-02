@@ -94,6 +94,7 @@ _.reject = function (list, predicate, context) {
   // a truth test (predicate).
 
   // Defensive code to mimic the actual Underscore reject method HERE.
+  if (arguments.length <= 1) return [];
 
   if (context) predicate = predicate.bind(context);
 

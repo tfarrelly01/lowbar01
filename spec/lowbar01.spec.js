@@ -690,6 +690,35 @@ describe('_', function () {
       expect(_.reject.length).to.be.at.least(2);
     });
 
+    it('returns and empty array if 1 argument or less passed to the function', function () {
+      let value = [1, 2, 3];
+      expect(_.reject(value)).to.eql([]);
+
+      value = {a: 1, b: 2, c: 3};
+      expect(_.reject(value)).to.eql([]);
+
+      value = '123';
+      expect(_.reject(value)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.reject(value)).to.eql([]);
+
+      value = function (a) {return a * 2;};
+      expect(_.reject(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.reject(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.reject(value)).to.eql([]);
+
+      value = NaN;   
+      expect(_.reject(value)).to.eql([]);
+
+      value = null;
+      expect(_.reject(value)).to.eql([]); 
+    });
+
     it('returns array of values from an array where each value DOES NOT pass the truth test', function () {
       const list = [1, 2, 3, 4, 5, 6];
       const result = [1, 3, 5];
