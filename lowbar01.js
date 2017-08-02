@@ -120,8 +120,12 @@ _.map = function (list, iteratee) {
     || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];
 
-
-  return iteratee;
+  let mappedList = [];
+  _.each(list, function (item, i, list) {
+    mappedList.push(iteratee(item, i, list));
+  });
+  
+  return mappedList;
 };
 
 if (typeof module !== 'undefined') {

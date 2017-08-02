@@ -824,5 +824,17 @@ describe('_', function () {
       expect(_.map(func)).to.eql([]); 
     });
 
+    it('returns a transformation of the original array whilst leaving the original array unmutated', function () {
+      const list = [1, 2, 3, 4, 5, 6];
+      const result = [2, 4, 6, 8, 10, 12];
+
+      function doubleNum (number) {
+        return number *= 2;
+      }
+
+      const numbers = _.map(list, doubleNum);
+      expect(numbers).to.eql(result);
+      expect(numbers).to.not.eql(list);
+    });
   });
 }); 
