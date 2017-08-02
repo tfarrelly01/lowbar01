@@ -93,7 +93,7 @@ _.reject = function (list, predicate, context) {
   // Looks through each value in the list, returning an array WITHOUT all the values that pass
   // a truth test (predicate).
 
-  // Defensive code to mimic the functionality of the actual Underscore reject method HERE.
+  // Defensive code to mimic the functionality of the actual Underscore reject method.
   if (arguments.length <= 1) return [];
   if ((!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];
@@ -108,6 +108,20 @@ _.reject = function (list, predicate, context) {
     if (!predicate(item, i, list)) rejectedList.push(item);
   });
   return rejectedList;
+};
+
+_.map = function (list, iteratee) {
+  // Produces a new array of values by mapping each value in list through a transformation function 
+  // (iteratee). The iteratee is passed three arguments: the value, then the index (or key) of the
+  // iteration, and finally a reference to the entire list.
+
+  // Defensive code to mimic the functionality of the actual Underscore map method.
+  if ((arguments.length === 0)
+    || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
+    || (list === null || list instanceof Date)) return [];
+
+
+  return iteratee;
 };
 
 if (typeof module !== 'undefined') {

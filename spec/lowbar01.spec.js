@@ -791,4 +791,38 @@ describe('_', function () {
     });
   });
 
+  describe('#map', function () {
+    it('is a function', function () {
+      expect(_.map).to.be.a('function');
+     });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.map.length).to.be.at.least(2);
+    });
+
+    it('should return an empty array if list is not of type array, string or object', function () {
+      let value = 12;
+      const func = function (a) {return a < 2;};
+      expect(_.map(value, func)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.map(value, func)).to.eql([]);      
+
+      value = function (a) {return a * 2;};
+      expect(_.map(value, func)).to.eql([]);
+
+      value = new Date();
+      expect(_.map(func)).to.eql([]);
+
+      value = undefined;
+      expect(_.map(func)).to.eql([]);
+
+      value = NaN;   
+      expect(_.map(func)).to.eql([]);
+
+      value = null;
+      expect(_.map(func)).to.eql([]); 
+    });
+
+  });
 }); 
