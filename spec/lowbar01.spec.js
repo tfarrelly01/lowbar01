@@ -836,5 +836,18 @@ describe('_', function () {
       expect(numbers).to.eql(result);
       expect(numbers).to.not.eql(list);
     });
+
+    it('returns a transformed array whilst leaving the original object unmutated', function () {
+      const list = {a: 'A', b: 'b', c: 'c', d: 'D', e: 'e'};
+      const result = ['a','b','c','d','e'];
+
+      function convertToLowerCase (char) {
+        return char = char.toLowerCase();
+      }
+      const lowerChars = _.map(list, convertToLowerCase);
+      expect(lowerChars).to.eql(result);
+      expect(lowerChars).to.not.eql(list);
+    });
+
   });
 }); 
