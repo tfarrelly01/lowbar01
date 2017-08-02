@@ -540,6 +540,16 @@ describe('_', function () {
       expect(_.indexOf(array, 64)).to.equal(15);  
       expect(_.indexOf(array, 1001)).to.equal(17);    
     });
+
+    it('should return -1 if element does not exist in array', function () {
+      const array = [10, 2, 1, 4, 56, 29, 'a', 'Z', 0, 'h', 'I', '|', '@'];
+      expect(_.indexOf(array, 6)).to.equal(-1);
+      expect(_.indexOf(array, 30)).to.equal(-1);
+      expect(_.indexOf(array, 'y')).to.equal(-1);
+      expect(_.indexOf(array, '-')).to.equal(-1);
+      expect(_.indexOf(array, 65)).to.equal(-1);  
+      expect(_.indexOf(array, 1000)).to.equal(-1);    
+    });
   });
 
 }); 
