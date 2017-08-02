@@ -78,14 +78,6 @@ _.filter = function (list, predicate, context) {
   if ((!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];
 
-/*
-  if (arguments.length < 2) {
-    if (typeof list === 'object') return Object.values(list);
-    if (typeof list === 'string') return list.split('');
-    return list;
-  }
-*/
-  
   predicate = predicate || _.identity;  
 
   if (context) predicate = predicate.bind(context);
