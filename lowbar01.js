@@ -70,7 +70,7 @@ _.indexOf = function (array, value, isSorted) {
   return isSorted === true ? binarySearch(array, value) : simpleSearch(array, value, isSorted);  
 };
 
-_.filter = function (list, predicate) {
+_.filter = function (list, predicate, context) {
   // Looks through each value in the list, returning an array of all the values that pass
   // a truth test (predicate).
 
@@ -87,6 +87,8 @@ _.filter = function (list, predicate) {
 */
   
   predicate = predicate || _.identity;  
+
+  if (context) predicate = predicate.bind(context);
   
   let filteredList = [];
   _.each(list, function (item, i, list) {

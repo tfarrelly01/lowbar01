@@ -670,6 +670,15 @@ describe('_', function () {
       const lowerChars = _.filter(list, findLowerCaseChars);
       expect(lowerChars).to.eql(result);
     });
+    
+    it('binds a context to the predicate', function () {
+      const context = {a: 1, b: 2, c: 3};
+      _.filter([1,2,3,4,5], function () {
+        // the value of 'this' in here should be the context object
+        this.a = 'changed!';
+      }, context);
+      expect(context).to.eql({a: 'changed!', b: 2, c: 3});
+    });
   });
 
 }); 
