@@ -824,6 +824,20 @@ describe('_', function () {
       expect(_.map(func)).to.eql([]); 
     });
 
+    it('should return an array if passed an array, object or string but no iteratee', function () {
+      let list = [1, 2, 3, 4, 5, 6];
+      let result = [1, 2, 3, 4, 5, 6];
+      expect(_.map(list)).to.eql(result); 
+
+      list = '123456';
+      result = ['1', '2', '3', '4', '5', '6'];
+      expect(_.map(list)).to.eql(result); 
+      
+      list = {a: 'A', b: 'b', c: 'c', d: 'D', e: 'e'};
+      result = ['A','b','c','D','e'];
+      expect(_.map(list)).to.eql(result); 
+    });
+
     it('returns a transformation of the original array whilst leaving the original array unmutated', function () {
       const list = [1, 2, 3, 4, 5, 6];
       const result = [2, 4, 6, 8, 10, 12];
@@ -862,5 +876,13 @@ describe('_', function () {
       expect(upperChars).to.not.eql(list);
     });
 
+    it('binds a context to the iteratee', function () {
+      const context = {a: 1, b: 2, c: 3};
+      _.map([1,2,3,4,5], function () {
+        // the value of 'this' in here should be the context object
+        this.a = 'changed!';
+      }, context);
+      expect(context).to.eql({a: 'changed!', b: 2, c: 3});
+    });
   });
 }); 

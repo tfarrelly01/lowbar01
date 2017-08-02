@@ -100,7 +100,6 @@ _.reject = function (list, predicate, context) {
 
   predicate = predicate || _.identity;  
 
-
   if (context) predicate = predicate.bind(context);
 
   let rejectedList = [];
@@ -110,7 +109,7 @@ _.reject = function (list, predicate, context) {
   return rejectedList;
 };
 
-_.map = function (list, iteratee) {
+_.map = function (list, iteratee, context) {
   // Produces a new array of values by mapping each value in list through a transformation function 
   // (iteratee). The iteratee is passed three arguments: the value, then the index (or key) of the
   // iteration, and finally a reference to the entire list.
@@ -118,13 +117,17 @@ _.map = function (list, iteratee) {
   // Defensive code to mimic the functionality of the actual Underscore map method.
   if ((arguments.length === 0)
     || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
-    || (list === null || list instanceof Date)) return [];
+    || (list === null || list instanceof Date)) return [];  
+
+  if (context) iteratee = iteratee.bind(context);
+
+  iteratee = iteratee || _.identity;
 
   let mappedList = [];
   _.each(list, function (item, i, list) {
     mappedList.push(iteratee(item, i, list));
   });
-  
+
   return mappedList;
 };
 
