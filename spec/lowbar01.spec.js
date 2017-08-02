@@ -530,6 +530,16 @@ describe('_', function () {
       const arr = [1, 2, 'a', 'b'];
       expect(_.indexOf(arr)).to.equal(-1);
     });
+    
+    it('should return the index of the element contained in the array', function () {
+      const array = [10, 2, 1, 4, 56, 29, 'a', 'Z', 0, 'h', 'I', '|', '@', 43, 12, 64, 72, 1001];
+      expect(_.indexOf(array, 1)).to.equal(2);
+      expect(_.indexOf(array, 29)).to.equal(5);
+      expect(_.indexOf(array, 'Z')).to.equal(7);
+      expect(_.indexOf(array, '@')).to.equal(12);
+      expect(_.indexOf(array, 64)).to.equal(15);  
+      expect(_.indexOf(array, 1001)).to.equal(17);    
+    });
   });
 
 }); 

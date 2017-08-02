@@ -60,8 +60,7 @@ _.each = function (list, iteratee, context) {
 _.indexOf = function (array, value) {
   if (arguments.length < 2 || !Array.isArray(array) && typeof array !== 'string') return -1;
 
-  return value;
-
+  return array.indexOf(value);
 };
 
 if (typeof module !== 'undefined') {
