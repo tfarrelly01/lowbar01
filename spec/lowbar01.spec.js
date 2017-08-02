@@ -636,7 +636,7 @@ describe('_', function () {
       expect(_.filter(list)).to.eql(result);
     });
 
-    it('returns array of values from an array that pass the truth test', function () {
+    it('returns array of values from an array where each value passes the truth test', function () {
       const list = [1, 2, 3, 4, 5, 6];
       const result = [2, 4, 6];
 
@@ -648,7 +648,7 @@ describe('_', function () {
       expect(numbers).to.eql(result);
     });
 
-    it('returns array of values from an object that pass the truth test', function () {
+    it('returns array of values from an object where each value passes the truth test', function () {
       const list = {a: 'A', b: 'b', c: 'c', d: 'D', e: 'e'};
       const result = ['A', 'D'];
 
@@ -657,6 +657,18 @@ describe('_', function () {
       }
       const upperChars = _.filter(list, findUpperCaseChars);
       expect(upperChars).to.eql(result);
+    });
+
+    it('returns array of values from a string where each value passes the truth test', function () {
+      const list = 'aAbbccdDee';
+      const result = ['a', 'b', 'b', 'c', 'c', 'd', 'e', 'e'];
+
+      function findLowerCaseChars (char) {
+        return char === char.toLowerCase();
+      }
+
+      const lowerChars = _.filter(list, findLowerCaseChars);
+      expect(lowerChars).to.eql(result);
     });
   });
 
