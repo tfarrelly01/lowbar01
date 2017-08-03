@@ -904,6 +904,21 @@ describe('_', function () {
       expect(_.uniq(string)).to.eql(result);
     });
 
+    it('for a sorted array, returns a duplicate-free version of the array', function () {
+      const list = [1, 1, 1, 2, 3, 3, 4, 4, 5, 6, 6, 6, 6, 10];
+      const result = [1, 2, 3, 4, 5, 6, 10];
+      const sorted = true;
+      expect(_.uniq(list, sorted)).to.eql(result);
+    });
+
+    it('for an sorted string, returns a duplicate-free array version of the string elements', function () {
+      const list = 'aaaaabbchhhijAAZ';
+      const result = ['a', 'b', 'c', 'h', 'i', 'j', 'A', 'Z'];
+      const sorted = false;
+      expect(_.uniq(list, sorted)).to.eql(result);
+    });
+
+
   });
 
   describe('#map', function () {

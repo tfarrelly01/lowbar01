@@ -117,10 +117,14 @@ _.uniq = function (list, isSorted) {
   
   let uniqList = [];
 
-  if (!isSorted) {
-    for (let i = 0; i < list.length; i++) {
-      if (list.indexOf(list[i]) === i) uniqList.push(list[i]);
-    }
+  if (isSorted) {
+    uniqList = _.filter(list, function (item, i, list) {
+      return i === 0 ? true : item !== list[i - 1];
+    });
+  } else {
+    _.each(list, function (item, i, list) {
+      if (list.indexOf(item) === i) uniqList.push(item);
+    });
   }
 
   return uniqList;
