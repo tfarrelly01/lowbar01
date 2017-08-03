@@ -133,15 +133,20 @@ _.map = function (list, iteratee, context) {
 
 _.contains = function (list, value, fromIndex) {
 
-  if (arguments.length < 2 || !Array.isArray(list) || typeof list !== 'object') return false;
+  // Defensive code to mimic the functionality of the actual Underscore contains method.
+//  if (arguments.length < 2 || (!Array.isArray(list) && typeof list !== 'object')) return false;
+  if (arguments.length < 2 || list === null) return false;
 
   fromIndex = fromIndex || 0;
 
-  if (Array.isArray(list)) {
-  //  return list.indexOf(value, fromIndex) !== -1;
-    return simpleSearch(list, value, fromIndex) != -1;
+  if (Array.isArray(list)) return simpleSearch(list, value, fromIndex) != -1;
+
+  if (typeof list === 'object') {
+    let values = Object.values(list);
+    return simpleSearch(values, value, fromIndex) != -1;
   }
 
+  return false;
 };
 
 if (typeof module !== 'undefined') {

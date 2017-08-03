@@ -934,6 +934,12 @@ describe('_', function () {
       let result = _.contains(arr, 6);
       expect(result).to.equal(true);
     });   
+
+    it('should return true if value exists in the object ', function () {
+      let obj = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9};
+      let result = _.contains(obj, 6);
+      expect(result).to.equal(true);
+    });
   });
 
 }); 
