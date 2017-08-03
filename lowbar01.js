@@ -109,10 +109,20 @@ _.reject = function (list, predicate, context) {
   return rejectedList;
 };
 
-_.uniq = function (list) {
+_.uniq = function (list, isSorted) {
   if (arguments.length === 0 || (typeof list !== 'string' && !Array.isArray(list))) return [];
 
-  return list;
+  isSorted = isSorted || false;
+  
+  let uniqList = [];
+
+  if (!isSorted) {
+    for (let i = 0; i < list.length; i++) {
+      if (list.indexOf(list[i]) === i) uniqList.push(list[i]);
+    }
+  }
+
+  return uniqList;
 };
 
 _.map = function (list, iteratee, context) {

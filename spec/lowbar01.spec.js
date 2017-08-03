@@ -825,6 +825,12 @@ describe('_', function () {
       value = null;
       expect(_.uniq(value)).to.eql([]); 
     });
+    it('for an unsorted array argument, returns a duplicate-free version of the array', function () {
+      const list = [1, 1, 2, 3, 4, 1, 4, 3, 10];
+      const result = [1, 2, 3, 4, 10];
+      const sorted = false;
+      expect(_.uniq(list, sorted)).to.eql(result);
+    });
   });
 
   describe('#map', function () {
