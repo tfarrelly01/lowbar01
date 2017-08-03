@@ -930,14 +930,47 @@ describe('_', function () {
     }); 
     
     it('should return true if value exists in the array', function () {
-      let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-      let result = _.contains(arr, 6);
+      const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      let result = _.contains(arr, 1);
       expect(result).to.equal(true);
-    });   
+
+      result = _.contains(arr, 4);
+      expect(result).to.equal(true);
+
+      result = _.contains(arr, 6);
+      expect(result).to.equal(true);
+
+      result = _.contains(arr, 9);
+      expect(result).to.equal(true);
+    });  
+
+    it('should return false if value does NOT exist in the array', function () {
+      const arr = [1, 2, 3, 4, 6, 7, 8, 9];
+      let result = _.contains(arr, -1);
+      expect(result).to.equal(false);
+
+      result = _.contains(arr, 10);
+      expect(result).to.equal(false);
+
+      result = _.contains(arr, 5);
+      expect(result).to.equal(false);
+
+      result = _.contains(arr, 8.50);
+      expect(result).to.equal(false);
+    });    
 
     it('should return true if value exists in the object ', function () {
-      let obj = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9};
-      let result = _.contains(obj, 6);
+      const obj = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9};
+      let result = _.contains(obj, 1);
+      expect(result).to.equal(true);
+
+      result = _.contains(obj, 4);
+      expect(result).to.equal(true);
+
+      result = _.contains(obj, 6);
+      expect(result).to.equal(true);
+
+      result = _.contains(obj, 9);
       expect(result).to.equal(true);
     });
   });
