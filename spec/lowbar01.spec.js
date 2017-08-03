@@ -973,6 +973,21 @@ describe('_', function () {
       result = _.contains(obj, 9);
       expect(result).to.equal(true);
     });
+
+    it('should return false if value does NOT exist in the object', function () {
+      const obj = {a: 1, b: 2, c: 3, d: 4, f: 6, g: 7, h: 8, i: 9};
+      let result = _.contains(obj, -1);
+      expect(result).to.equal(false);
+
+      result = _.contains(obj, 10);
+      expect(result).to.equal(false);
+
+      result = _.contains(obj, 5);
+      expect(result).to.equal(false);
+
+      result = _.contains(obj, 8.50);
+      expect(result).to.equal(false);
+    });    
   });
 
 }); 
