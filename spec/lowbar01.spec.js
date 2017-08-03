@@ -927,6 +927,13 @@ describe('_', function () {
 
       value = null;
       expect(_.contains(value, null)).to.equal(false); 
-    });    
+    }); 
+    
+    it('should return true if value exists in the array', function () {
+      let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      let result = _.contains(arr, 6);
+      expect(result).to.equal(true);
+    });   
   });
+
 }); 

@@ -137,7 +137,11 @@ _.contains = function (list, value, fromIndex) {
 
   fromIndex = fromIndex || 0;
 
-  return fromIndex;
+  if (Array.isArray(list)) {
+  //  return list.indexOf(value, fromIndex) !== -1;
+    return simpleSearch(list, value, fromIndex) != -1;
+  }
+
 };
 
 if (typeof module !== 'undefined') {
