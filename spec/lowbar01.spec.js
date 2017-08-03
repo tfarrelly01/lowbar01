@@ -1012,7 +1012,7 @@ describe('_', function () {
       expect(result).to.equal(true);
     });  
     
-    it('should return false if value exists in the array from a specified start index', function () {
+    it('should return false if value does NOT exist in the array from a specified start index', function () {
       const arr = [1, 2, 3, 4, 2, 'a', 'a', 'z', 5, 1, 6, 4, 6, 6.5, 7, 7, 8, 9, 'y', 'z', 'Z'];
       let startIndex = 0;
       let result = _.contains(arr, 1.5, startIndex);
@@ -1038,7 +1038,7 @@ describe('_', function () {
     it('should return true if value exists in the object from a specified start index', function () {
       const obj = {a: 1, b: 2, c: 3, d: 4, e: 2, f: 'a', g: 'a', h: 'z', i: 5, j: 1, k: 6, l: 4, m: 6,
         n: 6.5, o: 7, p: 7, q: 8, r: 9, s: 'y', t: 'z', u: 'Z'};
-        
+
       let startIndex = 2;
       let result = _.contains(obj, 3, startIndex);
       expect(result).to.equal(true);
@@ -1059,6 +1059,31 @@ describe('_', function () {
       result = _.contains(obj, 'Z', startIndex);
       expect(result).to.equal(true);
     });   
+
+    it('should return false if value does NOT exist in the object from a specified start index', function () {
+      const obj = {a: 1, b: 2, c: 3, d: 4, e: 2, f: 'a', g: 'a', h: 'z', i: 5, j: 1, k: 6, l: 4, m: 6,
+        n: 6.5, o: 7, p: 7, q: 8, r: 9, s: 'y', t: 'z', u: 'Z'};
+
+      let startIndex = 0;
+      let result = _.contains(obj, 1.5, startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 16;
+      result = _.contains(obj, 'Y', startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 5;
+      result = _.contains(obj, 2, startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 7;
+      result = _.contains(obj, 'a', startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 20;
+      result = _.contains(obj, 'z', startIndex);
+      expect(result).to.equal(false);
+    });
   });
 
 }); 
