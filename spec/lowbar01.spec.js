@@ -791,6 +791,42 @@ describe('_', function () {
     });
   });
 
+  describe('#uniq', function () {
+    it('is a function', function () {
+      expect(_.uniq).to.be.a('function');
+     });
+
+    it('should take at least 1 argument', function () {
+      expect(_.uniq.length).to.be.at.least(1);
+    });
+
+    it('should return an empty array 1st argument is not of type array or string', function () {
+      let value = 12;
+      expect(_.uniq(value)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.uniq(value)).to.eql([]);   
+
+      value = {a: 1, b: 1, c: 2};
+      expect(_.uniq(value)).to.eql([]);   
+
+      value = function (a) {return a * 2;};
+      expect(_.uniq(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.uniq(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.uniq(value)).to.eql([]);
+
+      value = NaN;   
+      expect(_.uniq(value)).to.eql([]);
+
+      value = null;
+      expect(_.uniq(value)).to.eql([]); 
+    });
+  });
+
   describe('#map', function () {
     it('is a function', function () {
       expect(_.map).to.be.a('function');

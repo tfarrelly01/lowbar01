@@ -109,6 +109,12 @@ _.reject = function (list, predicate, context) {
   return rejectedList;
 };
 
+_.uniq = function (list) {
+  if (arguments.length === 0 || (typeof list !== 'string' && !Array.isArray(list))) return [];
+
+  return list;
+};
+
 _.map = function (list, iteratee, context) {
   // Produces a new array of values by mapping each value in list through a transformation function 
   // (iteratee). The iteratee is passed three arguments: the value, then the index (or key) of the
