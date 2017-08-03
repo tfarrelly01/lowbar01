@@ -879,12 +879,21 @@ describe('_', function () {
       value = null;
       expect(_.uniq(value)).to.eql([]); 
     });
+
     it('for an unsorted array argument, returns a duplicate-free version of the array', function () {
       const list = [1, 1, 2, 3, 4, 1, 4, 3, 10];
       const result = [1, 2, 3, 4, 10];
       const sorted = false;
       expect(_.uniq(list, sorted)).to.eql(result);
     });
+
+    it('for an unsorted string argument, returns a duplicate-free array version of the string elements', function () {
+      const list = '1123414310';
+      const result = ['1', '2', '3', '4', '0'];
+      const sorted = false;
+      expect(_.uniq(list, sorted)).to.eql(result);
+    });
+
   });
 
   describe('#map', function () {
