@@ -987,7 +987,30 @@ describe('_', function () {
 
       result = _.contains(obj, 8.50);
       expect(result).to.equal(false);
-    });    
+    });
+
+    it('should return true if value exists in the array from a specified start index', function () {
+      const arr = [1, 2, 3, 4, 2, 'a', 'a', 'z', 5, 1, 6, 4, 6, 6.5, 7, 7, 8, 9, 'y', 'z', 'Z'];
+      let startIndex = 2;
+      let result = _.contains(arr, 3, startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 4;
+      result = _.contains(arr, 'a', startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 10;
+      result = _.contains(arr, 'z', startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 11;
+      result = _.contains(arr, 6, startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 0;
+      result = _.contains(arr, 'Z', startIndex);
+      expect(result).to.equal(true);
+    });      
   });
 
 }); 
