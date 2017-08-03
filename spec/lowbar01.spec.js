@@ -1010,6 +1010,29 @@ describe('_', function () {
       startIndex = 0;
       result = _.contains(arr, 'Z', startIndex);
       expect(result).to.equal(true);
+    });  
+    
+    it('should return false if value exists in the array from a specified start index', function () {
+      const arr = [1, 2, 3, 4, 2, 'a', 'a', 'z', 5, 1, 6, 4, 6, 6.5, 7, 7, 8, 9, 'y', 'z', 'Z'];
+      let startIndex = 0;
+      let result = _.contains(arr, 1.5, startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 16;
+      result = _.contains(arr, 'Y', startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 5;
+      result = _.contains(arr, 2, startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 7;
+      result = _.contains(arr, 'a', startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 20;
+      result = _.contains(arr, 'z', startIndex);
+      expect(result).to.equal(false);
     });      
   });
 
