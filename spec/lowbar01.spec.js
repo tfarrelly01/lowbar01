@@ -1033,7 +1033,32 @@ describe('_', function () {
       startIndex = 20;
       result = _.contains(arr, 'z', startIndex);
       expect(result).to.equal(false);
-    });      
+    });     
+
+    it('should return true if value exists in the object from a specified start index', function () {
+      const obj = {a: 1, b: 2, c: 3, d: 4, e: 2, f: 'a', g: 'a', h: 'z', i: 5, j: 1, k: 6, l: 4, m: 6,
+        n: 6.5, o: 7, p: 7, q: 8, r: 9, s: 'y', t: 'z', u: 'Z'};
+        
+      let startIndex = 2;
+      let result = _.contains(obj, 3, startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 4;
+      result = _.contains(obj, 'a', startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 10;
+      result = _.contains(obj, 'z', startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 11;
+      result = _.contains(obj, 6, startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 0;
+      result = _.contains(obj, 'Z', startIndex);
+      expect(result).to.equal(true);
+    });   
   });
 
 }); 
