@@ -894,6 +894,16 @@ describe('_', function () {
       expect(_.uniq(list, sorted)).to.eql(result);
     });
 
+    it('defaults the value of the parameter isSorted to false if passed an array or string argument and returns a duplicate free version in a new array' , function () {
+      const array = [1, 1, 2, 3, 4, 1, 4, 3, 10];
+      let result = [1, 2, 3, 4, 10];
+      expect(_.uniq(array)).to.eql(result);
+
+      const string = '1123414310';
+      result = ['1', '2', '3', '4', '0'];
+      expect(_.uniq(string)).to.eql(result);
+    });
+
   });
 
   describe('#map', function () {
