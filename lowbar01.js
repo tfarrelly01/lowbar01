@@ -49,6 +49,8 @@ _.each = function (list, iteratee, context) {
   if (typeof list !== 'object' && !Array.isArray(list) && typeof list !== 'string'
       || typeof iteratee !== 'function') return list;
 
+  iteratee = iteratee || _.identity;  
+
   if (context) iteratee = iteratee.bind(context);
 
   if (Array.isArray(list) || typeof list === 'string') 
@@ -94,7 +96,6 @@ _.reject = function (list, predicate, context) {
   // a truth test (predicate).
 
   // Defensive code to mimic the functionality of the actual Underscore reject method.
-  if (arguments.length <= 1) return [];
   if ((!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];
 

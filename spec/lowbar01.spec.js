@@ -394,29 +394,71 @@ describe('_', function () {
     });
 
     it('returns the value passed to the function if it is the sole argument', function () {
-      const value = [1, 2, 3];
+      let value = [1, 2, 3];
       expect(_.each(value)).to.equal(value);
+
+      value = '12c';
+      expect(_.each(value)).to.equal(value);
+
+      value = {a: '1', b: '2', c: 'c'};
+      expect(_.each(value)).to.eql(value);
+
+      value = 123;
+      expect(_.each(value)).to.equal(value);
+
+      value = 12.3;
+      expect(_.each(value)).to.equal(value);
+
+      value = new Date();
+      expect(_.each(value)).to.equal(value);
+
+      value = function (item) { console.log(item); };
+      expect(_.each(value)).to.equal(value);
+
+      value = null;
+      expect(_.each(value)).to.equal(value);
+
+      value = undefined;
+      expect(_.each(value)).to.equal(value);
+
+      value = NaN;
+      expect(_.each(value)).to.eql(value);
     });
 
     it('returns the value of the first argument (list) if the first argument is not an array, string  or object', function () {
-      let list = 123;
+      let value = 123;
       let iteratee = function (item) { console.log(item); };
-      expect(_.each(list, iteratee)).to.equal(list);
+      expect(_.each(value, iteratee)).to.equal(value);
 
-      list = 12.3;
-      expect(_.each(list, iteratee)).to.equal(list);
+      value = 12.3;
+      expect(_.each(value, iteratee)).to.equal(value);
 
-      list = new Date();
-      expect(_.each(list, iteratee)).to.equal(list);
+      value = new Date();
+      expect(_.each(value, iteratee)).to.equal(value);
 
-      list = function (item) { console.log(item); };
-      expect(_.each(list, iteratee)).to.equal(list);
+      value = function (item) { console.log(item); };
+      expect(_.each(value, iteratee)).to.equal(value);
+
+      value = null;
+      expect(_.each(value, iteratee)).to.equal(value);
+
+      value = undefined;
+      expect(_.each(value, iteratee)).to.equal(value);
+
+      value = NaN;
+      expect(_.each(value, iteratee)).to.eql(value);
     });
 
     it('returns the value of the first argument (list) if the second argument (iteratee) is not a function', function () {
-      const list = [1, 2, 3];
-      const iteratee = 123;
+      let list = [1, 2, 3];
+      let iteratee = 123;
       expect(_.each(list, iteratee)).to.equal(list);
+
+      list = '12c';
+      expect(_.each(list)).to.equal(list);
+
+      list = {a: '1', b: '2', c: 'c'};
+      expect(_.each(list)).to.eql(list);
     });
 
     it('invokes the function as many times as there are items in the array', function () {
@@ -746,6 +788,18 @@ describe('_', function () {
       expect(_.reject(func)).to.eql([]); 
     });
 
+    it('should return an array if only one argument passed to the function which is of type array, string or object', function () {
+      let list = '12c';
+      let result = [];
+      expect(_.reject(list)).to.eql(result);
+
+      list = ['1','2','c'];
+      expect(_.reject(list)).to.eql(result);
+
+      list = {a: '1', b: '2', c: 'c'};
+      expect(_.reject(list)).to.eql(result);
+    });
+
     it('returns array of values from an array where each value DOES NOT pass the truth test', function () {
       const list = [1, 2, 3, 4, 5, 6];
       const result = [1, 3, 5];
@@ -866,7 +920,7 @@ describe('_', function () {
       expect(_.map(func)).to.eql([]); 
     });
 
-    it('should return an array if passed an array, object or string but no iteratee', function () {
+    it('should return an array (containing all values) if passed an array, object or string but no iteratee', function () {
       let list = [1, 2, 3, 4, 5, 6];
       let result = [1, 2, 3, 4, 5, 6];
       expect(_.map(list)).to.eql(result); 
