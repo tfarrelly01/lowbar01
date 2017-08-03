@@ -132,9 +132,10 @@ _.map = function (list, iteratee, context) {
 };
 
 _.contains = function (list, value, fromIndex) {
+  // Returns true if the value is present in the list.
+  // Use fromIndex to start your search at a given index.
 
   // Defensive code to mimic the functionality of the actual Underscore contains method.
-//  if (arguments.length < 2 || (!Array.isArray(list) && typeof list !== 'object')) return false;
   if (arguments.length < 2 || list === null) return false;
 
   fromIndex = fromIndex || 0;
