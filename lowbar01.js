@@ -178,6 +178,15 @@ _.contains = function (list, value, fromIndex) {
   return false;
 };
 
+_.pluck = function (list, propertyName) {
+  // Extracts a list of property values from an array of objects
+
+  // Defensive code to mimic the functionality of the actual Underscore contains method.
+  if (!Array.isArray(list)) return [];
+
+  return propertyName;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }

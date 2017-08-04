@@ -918,7 +918,7 @@ describe('_', function () {
       expect(_.uniq(list, sorted)).to.eql(result);
     });
 
-    it('computes unique items based on a transformation, via an iteratee function.', function () {
+    it('computes unique items based on a transformation for an array, via an iteratee function.', function () {
       const people = [
         {name: 'Barney Rubble', age: 1032},
         {name: 'Fred Flintstone', age: 1032},
@@ -1235,4 +1235,37 @@ describe('_', function () {
     });
   });
 
+  describe('#pluck', function () {
+    it('is a function', function () {
+      expect(_.pluck).to.be.a('function');
+    });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.pluck.length).to.be.at.least(2);
+    });
+
+    it('should return an empty array if first argument is not an array, string or object', function () {
+      let value = 12;
+      expect(_.pluck(value, 12)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.pluck(value, 1234.56)).to.eql([]); 
+
+      value = function (a) {return a * 2;};
+      expect(_.pluck(value, 'function')).to.eql([]);
+
+      value = new Date();
+      expect(_.pluck(value, new Date())).to.eql([]);
+
+      value = undefined;
+      expect(_.pluck(value, undefined)).to.eql([]);
+
+      value = NaN;   
+      expect(_.pluck(value, NaN)).to.eql([]);
+
+      value = null;
+      expect(_.pluck(value, null)).to.eql([]); 
+    }); 
+    
+  });
 }); 
