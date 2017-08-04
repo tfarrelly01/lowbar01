@@ -1448,6 +1448,9 @@ describe('_', function () {
 
     const lessThanTen = function (elem) { return elem < 10;};
     const greaterThanZero = function (elem) { return elem > 0;};
+    const lessThanSix = function (elem) { return elem < 6;};
+    const greaterThanNine = function (elem) { return elem > 9;};
+    const arrNums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     it('is a function', function () {
       expect(_.every).to.be.a('function');
@@ -1467,13 +1470,19 @@ describe('_', function () {
     });
 
     it('should return true if all of the values in the array pass the predicate truth test', function () {
-      const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-      
-      let result = _.every(arr, lessThanTen);
+      let result = _.every(arrNums, lessThanTen);
       expect(result).to.equal(true);
 
-      result = _.every(arr, greaterThanZero);
+      result = _.every(arrNums, greaterThanZero);
       expect(result).to.equal(true);
+    });
+
+    it('should return false if one of the values in the array does not pass the predicate truth test', function () {
+      let result = _.every(arrNums, lessThanSix);
+      expect(result).to.equal(false);
+
+      result = _.every(arrNums, greaterThanNine);
+      expect(result).to.equal(false);
     });
   });
 }); 
