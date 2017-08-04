@@ -181,10 +181,21 @@ _.contains = function (list, value, fromIndex) {
 _.pluck = function (list, propertyName) {
   // Extracts a list of property values from an array of objects
 
-  // Defensive code to mimic the functionality of the actual Underscore contains method.
-  if (!Array.isArray(list)) return [];
+  // Defensive code to mimic the functionality of the actual Underscore pluck method.
+  if ((arguments.length === 0)
+    || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
+    || (list === null || list instanceof Date)) return [];  
+  
+  return _.map(list, function (item) {
+      return item[propertyName];
+    });
+ 
+ /* const pluckedArray = _.map(list, function (item) {
+      return item[propertyName];
+    });
 
-  return propertyName;
+  return pluckedArray;
+*/
 };
 
 if (typeof module !== 'undefined') {

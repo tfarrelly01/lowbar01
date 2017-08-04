@@ -1236,6 +1236,13 @@ describe('_', function () {
   });
 
   describe('#pluck', function () {
+    const singers = [
+        {name: 'Elvis Presley', nationality: 'American'},
+        {name: 'Frank Sinatra', nationality: 'American'},
+        {name: 'Tom Jones', nationality: 'Welsh'},
+        {name: 'Engelbert Humperdinck', nationality: 'English'}
+      ];
+
     it('is a function', function () {
       expect(_.pluck).to.be.a('function');
     });
@@ -1266,6 +1273,14 @@ describe('_', function () {
       value = null;
       expect(_.pluck(value, null)).to.eql([]); 
     }); 
+
+    it('should return an array of values for a given property name', function () {
+      let result = ['Elvis Presley', 'Frank Sinatra', 'Tom Jones', 'Engelbert Humperdinck'];
+      expect(_.pluck(singers, 'name')).to.eql(result);
+
+      result = ['American', 'American', 'Welsh', 'English'];  
+      expect(_.pluck(singers, 'nationality')).to.eql(result);
+    });
     
   });
 }); 
