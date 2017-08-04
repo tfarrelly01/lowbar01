@@ -189,13 +189,6 @@ _.pluck = function (list, propertyName) {
   return _.map(list, function (item) {
       return item[propertyName];
     });
- 
- /* const pluckedArray = _.map(list, function (item) {
-      return item[propertyName];
-    });
-
-  return pluckedArray;
-*/
 };
 
 if (typeof module !== 'undefined') {

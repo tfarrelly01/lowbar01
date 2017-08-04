@@ -1281,8 +1281,15 @@ describe('_', function () {
 
       property = 'nationality';
       result = ['American', 'American', 'Welsh', 'English'];
-      expect(_.pluck(singers, 'nationality')).to.eql(result);
-      
+      expect(_.pluck(singers, property)).to.eql(result);
+ 
+      property = 'deceased';
+      result = [1977, 1998, undefined, undefined];
+      expect(_.pluck(singers, property)).to.eql(result);
+
+      property = 'age';
+      result = [undefined, undefined, 77, 81];
+      expect(_.pluck(singers, property)).to.eql(result);     
     });
 
     it('should return an array of values each with a value of undefined if the property name does not exist', function () {
