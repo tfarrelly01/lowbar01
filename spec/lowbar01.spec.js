@@ -1492,5 +1492,13 @@ describe('_', function () {
       result = _.every(objNums, greaterThanZero);
       expect(result).to.equal(true);
     });
+
+    it('should return false if one of the values in the object does not pass the predicate truth test', function () {
+      let result = _.every(objNums, lessThanSix);
+      expect(result).to.equal(false);
+
+      result = _.every(objNums, greaterThanNine);
+      expect(result).to.equal(false);
+    });
   });
 }); 

@@ -223,6 +223,11 @@ _.every = function (list,  predicate) {
       if (!predicate.call(null, list[i], i, list)) return false;
     }
   }
+  if (typeof list === 'object') {
+    for (let idx in list) {
+      if (!predicate(list[idx], idx, list)) return false;
+    }
+  }
 
   return true;
 };
