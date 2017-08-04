@@ -911,14 +911,33 @@ describe('_', function () {
       expect(_.uniq(list, sorted)).to.eql(result);
     });
 
-    it('for an sorted string, returns a duplicate-free array version of the string elements', function () {
+    it('for a sorted string, returns a duplicate-free array version of the string elements', function () {
       const list = 'aaaaabbchhhijAAZ';
       const result = ['a', 'b', 'c', 'h', 'i', 'j', 'A', 'Z'];
       const sorted = false;
       expect(_.uniq(list, sorted)).to.eql(result);
     });
 
+    it('computes unique items based on a transformation, via an iteratee function.', function () {
+      const people = [
+        {name: 'Barney Rubble', age: 1032},
+        {name: 'Fred Flintstone', age: 1032},
+        {name: 'Mildred Rubble', age: 1024},
+        {name: 'Wilmar Flintstone', age: 1026}
+      ];
+      const result = [
+        {name: 'Barney Rubble', age: 1032},
+        {name: 'Mildred Rubble', age: 1024},
+        {name: 'Wilmar Flintstone', age: 1026}
+      ];
+      function returnAge (person) {
+        return person.age;
+      }
 
+      const uniqueAges = _.uniq(people, true, returnAge);
+      expect(uniqueAges).to.eql(result);
+
+    });
   });
 
   describe('#map', function () {

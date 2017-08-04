@@ -110,20 +110,27 @@ _.reject = function (list, predicate, context) {
   return rejectedList;
 };
 
-_.uniq = function (list, isSorted) {
+_.uniq = function (list, isSorted, iteratee) {
   if (arguments.length === 0 || (typeof list !== 'string' && !Array.isArray(list))) return [];
 
   isSorted = isSorted || false;
+
+  iteratee = iteratee || _.identity;  
   
   let uniqList = [];
 
   if (isSorted) {
     uniqList = _.filter(list, function (item, i, list) {
-      return i === 0 ? true : item !== list[i - 1];
+      return i === 0 ? true : iteratee(item) !== iteratee(list[i - 1]);
     });
   } else {
     _.each(list, function (item, i, list) {
-      if (list.indexOf(item) === i) uniqList.push(item);
+      /*
+      console.log('list: ', list);
+      console.log('iteratee:', iteratee(item));
+      console.log('i:', i);
+      */
+      if (_.indexOf(list, item) === i) uniqList.push(item);
     });
   }
 
