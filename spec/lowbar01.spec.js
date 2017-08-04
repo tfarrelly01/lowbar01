@@ -1237,10 +1237,10 @@ describe('_', function () {
 
   describe('#pluck', function () {
     const singers = [
-        {name: 'Elvis Presley', nationality: 'American'},
-        {name: 'Frank Sinatra', nationality: 'American'},
-        {name: 'Tom Jones', nationality: 'Welsh'},
-        {name: 'Engelbert Humperdinck', nationality: 'English'}
+        {name: 'Elvis Presley', nationality: 'American', deceased: 1977},
+        {name: 'Frank Sinatra', nationality: 'American', deceased: 1998},
+        {name: 'Tom Jones', nationality: 'Welsh', age: 77},
+        {name: 'Engelbert Humperdinck', nationality: 'English', age: 81}
       ];
 
     it('is a function', function () {
@@ -1275,11 +1275,41 @@ describe('_', function () {
     }); 
 
     it('should return an array of values for a given property name', function () {
+      let property = 'name';
       let result = ['Elvis Presley', 'Frank Sinatra', 'Tom Jones', 'Engelbert Humperdinck'];
-      expect(_.pluck(singers, 'name')).to.eql(result);
+      expect(_.pluck(singers, property)).to.eql(result);
 
-      result = ['American', 'American', 'Welsh', 'English'];  
+      property = 'nationality';
+      result = ['American', 'American', 'Welsh', 'English'];
+      property = 'nationality';
       expect(_.pluck(singers, 'nationality')).to.eql(result);
+    });
+
+    it('should return an array of values each with a value of undefined if the property name does not exist', function () {
+      let result = [undefined, undefined, undefined, undefined];
+      expect(_.pluck(singers, 'names')).to.eql(result);
+
+      expect(_.pluck(singers, ['names'])).to.eql(result);
+
+      expect(_.pluck(singers, {name: 'Frank Sinatra'})).to.eql(result);
+
+      expect(_.pluck(singers, function () {console.log('Hi');})).to.eql(result);
+
+      expect(_.pluck(singers, new Date())).to.eql(result);
+
+      expect(_.pluck(singers, 123)).to.eql(result);
+
+      expect(_.pluck(singers, 123.34)).to.eql(result);
+
+      expect(_.pluck(singers, true)).to.eql(result);
+
+      expect(_.pluck(singers, false)).to.eql(result);
+
+      expect(_.pluck(singers, undefined)).to.eql(result);
+
+      expect(_.pluck(singers, null)).to.eql(result);
+
+      expect(_.pluck(singers, NaN)).to.eql(result);
     });
     
   });
