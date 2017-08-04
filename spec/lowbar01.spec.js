@@ -1281,12 +1281,14 @@ describe('_', function () {
 
       property = 'nationality';
       result = ['American', 'American', 'Welsh', 'English'];
-      property = 'nationality';
       expect(_.pluck(singers, 'nationality')).to.eql(result);
+      
     });
 
     it('should return an array of values each with a value of undefined if the property name does not exist', function () {
       let result = [undefined, undefined, undefined, undefined];
+      expect(_.pluck(singers)).to.eql(result);
+
       expect(_.pluck(singers, 'names')).to.eql(result);
 
       expect(_.pluck(singers, ['names'])).to.eql(result);
@@ -1310,6 +1312,20 @@ describe('_', function () {
       expect(_.pluck(singers, null)).to.eql(result);
 
       expect(_.pluck(singers, NaN)).to.eql(result);
+    });
+
+    it('should return an array of values each with a value of undefined if the 1st argument is of type string or object', function () {
+      let value = '12345';
+      let property = '2';
+      let result = [undefined, undefined, undefined, undefined, undefined];
+      expect(_.pluck(value)).to.eql(result);
+      expect(_.pluck(value, property)).to.eql(result);
+
+      value = {a: 'foo', b: 'bar', c: 'baz'};
+      property = 'b';
+      result = [undefined, undefined, undefined];
+      expect(_.pluck(value)).to.eql(result);
+      expect(_.pluck(value, property)).to.eql(result);
     });
     
   });
