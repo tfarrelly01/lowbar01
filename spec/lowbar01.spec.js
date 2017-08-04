@@ -1445,6 +1445,10 @@ describe('_', function () {
   });
 
   describe('#every', function () {
+
+    const lessThanTen = function (elem) { return elem < 10;};
+    const greaterThanZero = function (elem) { return elem > 0;};
+
     it('is a function', function () {
       expect(_.every).to.be.a('function');
     });
@@ -1460,6 +1464,16 @@ describe('_', function () {
       expect(_.every('123')).to.equal(true);
       expect(_.every(123)).to.equal(true);
       expect(_.every(undefined)).to.equal(true);
+    });
+
+    it('should return true if all of the values in the array pass the predicate truth test', function () {
+      const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      
+      let result = _.every(arr, lessThanTen);
+      expect(result).to.equal(true);
+
+      result = _.every(arr, greaterThanZero);
+      expect(result).to.equal(true);
     });
   });
 }); 

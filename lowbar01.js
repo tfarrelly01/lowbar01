@@ -217,8 +217,14 @@ _.every = function (list,  predicate) {
   if (arguments.length <= 1) return true;
 
   predicate = predicate || _.identity;
+  
+  if (Array.isArray(list)) {
+    for (let i = 0; i < list.length; i++) {
+      if (!predicate.call(null, list[i], i, list)) return false;
+    }
+  }
 
-  return predicate;
+  return true;
 };
 
 if (typeof module !== 'undefined') {
