@@ -220,16 +220,13 @@ _.every = function (list,  predicate, context) {
   
   if (context) predicate = predicate.bind(context);
   
-  if (Array.isArray(list)) {
-    for (let i = 0; i < list.length; i++) {
+  if (Array.isArray(list))
+    for (let i = 0; i < list.length; i++) 
       if (!predicate.call(null, list[i], i, list)) return false;
-    }
-  }
-  if (typeof list === 'object') {
-    for (let idx in list) {
+
+  if (typeof list === 'object') 
+    for (let idx in list) 
       if (!predicate(list[idx], idx, list)) return false;
-    }
-  }
 
   return true;
 };
