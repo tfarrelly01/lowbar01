@@ -5,7 +5,7 @@ function simpleSearch (list, num, startIndex) {
     Simple search that finds an number in a sorted list. The function takes an array, a search term and an optional startIndex,
     Function returns the index position where the first instance of the number is found. If the number is not found, the function returns -1.
     */
-    if (arguments.length < 2 || !Array.isArray(list)) return -1;
+    if (arguments.length < 2 || !Array.isArray(list) && typeof list !== 'string') return -1;
 
     startIndex = startIndex || 0;
 
