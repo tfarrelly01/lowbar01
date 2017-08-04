@@ -1337,7 +1337,7 @@ describe('_', function () {
     
   });
 
-   describe('#reduce', function () {
+  describe('#reduce', function () {
     it('is a function', function () {
       expect(_.reduce).to.be.a('function');
     });
@@ -1416,7 +1416,7 @@ describe('_', function () {
       expect(_.reduce(string, getTheZs, memo)).to.equal(result);
     }); 
 
-     it('returns the initial value of memo if the _.identity method is used as the iteratee for an object', function () {
+    it('returns the initial value of memo if the _.identity method is used as the iteratee for an object', function () {
       const memo = [];
       const obj = {a: 1, b: 2, c: 3};
       expect(_.reduce(obj, _.identity, memo)).to.equal(memo);  
@@ -1441,6 +1441,25 @@ describe('_', function () {
         this.a = 'changed!';
       }, memo, context);
       expect(context).to.eql({a: 'changed!', b: 2, c: 3});
+    });
+  });
+
+  describe('#every', function () {
+    it('is a function', function () {
+      expect(_.every).to.be.a('function');
+    });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.every.length).to.be.at.least(2);
+    });
+
+    it('should return true if one of zero arguments passed to the function', function () {
+      expect(_.every()).to.equal(true);
+      expect(_.every([1, 2, 3])).to.equal(true);
+      expect(_.every({a: 1, b: 2, c: 3})).to.equal(true);
+      expect(_.every('123')).to.equal(true);
+      expect(_.every(123)).to.equal(true);
+      expect(_.every(undefined)).to.equal(true);
     });
   });
 }); 

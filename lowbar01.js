@@ -194,7 +194,7 @@ _.pluck = function (list, propertyName) {
 _.reduce = function (collection, iteratee, memo, context) {
   // The reduce method boils down a list of values into a single value.
 
-  // Defensive code to deal with eroneous values passed as arguments.
+  // Defensive code to mimic the functionality of the actual Underscore reduce method.
   if (arguments.length <= 1
     || !Array.isArray(collection) && typeof collection !== 'object' && typeof collection !== 'string')  return undefined;
     
@@ -207,6 +207,18 @@ _.reduce = function (collection, iteratee, memo, context) {
   });
 
   return memo;
+};
+
+_.every = function (list,  predicate) { 
+  // Returns true if all of the values in the list pass the predicate truth test. Short-circuits 
+  // and stops traversing the list if a false element is found.
+
+  // Defensive code to mimic the functionality of the actual Underscore every method.
+  if (arguments.length <= 1) return true;
+
+  predicate = predicate || _.identity;
+
+  return predicate;
 };
 
 if (typeof module !== 'undefined') {
