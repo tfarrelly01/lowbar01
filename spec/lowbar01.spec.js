@@ -1369,7 +1369,7 @@ describe('_', function () {
       expect(_.reduce(NaN, iteratee)).to.eql(result);
     });
 
-    it('returns the initial value of memo if the _.identity method is used as the iteratee', function () {
+    it('returns the initial value of memo if the _.identity method is used as the iteratee for an array', function () {
       const memo = {};
       const array = [1, 2, 3];
       expect(_.reduce(array, _.identity, memo)).to.equal(memo);  
@@ -1379,9 +1379,26 @@ describe('_', function () {
       const nums = [1, 2, 3];
       const result = 12;
       let memo = 0;
-      const iteratee = function (acc, num) { return acc + (num * 2);};
+      const doubleAndAddNums = function (acc, num) { return acc + (num * 2);};
 
-      expect(_.reduce(nums, iteratee, memo)).to.equal(result);
+      expect(_.reduce(nums, doubleAndAddNums, memo)).to.equal(result);
+    }); 
+
+    it('returns the initial value of memo if the _.identity method is used as the iteratee for a string', function () {
+      const memo = {};
+      const string = '123';
+      expect(_.reduce(string, _.identity, memo)).to.equal(memo);  
+    });
+
+    it('reduces a string, passing each element to an iteratee function', function () {
+      const string = 'AaBBzBbZzbbCcccYZzZ';
+      const result = 'zZzZzZ';
+      let memo = '';
+      const getTheZs = function (acc, char) { 
+        return char.toUpperCase() === 'Z' ? acc += char : acc;
+      };
+
+      expect(_.reduce(string, getTheZs, memo)).to.equal(result);
     }); 
   });
 }); 
