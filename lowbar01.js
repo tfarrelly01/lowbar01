@@ -202,7 +202,7 @@ _.reduce = function (collection, iteratee, memo) {
   iteratee = iteratee || _.identity;
 
   _.each(collection, function (item, i, collection) {
-    iteratee(memo, item, i, collection);
+    memo = iteratee(memo, item, i, collection);
   });
 
   return memo;

@@ -1369,11 +1369,19 @@ describe('_', function () {
       expect(_.reduce(NaN, iteratee)).to.eql(result);
     });
 
-    it('returns the initial value of meno if the _.identity method is used as the iteratee', function () {
+    it('returns the initial value of memo if the _.identity method is used as the iteratee', function () {
       const memo = {};
       const array = [1, 2, 3];
       expect(_.reduce(array, _.identity, memo)).to.equal(memo);  
     });
-    
+
+    it('reduces an array too a single value, passing each element to an iteratee function', function () {
+      const nums = [1, 2, 3];
+      const result = 12;
+      let memo = 0;
+      const iteratee = function (acc, num) { return acc + (num * 2);};
+
+      expect(_.reduce(nums, iteratee, memo)).to.equal(result);
+    }); 
   });
 }); 
