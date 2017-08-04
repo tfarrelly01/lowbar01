@@ -1375,13 +1375,28 @@ describe('_', function () {
       expect(_.reduce(array, _.identity, memo)).to.equal(memo);  
     });
 
-    it('reduces an array too a single value, passing each element to an iteratee function', function () {
+    it('reduces an array to a single value, passing each element to an iteratee function', function () {
       const nums = [1, 2, 3];
       const result = 12;
       let memo = 0;
       const doubleAndAddNums = function (acc, num) { return acc + (num * 2);};
 
       expect(_.reduce(nums, doubleAndAddNums, memo)).to.equal(result);
+    }); 
+
+    it('reduces an array of objects to a single value, passing each element to an iteratee function', function () {
+      const developers = [
+        {firstName: 'Harry', lastName: 'K.', age: 22, language: 'JavaScript'},
+        {firstName: 'Kseniya', lastName: 'T.', age: 49, language: 'Ruby'},
+        {firstName: 'Jing', lastName: 'X.', age: 34, language: 'JavaScript'},
+        {firstName: 'Piotr', lastName: 'B.', age: 52, language: 'JavaScript'}
+      ];
+      const result = 39.25;
+      let memo = 0;
+      const getAverageAge = function (acc, dev, i, developers) {
+            return acc += dev.age / developers.length;
+      };
+      expect(_.reduce(developers, getAverageAge, memo)).to.equal(result);
     }); 
 
     it('returns the initial value of memo if the _.identity method is used as the iteratee for a string', function () {
@@ -1417,7 +1432,6 @@ describe('_', function () {
 
       expect(_.reduce(obj, addOnlyNums, memo)).to.equal(result);
     }); 
-
 
     it('binds a context to the iteratee', function () {
       const context = {a: 1, b: 2, c: 3};
