@@ -1400,5 +1400,22 @@ describe('_', function () {
 
       expect(_.reduce(string, getTheZs, memo)).to.equal(result);
     }); 
+
+     it('returns the initial value of memo if the _.identity method is used as the iteratee for an object', function () {
+      const memo = [];
+      const obj = {a: 1, b: 2, c: 3};
+      expect(_.reduce(obj, _.identity, memo)).to.equal(memo);  
+    });
+
+    it('reduces an object, passing each element to an iteratee function', function () {
+      const obj = {a: 1, b: 2, c: 3, d: 'not a number', e: 'not a number either'}; 
+      const result = 6;
+      let memo = 0;
+      const addOnlyNums = function (acc, item) { 
+        return typeof item === 'number' ? acc += item : acc;
+      };
+
+      expect(_.reduce(obj, addOnlyNums, memo)).to.equal(result);
+    }); 
   });
 }); 
