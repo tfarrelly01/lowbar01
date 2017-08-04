@@ -147,9 +147,9 @@ _.map = function (list, iteratee, context) {
     || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];  
 
-  if (context) iteratee = iteratee.bind(context);
-
   iteratee = iteratee || _.identity;
+
+  if (context) iteratee = iteratee.bind(context);
 
   let mappedList = [];
   _.each(list, function (item, i, list) {
@@ -187,8 +187,20 @@ _.pluck = function (list, propertyName) {
     || (list === null || list instanceof Date)) return [];  
   
   return _.map(list, function (item) {
-      return item[propertyName];
-    });
+          return item[propertyName];
+        });
+};
+
+_.reduce = function (collection, iteratee, memo) {
+
+  // Defensive code to deal with eroneous values passed as arguments.
+  if ((arguments.length <= 1)
+    || (!Array.isArray(collection) && typeof collection !== 'object' && typeof collection !== 'string')
+    || (collection === null || collection instanceof Date)) return undefined;  
+
+  iteratee = iteratee || _.identity;
+    
+  return memo;
 };
 
 if (typeof module !== 'undefined') {

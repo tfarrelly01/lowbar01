@@ -1336,4 +1336,38 @@ describe('_', function () {
     });
     
   });
+
+   describe('#reduce', function () {
+    it('is a function', function () {
+      expect(_.reduce).to.be.a('function');
+    });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.reduce.length).to.be.at.least(2);
+    });
+
+    it('should return undefined if one of zero arguments passed to the function', function () {
+      let result = undefined;
+      expect(_.reduce()).to.equal(result);
+      expect(_.reduce([1, 2, 3])).to.equal(result);
+      expect(_.reduce({a: 1, b: 2, c: 3})).to.equal(result);
+      expect(_.reduce('123')).to.equal(result);
+    });
+
+    it('should return undefined if first argument is not an array, string or object', function () {
+      let result = undefined;
+      let iteratee = function (memo, num) { return memo + num; };
+
+      expect(_.reduce(function () {console.log('Hi');}, iteratee)).to.eql(result);
+      expect(_.reduce(new Date(), iteratee)).to.eql(result);
+      expect(_.reduce(123, iteratee)).to.eql(result);
+      expect(_.reduce(123.34, iteratee)).to.eql(result);
+      expect(_.reduce(true, iteratee)).to.eql(result);
+      expect(_.reduce(false, iteratee)).to.eql(result);
+      expect(_.reduce(undefined, iteratee)).to.eql(result);
+      expect(_.reduce(null, iteratee)).to.eql(result);
+      expect(_.reduce(NaN, iteratee)).to.eql(result);
+    });
+    
+  });
 }); 
