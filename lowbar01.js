@@ -195,10 +195,9 @@ _.reduce = function (collection, iteratee, memo, context) {
   // The reduce method boils down a list of values into a single value.
 
   // Defensive code to deal with eroneous values passed as arguments.
-  if ((arguments.length <= 1)
-    || (!Array.isArray(collection) && typeof collection !== 'object' && typeof collection !== 'string')
-    || (collection === null || collection instanceof Date)) return undefined;  
-
+  if (arguments.length <= 1
+    || !Array.isArray(collection) && typeof collection !== 'object' && typeof collection !== 'string')  return undefined;
+    
   iteratee = iteratee || _.identity;
 
   if (context) iteratee = iteratee.bind(context);
