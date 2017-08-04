@@ -1368,6 +1368,12 @@ describe('_', function () {
       expect(_.reduce(null, iteratee)).to.eql(result);
       expect(_.reduce(NaN, iteratee)).to.eql(result);
     });
+
+    it('returns the initial value of meno if the _.identity method is used as the iteratee', function () {
+      const memo = {};
+      const array = [1, 2, 3];
+      expect(_.reduce(array, _.identity, memo)).to.equal(memo);  
+    });
     
   });
 }); 

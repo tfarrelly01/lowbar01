@@ -192,6 +192,7 @@ _.pluck = function (list, propertyName) {
 };
 
 _.reduce = function (collection, iteratee, memo) {
+  // The reduce method boils down a list of values into a single value.
 
   // Defensive code to deal with eroneous values passed as arguments.
   if ((arguments.length <= 1)
@@ -199,7 +200,11 @@ _.reduce = function (collection, iteratee, memo) {
     || (collection === null || collection instanceof Date)) return undefined;  
 
   iteratee = iteratee || _.identity;
-    
+
+  _.each(collection, function (item, i, collection) {
+    iteratee(memo, item, i, collection);
+  });
+
   return memo;
 };
 
