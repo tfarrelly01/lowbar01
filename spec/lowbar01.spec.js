@@ -1417,5 +1417,16 @@ describe('_', function () {
 
       expect(_.reduce(obj, addOnlyNums, memo)).to.equal(result);
     }); 
+
+
+    it('binds a context to the iteratee', function () {
+      const context = {a: 1, b: 2, c: 3};
+      let memo = [];
+      _.reduce([1,2,3,4,5], function () {
+        // the value of 'this' in here should be the context object
+        this.a = 'changed!';
+      }, memo, context);
+      expect(context).to.eql({a: 'changed!', b: 2, c: 3});
+    });
   });
 }); 

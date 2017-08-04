@@ -191,7 +191,7 @@ _.pluck = function (list, propertyName) {
         });
 };
 
-_.reduce = function (collection, iteratee, memo) {
+_.reduce = function (collection, iteratee, memo, context) {
   // The reduce method boils down a list of values into a single value.
 
   // Defensive code to deal with eroneous values passed as arguments.
@@ -200,6 +200,8 @@ _.reduce = function (collection, iteratee, memo) {
     || (collection === null || collection instanceof Date)) return undefined;  
 
   iteratee = iteratee || _.identity;
+
+  if (context) iteratee = iteratee.bind(context);
 
   _.each(collection, function (item, i, collection) {
     memo = iteratee(memo, item, i, collection);
