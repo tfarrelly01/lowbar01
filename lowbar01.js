@@ -230,8 +230,7 @@ _.every = function (list,  predicate, context) {
 };
 
 _.some = function (list,  predicate, context) { 
-  // Returns true if all of the values in the list pass the predicate truth test. Short-circuits 
-  // and stops traversing the list if a false element is found.
+  // Returns true if any of the values in the list pass the predicate truth test. Short-circuits and // stops traversing the list if a true element is found.
 
   // Defensive code to mimic the functionality of the actual Underscore some method.
   if (arguments.length <= 1) return true;
