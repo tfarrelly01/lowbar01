@@ -1494,6 +1494,14 @@ describe('_', function () {
       expect(result).to.equal(true);
     });
 
+    it('should return false if one of the values in the string does not pass the predicate truth test', function () {
+      let result = _.every(strNums, lessThanSix);
+      expect(result).to.equal(false);
+
+      result = _.every(strNums, greaterThanNine);
+      expect(result).to.equal(false);
+    });
+
     it('should return true if all of the values in the object pass the predicate truth test', function () {
       let result = _.every(objNums, lessThanTen);
       expect(result).to.equal(true);
