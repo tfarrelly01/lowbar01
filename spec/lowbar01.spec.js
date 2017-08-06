@@ -1564,5 +1564,22 @@ describe('_', function () {
       result = _.some(arrNums, lessThanZero);
       expect(result).to.equal(false);
     });
+
+    it('should return true if a character in the string passes the predicate truth test', function () {
+      let result = _.some(arrNums, lessThanTen);
+      expect(result).to.equal(true);
+
+      result = _.some(arrNums, greaterThanZero);
+      expect(result).to.equal(true);
+    });
+
+    it('should return false if all characters in the string fail the predicate truth test', function () {
+      let result = _.some(strNums, greaterThanNine);
+      expect(result).to.equal(false);
+
+      result = _.some(strNums, lessThanZero);
+      expect(result).to.equal(false);
+    });
+    
   });
 }); 
