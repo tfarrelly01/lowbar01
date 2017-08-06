@@ -1708,5 +1708,27 @@ describe('_', function () {
       _.defaults(iceCream, default1, default2, default3); 
       expect(iceCream).to.eql(result);
     });
+
+    it('should ignore many arguments passed to the function as defaults that are not of type object', function () {
+      const iceCream = {flavor: 'chocolate', cone: 'single'};
+
+      const default1 = 123;
+      const default2 = 12.35;
+      const default3 = 'asdk';
+      const default4 = function (a) { return a / 4; };
+      const default5 = undefined;
+      const default6 = true;
+      const default7 = {flavor: 'vanilla', sprinkles: 'loads of'};
+      const default8 = false;
+      const default9 = {flavor: 'chocolate', sprinkles: 'not many', flake: 'yes'};
+      const default10 = NaN;
+      const default11 = null;
+      const default12 = new Date();
+      
+      const result = {flavor: 'chocolate', cone: 'single', sprinkles: 'loads of', flake: 'yes'};
+    
+      _.defaults(iceCream, default1, default2, default3, default4, default5, default6, default7, default8, default9, default10, default11, default12); 
+      expect(iceCream).to.eql(result);
+    });
   });
 }); 
