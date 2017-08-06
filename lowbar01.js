@@ -248,6 +248,21 @@ _.some = function (list,  predicate, context) {
   return false;
 };
 
+_.default = function (list) {
+
+  // Defensive code to mimic the functionality of the actual Underscore default method.
+  if (arguments.length === 0) return undefined;
+
+  let defaults = Array.from(arguments).slice(1);
+
+  if (defaults.length === 0) return list;
+
+  if (typeof list !== 'object' || Array.isArray(list) 
+    || list === null || list instanceof Date) return undefined;
+
+  return list;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
