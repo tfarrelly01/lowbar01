@@ -2,7 +2,17 @@
 const path = require('path');
 const expect = require('chai').expect;
 const _ = require(path.join(__dirname, '..', './lowbar01.js'));
+
 const largeArray = [...Array(1000000).keys()];
+
+// Constant declarations below used by _.every and _.some methods
+const lessThanTen = function (elem) { return elem < 10;};
+const greaterThanZero = function (elem) { return elem > 0;};
+const lessThanSix = function (elem) { return elem < 6;};
+const greaterThanNine = function (elem) { return elem > 9;};
+const strNums = '123456789';
+const arrNums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const objNums = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9};
 
 describe('_', function () {
   'use strict';
@@ -1445,14 +1455,6 @@ describe('_', function () {
   });
 
   describe('#every', function () {
-    const lessThanTen = function (elem) { return elem < 10;};
-    const greaterThanZero = function (elem) { return elem > 0;};
-    const lessThanSix = function (elem) { return elem < 6;};
-    const greaterThanNine = function (elem) { return elem > 9;};
-    const strNums = '123456789';
-    const arrNums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const objNums = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9};
-
     it('is a function', function () {
       expect(_.every).to.be.a('function');
     });
@@ -1544,6 +1546,14 @@ describe('_', function () {
       expect(_.some('123')).to.equal(true);
       expect(_.some(123)).to.equal(true);
       expect(_.some(undefined)).to.equal(true);
+    });
+
+    it('should return true if an element of the array passes the predicate truth test', function () {
+      let result = _.some(arrNums, lessThanTen);
+      expect(result).to.equal(true);
+
+      result = _.some(arrNums, greaterThanZero);
+      expect(result).to.equal(true);
     });
   });
 

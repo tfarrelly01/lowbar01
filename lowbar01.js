@@ -238,7 +238,10 @@ _.some = function (list,  predicate) {
 
   predicate = predicate || _.identity;
 
-  return predicate;
+  if (Array.isArray(list) || typeof list === 'string')
+    for (let i = 0; i < list.length; i++) if (predicate.call(null, list[i], i, list)) return true;
+
+  return false;
 };
 
 if (typeof module !== 'undefined') {
