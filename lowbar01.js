@@ -229,7 +229,7 @@ _.every = function (list,  predicate, context) {
   return true;
 };
 
-_.some = function (list,  predicate) { 
+_.some = function (list,  predicate, context) { 
   // Returns true if all of the values in the list pass the predicate truth test. Short-circuits 
   // and stops traversing the list if a false element is found.
 
@@ -237,6 +237,8 @@ _.some = function (list,  predicate) {
   if (arguments.length <= 1) return true;
 
   predicate = predicate || _.identity;
+
+  if (context) predicate = predicate.bind(context);
 
   if (Array.isArray(list) || typeof list === 'string')
     for (let i = 0; i < list.length; i++) if (predicate.call(null, list[i], i, list)) return true;

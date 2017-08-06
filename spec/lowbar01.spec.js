@@ -1522,7 +1522,7 @@ describe('_', function () {
       expect(result).to.equal(false);
     });
     
-    it('binds a context to the iteratee', function () {
+    it('binds a context to the predicate', function () {
       const context = {a: 1, b: 2, c: 3};
       _.every([1,2,3,4,5], function () {
         // the value of 'this' in here should be the context object
@@ -1597,6 +1597,14 @@ describe('_', function () {
       result = _.some(objNums, greaterThanNine);
       expect(result).to.equal(false);
     });
-    
+
+    it('binds a context to the predicate', function () {
+      const context = {a: 1, b: 2, c: 3};
+      _.some([1,2,3,4,5], function () {
+        // the value of 'this' in here should be the context object
+        this.a = 'changed!';
+      }, context);
+      expect(context).to.eql({a: 'changed!', b: 2, c: 3});
+    });
   });
 }); 
