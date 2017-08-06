@@ -1671,5 +1671,17 @@ describe('_', function () {
       expect(iceCream).to.eql(result);
     });
 
+    it('should add additional properties to the list object from 2 default objects passsed to the function', function () {
+      const iceCream = {flavor: 'chocolate', cone: 'single'};
+
+      const default1 = {flavor: 'vanilla', sprinkles: 'loads of'};
+      const default2 = {flavor: 'chocolate', sprinkles: 'not many', flake: 'yes'};
+      
+      const result = {flavor: 'chocolate', cone: 'single', sprinkles: 'loads of', flake: 'yes'};
+    
+      _.defaults(iceCream, default1, default2); 
+      expect(iceCream).to.eql(result);
+    });
+
   });
 }); 
