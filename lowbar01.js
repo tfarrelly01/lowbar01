@@ -261,10 +261,12 @@ _.defaults = function (list) {
     || list === null || list instanceof Date) return undefined;
 
   _.each(defaultItems, function (item) {
-    for (let key in item) {
-      if (!list[key]) list[key] = item[key];
+    if (typeof item === 'object') {
+      for (let key in item) {
+        if (!list[key]) list[key] = item[key];
+      }
     }
-  });
+ });
 
   return list;
 };

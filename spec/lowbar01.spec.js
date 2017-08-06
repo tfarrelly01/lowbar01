@@ -1608,7 +1608,6 @@ describe('_', function () {
     });
   });
 
-
   describe('#defaults', function () {
     it('is a function', function () {
       expect(_.defaults).to.be.a('function');
@@ -1682,6 +1681,7 @@ describe('_', function () {
       _.defaults(iceCream, default1, default2); 
       expect(iceCream).to.eql(result);
     });
+
     it('should add additional properties to the object with the first value present in the list from several (default) objects passed to the function', function () {
       const iceCream = {flavor: 'chocolate', cone: 'single'};
 
@@ -1693,6 +1693,19 @@ describe('_', function () {
       const result = {flavor: 'chocolate', cone: 'single', sprinkles: 'loads of', flake: 'yes', sauce: 'raspberry'};
     
       _.defaults(iceCream, default1, default2, default3, default4); 
+      expect(iceCream).to.eql(result);
+    });
+
+    it('should ignore arguments passed to the function as defaults that are not of type object', function () {
+      const iceCream = {flavor: 'chocolate', cone: 'single'};
+
+      const default1 = 123;
+      const default2 = {flavor: 'vanilla', sprinkles: 'loads of'};
+      const default3 = {flavor: 'chocolate', sprinkles: 'not many', flake: 'yes'};
+      
+      const result = {flavor: 'chocolate', cone: 'single', sprinkles: 'loads of', flake: 'yes'};
+    
+      _.defaults(iceCream, default1, default2, default3); 
       expect(iceCream).to.eql(result);
     });
   });
