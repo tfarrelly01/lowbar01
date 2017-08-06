@@ -259,13 +259,11 @@ _.defaults = function (list) {
 
   if (typeof list !== 'object' || Array.isArray(list) 
     || list === null || list instanceof Date) return undefined;
+  // End defensive code
 
   _.each(defaultItems, function (item) {
-    if (typeof item === 'object') {
-      for (let key in item) {
-        if (!list[key]) list[key] = item[key];
-      }
-    }
+    if (typeof item === 'object') 
+      for (let key in item) if (!list[key]) list[key] = item[key];
  });
 
   return list;
