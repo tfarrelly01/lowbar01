@@ -10,6 +10,7 @@ const lessThanTen = function (elem) { return elem < 10;};
 const greaterThanZero = function (elem) { return elem > 0;};
 const lessThanZero = function (elem) { return elem < 0;};
 const lessThanSix = function (elem) { return elem < 6;};
+const greaterThanSix = function (elem) { return elem > 6;};
 const greaterThanNine = function (elem) { return elem > 9;};
 const strNums = '123456789';
 const arrNums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -1580,6 +1581,14 @@ describe('_', function () {
       result = _.some(strNums, lessThanZero);
       expect(result).to.equal(false);
     });
-    
+
+    it('should return true when a value in the object is found which passes the predicate truth test', function () {
+      let result = _.some(objNums, greaterThanSix);
+      expect(result).to.equal(true);
+
+      result = _.some(objNums, greaterThanZero);
+      expect(result).to.equal(true);
+    });
+
   });
 }); 

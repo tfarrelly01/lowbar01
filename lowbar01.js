@@ -241,6 +241,9 @@ _.some = function (list,  predicate) {
   if (Array.isArray(list) || typeof list === 'string')
     for (let i = 0; i < list.length; i++) if (predicate.call(null, list[i], i, list)) return true;
 
+  if (typeof list === 'object') 
+    for (let idx in list) if (predicate(list[idx], idx, list)) return true;
+
   return false;
 };
 
