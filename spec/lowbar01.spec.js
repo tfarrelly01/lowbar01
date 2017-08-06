@@ -8,6 +8,7 @@ const largeArray = [...Array(1000000).keys()];
 // Constant declarations below used by _.every and _.some methods
 const lessThanTen = function (elem) { return elem < 10;};
 const greaterThanZero = function (elem) { return elem > 0;};
+const lessThanZero = function (elem) { return elem < 0;};
 const lessThanSix = function (elem) { return elem < 6;};
 const greaterThanNine = function (elem) { return elem > 9;};
 const strNums = '123456789';
@@ -1555,6 +1556,13 @@ describe('_', function () {
       result = _.some(arrNums, greaterThanZero);
       expect(result).to.equal(true);
     });
-  });
 
+    it('should return false if all elements in the array fail the predicate truth test', function () {
+      let result = _.some(arrNums, greaterThanNine);
+      expect(result).to.equal(false);
+
+      result = _.some(arrNums, lessThanZero);
+      expect(result).to.equal(false);
+    });
+  });
 }); 
