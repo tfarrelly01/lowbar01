@@ -1449,6 +1449,7 @@ describe('_', function () {
     const greaterThanZero = function (elem) { return elem > 0;};
     const lessThanSix = function (elem) { return elem < 6;};
     const greaterThanNine = function (elem) { return elem > 9;};
+    const strNums = '123456789';
     const arrNums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const objNums = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9};
 
@@ -1483,6 +1484,14 @@ describe('_', function () {
 
       result = _.every(arrNums, greaterThanNine);
       expect(result).to.equal(false);
+    });
+
+    it('should return true if all of the values in the string pass the predicate truth test', function () {
+      let result = _.every(strNums, lessThanTen);
+      expect(result).to.equal(true);
+
+      result = _.every(strNums, greaterThanZero);
+      expect(result).to.equal(true);
     });
 
     it('should return true if all of the values in the object pass the predicate truth test', function () {
