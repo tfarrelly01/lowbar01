@@ -1528,4 +1528,23 @@ describe('_', function () {
     });
   });
 
+  describe('#some', function () {
+    it('is a function', function () {
+      expect(_.some).to.be.a('function');
+    });
+
+    it('should take at least 2 arguments', function () {
+      expect(_.some.length).to.be.at.least(2);
+    });
+
+    it('should return true if one of zero arguments passed to the function', function () {
+      expect(_.some()).to.equal(true);
+      expect(_.some([1, 2, 3])).to.equal(true);
+      expect(_.some({a: 1, b: 2, c: 3})).to.equal(true);
+      expect(_.some('123')).to.equal(true);
+      expect(_.some(123)).to.equal(true);
+      expect(_.some(undefined)).to.equal(true);
+    });
+  });
+
 }); 
