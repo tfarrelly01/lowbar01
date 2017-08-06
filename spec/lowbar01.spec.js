@@ -1609,58 +1609,66 @@ describe('_', function () {
   });
 
 
-  describe('#default', function () {
+  describe('#defaults', function () {
     it('is a function', function () {
-      expect(_.default).to.be.a('function');
+      expect(_.defaults).to.be.a('function');
     });
 
     it('should take at least 1 argument', function () {
-      expect(_.default.length).to.be.at.least(1);
+      expect(_.defaults.length).to.be.at.least(1);
     });
 
     it('should return undefined if no arguments passed to function', function () {
-      expect(_.default()).to.equal(undefined);
+      expect(_.defaults()).to.equal(undefined);
     });
 
     it('should return the argument if only one argument passed to function', function () {
       let value = {a: 1, b: 2, c: 3};
-      expect(_.default(value)).to.equal(value);
+      expect(_.defaults(value)).to.equal(value);
     });
 
     it('should return undefined if more than one argument passed to function and first argument is not an object', function () {
       const secondArg = {a: 1, b: 2, c: 3};
       let firstArg = 123;
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
 
       firstArg = 12.34;
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
 
       firstArg = '123';
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
 
       firstArg = [1, 2, 3];
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
 
       firstArg = function (a) {return a * 2;};
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
             
       firstArg = true;
-      expect(_.default(firstArg, secondArg)).to.equal(undefined); 
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined); 
 
       firstArg = false;
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
       
       firstArg = undefined;
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
 
       firstArg = NaN;
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
       
       firstArg = null;
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
 
       firstArg = new Date();
-      expect(_.default(firstArg, secondArg)).to.equal(undefined);
+      expect(_.defaults(firstArg, secondArg)).to.equal(undefined);
+    });
+
+    it('should add additional properties to the object ', function () {
+      const iceCream = {flavor: 'chocolate'};
+      const result = {flavor: 'chocolate', sprinkles: 'lots'};
+    
+      _.defaults(iceCream, {flavor: 'vanilla', sprinkles: 'lots'}); 
+      expect(iceCream).to.eql(result);
     });
 
   });
