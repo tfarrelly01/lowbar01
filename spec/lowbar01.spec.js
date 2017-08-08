@@ -1718,6 +1718,51 @@ describe('_', function () {
 
       expect(_.extend(destObject, sourceObject1, sourceObject2)).to.eql(result);
     });
+
+    it('returns destination object containing the properties from many source objects containing nested objects and arrays', function () {
+
+      const destObject = {
+        name: 'Fred Flintstone', 
+        age: 51, 
+        jobTitle: 'Junior Developer', 
+        town: 'BedRock'
+      };
+
+      const sourceObject1 = {
+        age: 52, 
+        jobTitle: 'Senior Developer', 
+        language: 'java'
+      };
+
+      const sourceObject2 = {learning: ['HTML5', 'CSS3'], fullTime: true};
+
+      const sourceObject3 = {
+        learningList: {
+          frontEnd: [{web: ['react', 'redux', 'react native'], mobile: {android: true, ios: false}}, 'javascript'], 
+          backend: 'C#'
+        }
+      };
+
+      const sourceObject4 = {
+        language: ['java', 'ruby']
+      };
+
+      const result = {
+        name: 'Fred Flintstone',
+        age: 52,
+        jobTitle: 'Senior Developer',
+        town: 'BedRock',
+        language: [ 'java', 'ruby' ],
+        learning: [ 'HTML5', 'CSS3' ],
+        fullTime: true,
+        learningList: {
+          frontEnd: [{web: ['react', 'redux', 'react native'], mobile: {android: true, ios: false}}, 'javascript'], 
+          backend: 'C#'
+        },
+      };
+
+      expect(_.extend(destObject, sourceObject1, sourceObject2, sourceObject3, sourceObject4)).to.eql(result);
+    });
   });
 
   describe('#defaults', function () {

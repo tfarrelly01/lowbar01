@@ -264,7 +264,7 @@ _.extend = function (destination) {
       destination[key] = item;
     });
   });
-
+  
   return destination;
 };
 
