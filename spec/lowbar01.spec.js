@@ -926,29 +926,62 @@ describe('_', function () {
     it('for a sorted string, returns a duplicate-free array version of the string elements', function () {
       const list = 'aaaaabbchhhijAAZ';
       const result = ['a', 'b', 'c', 'h', 'i', 'j', 'A', 'Z'];
-      const sorted = false;
+      const sorted = true;
       expect(_.uniq(list, sorted)).to.eql(result);
     });
 
-    it('computes unique items based on a transformation for an array, via an iteratee function.', function () {
+    it('computes unique items based on a transformation for an unsorted array of objects, via an iteratee function.', function () {
       const people = [
         {name: 'Barney Rubble', age: 1032},
-        {name: 'Fred Flintstone', age: 1032},
         {name: 'Mildred Rubble', age: 1024},
+        {name: 'Fred Flintstone', age: 1032},
         {name: 'Wilmar Flintstone', age: 1026}
       ];
+
       const result = [
         {name: 'Barney Rubble', age: 1032},
         {name: 'Mildred Rubble', age: 1024},
         {name: 'Wilmar Flintstone', age: 1026}
       ];
+
       function returnAge (person) {
         return person.age;
       }
 
-      const uniqueAges = _.uniq(people, true, returnAge);
+      const uniqueAges = _.uniq(people, false, returnAge);
       expect(uniqueAges).to.eql(result);
+    });
 
+    it('computes unique items based on a transformation for a sorted array of objects, via an iteratee function.', function () {
+      const students = [
+        {surname: 'Davies', forename: 'A', GCSEPasses: 10},
+        {surname: 'Davies', forename: 'A', GCSEPasses: 10},
+        {surname: 'Davies', forename: 'A', GCSEPasses: 8},
+        {surname: 'Davies', forename: 'B', GCSEPasses: 9},
+        {surname: 'Smith', forename: 'C', GCSEPasses: 7},
+        {surname: 'Smith', forename: 'C', GCSEPasses: 7},
+        {surname: 'Smith', forename: 'J', GCSEPasses: 7},
+        {surname: 'Smith', forename: 'N', GCSEPasses: 6},
+        {surname: 'Taylor', forename: 'J', GCSEPasses: 8},
+        {surname: 'Taylor', forename: 'J', GCSEPasses: 8},
+        {surname: 'Taylor', forename: 'J', GCSEPasses: 8}
+      ];
+
+      const result = [
+        {surname: 'Davies', forename: 'A', GCSEPasses: 10},
+        {surname: 'Davies', forename: 'A', GCSEPasses: 8},
+        {surname: 'Davies', forename: 'B', GCSEPasses: 9},
+        {surname: 'Smith', forename: 'C', GCSEPasses: 7},
+        {surname: 'Smith', forename: 'J', GCSEPasses: 7},
+        {surname: 'Smith', forename: 'N', GCSEPasses: 6},
+        {surname: 'Taylor', forename: 'J', GCSEPasses: 8}
+      ];
+
+      function getStudentName (student) {
+        return student.forename + student.surname + '' + student.GCSEPasses;
+      }
+      const nonDuplicates = _.uniq(students, true, getStudentName);
+      expect(nonDuplicates).to.eql(result);
     });
   });
 

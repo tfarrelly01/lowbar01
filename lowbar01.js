@@ -120,20 +120,17 @@ _.uniq = function (list, isSorted, iteratee) {
   let uniqList = [];
 
   if (isSorted) {
-    uniqList = _.filter(list, function (item, i, list) {
+    uniqList = _.filter(list, function (item, i) {
       return i === 0 ? true : iteratee(item) !== iteratee(list[i - 1]);
     });
   } else {
-    _.each(list, function (item, i, list) {
-      /*
-      console.log('list: ', list);
-      console.log('iteratee:', iteratee(item));
-      console.log('i:', i);
-      */
-      if (_.indexOf(list, item) === i) uniqList.push(item);
+    const mappedItems = _.map(list, function (item) {
+      return iteratee(item);
+    });
+    _.each(mappedItems, function (item, i) {
+      if (_.indexOf(mappedItems, item) === i) uniqList.push(list[i]);
     });
   }
-
   return uniqList;
 };
 
