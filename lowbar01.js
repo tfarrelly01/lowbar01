@@ -249,6 +249,14 @@ _.some = function (list,  predicate, context) {
   return false;
 };
 
+_.extend = function (destination) {
+
+  if (arguments.length === 0) return undefined;
+  if (arguments.length === 1) return destination;
+
+  return destination;
+};
+
 _.defaults = function (list) {
 
   // Defensive code to mimic the functionality of the actual Underscore default method.

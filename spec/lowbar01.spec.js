@@ -1641,6 +1641,64 @@ describe('_', function () {
     });
   });
 
+  describe('#extend', function () {
+    it('is a function', function () {
+      expect(_.extend).to.be.a('function');
+    });
+
+    it('should take at least 1 argument', function () {
+      expect(_.extend.length).to.be.at.least(1);
+    });
+
+    it('should return undefined if no arguments passed to function', function () {
+      expect(_.extend()).to.equal(undefined);
+    });
+
+    it('should return the argument if only one argument passed to function', function () {
+      let value = {a: 1, b: 2, c: 3};
+      expect(_.extend(value)).to.equal(value);
+
+      value = ['a', 1, 'b', 2, 'c' , 3];
+      expect(_.extend(value)).to.equal(value);
+    });
+
+    it('should return the value of the first argument if more than one argument passed to function and first argument is not an object', function () {
+      const secondArg = {a: 1, b: 2, c: 3};
+      let firstArg = 123;
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+
+      firstArg = 12.34;
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+
+      firstArg = '123';
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+
+      firstArg = [1, 2, 3];
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+
+      firstArg = function (a) {return a * 2;};
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+            
+      firstArg = true;
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg); 
+
+      firstArg = false;
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+      
+      firstArg = undefined;
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+
+      firstArg = NaN;
+      expect(_.extend(firstArg, secondArg)).to.eql(firstArg);
+      
+      firstArg = null;
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+
+      firstArg = new Date();
+      expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
+    });
+  });
+
   describe('#defaults', function () {
     it('is a function', function () {
       expect(_.defaults).to.be.a('function');
