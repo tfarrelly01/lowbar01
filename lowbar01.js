@@ -251,8 +251,19 @@ _.some = function (list,  predicate, context) {
 
 _.extend = function (destination) {
 
+  // Defensive code to mimic the functionality of the actual Underscore extend method.
   if (arguments.length === 0) return undefined;
-  if (arguments.length === 1) return destination;
+  if (typeof destination !== 'object' || destination === null) return destination;
+  
+  // Get optional arguments, if any
+  let sourceLists = Array.from(arguments).slice(1);
+  if (sourceLists.length === 0) return destination;
+
+  _.each(sourceLists, function (list) {
+    _.each(list, function (item, key) {
+      destination[key] = item;
+    });
+  });
 
   return destination;
 };

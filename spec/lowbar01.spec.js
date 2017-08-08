@@ -1697,6 +1697,15 @@ describe('_', function () {
       firstArg = new Date();
       expect(_.extend(firstArg, secondArg)).to.equal(firstArg);
     });
+
+    it('returns destination object containing the properties from the source object', function () {
+      let destObject = {name: 'Fred Flintstone', age: 51, jobTitle: 'Junior Developer', town: 'BedRock'};
+      const sourceObject = {age: 52, jobTitle: 'Senior Developer', language: 'java'};
+      const result = {name: 'Fred Flintstone', age: 52, jobTitle: 'Senior Developer', town: 'BedRock', 
+      language: 'java'};
+
+      expect(_.extend(destObject, sourceObject)).to.eql(result);
+    });
   });
 
   describe('#defaults', function () {
