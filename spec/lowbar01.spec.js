@@ -1706,6 +1706,22 @@ describe('_', function () {
 
       expect(_.extend(destObject, sourceObject)).to.eql(result);
     });
+      
+    it('returns destination object converting source arguments passed that are of type array', function () {
+
+      const destObject = {};
+      const sourceObject1 = [1, 2, 3];
+      const result = {'0': 1, '1': 2, '2': 3};
+
+      _.extend(destObject, sourceObject1); 
+      expect(destObject).to.eql(result);
+
+      const sourceObject2 = ['bob', 'ted'];
+      const result1 = {'0': 'bob', '1': 'ted', '2': 3};
+
+      _.extend(destObject, sourceObject2); 
+      expect(destObject).to.eql(result1);
+    });
 
     it('returns destination object containing the properties from two source objects', function () {
       let destObject = {name: 'Fred Flintstone', age: 51, jobTitle: 'Junior Developer', town: 'BedRock'};
@@ -1747,7 +1763,12 @@ describe('_', function () {
         language: ['java', 'ruby']
       };
 
+      const sourceObject5 = ['PHP', 'ASP', 'Node'];
+
       const result = {
+        '0': 'PHP',
+        '1': 'ASP',
+        '2': 'Node',
         name: 'Fred Flintstone',
         age: 52,
         jobTitle: 'Senior Developer',
@@ -1761,7 +1782,7 @@ describe('_', function () {
         },
       };
 
-      expect(_.extend(destObject, sourceObject1, sourceObject2, sourceObject3, sourceObject4)).to.eql(result);
+      expect(_.extend(destObject, sourceObject1, sourceObject2, sourceObject3, sourceObject4, sourceObject5)).to.eql(result);
     });
 
     it('should ignore arguments passed to the function as sources that are not of type object', function () {
