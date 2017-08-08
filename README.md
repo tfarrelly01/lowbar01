@@ -31,3 +31,41 @@ whilst developing the project I have referenced the following API's;
 1. [Underscore](http://underscorejs.org/)
 2. [The Mocha Test Framework](https://mochajs.org/)
 3. [The Chai Assertion Library](http://chaijs.com/)
+
+## Installation Instructions
+
+You will need to install Node.js to use the function library. Type the command below to check if you already have node installed:
+
+`$ node -v`
+
+If node is already installed the output of the command will display the version (e.g. v7.9.0). If you need to install node please follow the link (http://nodejs.org/en/).
+
+To install all dependencies please enter the following command into the terminal once you have navigated to the root directory:
+
+`$ npm install`
+
+To run the test suite please enter the following command into the terminal
+
+`$ npm test`
+
+## Usage.
+
+To access the functions within your own javascript projects use either the `require` or `include` (ES6) commands to include the library within you javascript program, e.g. if your javascript program was located in the same folder as the function library.
+
+```javascript
+const _ = require('./lowbar01');
+```
+
+### Code snippet - using _.map with arrays and objects
+
+```javascript
+// require the lowbar01 function library
+const _ = require('./lowbar01');
+
+_.map([1, 2, 3], function(num){ return num * 3; });
+// returns  [3, 6, 9]
+
+_.map({a: 1, b: 2, c: 3}, function(num, key){ return num * 3; });
+// returns [3, 6, 9]
+
+```

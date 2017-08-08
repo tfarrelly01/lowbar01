@@ -1,7 +1,7 @@
 /* global describe, it */
 const path = require('path');
 const expect = require('chai').expect;
-const _ = require(path.join(__dirname, '..', './lowbar01.js'));
+const _ = require(path.join(__dirname, '..', './lowbar01'));
 
 const largeArray = [...Array(1000000).keys()];
 
