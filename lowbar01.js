@@ -250,6 +250,10 @@ _.some = function (list,  predicate, context) {
 };
 
 _.extend = function (destination) {
+  // Shallow copy all of the properties in the source objects over to the destination object, and 
+  // return the destination object. Any nested objects or arrays are copied by reference, not
+  // duplicated. The last source will override properties of the same name in 
+  // previous arguments.
 
   // Defensive code to mimic the functionality of the actual Underscore extend method.
   if (arguments.length === 0) return undefined;
@@ -270,6 +274,8 @@ _.extend = function (destination) {
 };
 
 _.defaults = function (list) {
+  // Fill in undefined properties in object with the first value present in the passed list of 
+  // defaults objects.
 
   // Defensive code to mimic the functionality of the actual Underscore default method.
   if (arguments.length === 0) return undefined;
