@@ -1763,6 +1763,36 @@ describe('_', function () {
 
       expect(_.extend(destObject, sourceObject1, sourceObject2, sourceObject3, sourceObject4)).to.eql(result);
     });
+
+    it('should ignore arguments passed to the function as sources that are not of type object', function () {
+      const destObject = {
+        name: 'Fred Flintstone', 
+        age: 51
+      };
+
+      const source1 = 123;
+      const source2 = 12.35;
+      const source3 = 'asdk';
+      const source4 = function (a) { return a / 4; };
+      const source5 = undefined;
+      const source6 = true;
+      const source7 = {jobTitle: 'Junior Developer'};
+      const source8 = false;
+      const source9 = {town: 'BedRock'};
+      const source10 = NaN;
+      const source11 = null;
+      const source12 = new Date();
+
+      const result = {
+        name: 'Fred Flintstone', 
+        age: 51, 
+        jobTitle: 'Junior Developer', 
+        town: 'BedRock'
+      };
+      _.extend(destObject, source1, source2, source3, source4, source5, source6, source7, source8, source9, source10, source11, source12); 
+
+      expect(destObject).to.eql(result);
+    });
   });
 
   describe('#defaults', function () {

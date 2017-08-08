@@ -260,11 +260,12 @@ _.extend = function (destination) {
   if (sourceLists.length === 0) return destination;
 
   _.each(sourceLists, function (list) {
+    if (typeof list === 'object')
     _.each(list, function (item, key) {
       destination[key] = item;
     });
   });
-  
+
   return destination;
 };
 
