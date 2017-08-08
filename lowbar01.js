@@ -111,6 +111,10 @@ _.reject = function (list, predicate, context) {
 };
 
 _.uniq = function (list, isSorted, iteratee) {
+  // Produces a duplicate-free version of the array, using === to test object equality. Only the first // occurence of each value is kept. If you know in advance that the array is sorted, passing true  // for isSorted will run a faster algorithm. To compute unique items based on a transformation
+  // (sorted or unsorted), pass an iteratee function.
+
+  // Defensive code to mimic the functionality of the actual Underscore uniq method.
   if (arguments.length === 0 || (typeof list !== 'string' && !Array.isArray(list))) return [];
 
   isSorted = isSorted || false;
