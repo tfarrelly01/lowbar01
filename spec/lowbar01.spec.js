@@ -1706,6 +1706,18 @@ describe('_', function () {
 
       expect(_.extend(destObject, sourceObject)).to.eql(result);
     });
+
+    it('returns destination object containing the properties from two source objects', function () {
+      let destObject = {name: 'Fred Flintstone', age: 51, jobTitle: 'Junior Developer', town: 'BedRock'};
+      const sourceObject1 = {age: 52, jobTitle: 'Senior Developer', language: 'java'};
+
+      const sourceObject2 = {learning: ['HTML5', 'CSS3'], fullTime: true};
+
+      const result = {name: 'Fred Flintstone', age: 52, jobTitle: 'Senior Developer', town: 'BedRock', 
+      language: 'java', learning: ['HTML5', 'CSS3'], fullTime: true};
+
+      expect(_.extend(destObject, sourceObject1, sourceObject2)).to.eql(result);
+    });
   });
 
   describe('#defaults', function () {
