@@ -304,7 +304,14 @@ _.once = function (func) {
     // Defensive code 
     if (typeof func !== 'function') return func;
 
-    return func;
+    let functionInvoked = false;
+
+    return function () {
+        if (!functionInvoked) {
+            functionInvoked = true;
+            return func.apply(null, arguments);
+        }
+    };
 };
 
 if (typeof module !== 'undefined') {

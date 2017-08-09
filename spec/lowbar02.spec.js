@@ -1,7 +1,7 @@
 const path = require('path');
 const expect = require('chai').expect;
 const _ = require(path.join(__dirname, '..', './lowbar01'));
-// const sinon = require('sinon');
+const sinon = require('sinon');
 
 describe('_', function () {
   'use strict';
@@ -23,5 +23,14 @@ describe('_', function () {
         let result = _.once (function () {  });
         expect(result).to.be.a('function');
     });
+
+    it('should only run the function once', function () {
+        const spy = sinon.spy();
+        const spiedOnce = _.once(spy);
+        spiedOnce();
+        spiedOnce();
+        spiedOnce();
+        expect(spy.callCount).to.equal(1);
+    });   
   });
 });
