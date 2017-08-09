@@ -79,6 +79,12 @@ describe('_', function () {
       value = null;
       expect(_.flatten(value)).to.eql([]); 
     }); 
+    
+    it('should process a nested array and return a flattened array', function () {
+      const array = [1, [2], [3, [[4]]]]; 
+      const result = [1, 2, 3, 4];
+      expect(_.flatten(array)).to.eql(result); 
+    });
   }); 
 
 });

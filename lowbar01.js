@@ -318,7 +318,9 @@ _.once = function (func) {
 _.flatten = function (array) {
     if (arguments.length === 0 || !Array.isArray(array)) return [];
 
-    return array;
+    return _.reduce(array, function (acc, item) {
+            return acc.concat(Array.isArray(item) ? _.flatten(item) : item);
+        }, []);
 };
 
 if (typeof module !== 'undefined') {
