@@ -299,7 +299,8 @@ _.defaults = function (list) {
 };
 
 _.once = function (func) {
-    // Creates a version of the function that can only be called once. Repeated calls to the modified // function will have no effect, returning the value from the original call.
+    // Creates a version of the function that can only be called once. Repeated calls to the modified
+    // function will have no effect, returning the value from the original call.
     
     // Defensive code 
     if (typeof func !== 'function') return func;
@@ -312,6 +313,12 @@ _.once = function (func) {
             return func.apply(null, arguments);
         }
     };
+};
+
+_.flatten = function (array) {
+    if (arguments.length === 0 || !Array.isArray(array)) return [];
+
+    return array;
 };
 
 if (typeof module !== 'undefined') {

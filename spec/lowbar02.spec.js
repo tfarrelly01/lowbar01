@@ -33,4 +33,52 @@ describe('_', function () {
         expect(spy.callCount).to.equal(1);
     });   
   });
+  
+  describe('#flatten', function () {
+    it('is a function', function () {
+      expect(_.flatten).to.be.a('function');
+    });
+
+    it('should take at least 1 argument', function () {
+      expect(_.flatten.length).to.be.at.least(1);
+    });
+
+    it('should return an empty array if no arguments passed to the function', function () {
+      expect(_.flatten()).to.eql([]);
+    });
+
+    it('should return an array', function () {
+      expect(_.flatten()).to.eql([]);
+    });
+
+    it('should return an empty array if argument passed to the function is not an array', function () {
+      let value = 12;
+      expect(_.flatten(value)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.flatten(value)).to.eql([]);
+
+      value = '123456';
+      expect(_.flatten(value)).to.eql([]);   
+
+      value = {a: 1, b: 2, c: 3};
+      expect(_.flatten(value)).to.eql([]); 
+
+      value = function (a) {return a * 2;};
+      expect(_.flatten(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.flatten(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.flatten(value)).to.eql([]);
+
+      value = NaN;   
+      expect(_.flatten(value)).to.eql([]);
+
+      value = null;
+      expect(_.flatten(value)).to.eql([]); 
+    }); 
+  }); 
+
 });
