@@ -15,12 +15,24 @@ describe('_', function () {
         expect(_.once).to.be.a('function');
     });
 
-    it('should take one arguments', function () {
+    it('should take one argument', function () {
       expect(_.once.length).to.equal(1);
     });
 
     it('returns a function', function () {
         let result = _.once (function () {  });
+        expect(result).to.be.a('function');
+
+        result = _.once(123);
+        expect(result).to.be.a('function');
+
+        result = _.once([1, 2, 3]);
+        expect(result).to.be.a('function');
+
+        result = _.once({a: 1, b: 2, c: 3});
+        expect(result).to.be.a('function');
+
+        result = _.once(null);
         expect(result).to.be.a('function');
     });
 

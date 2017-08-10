@@ -302,8 +302,8 @@ _.once = function (func) {
     // Creates a version of the function that can only be called once. Repeated calls to the modified
     // function will have no effect, returning the value from the original call.
     
-    // Defensive code 
-    if (typeof func !== 'function') return func;
+    // defensive code
+    typeof func === 'function' || _.identity;
 
     let functionInvoked = false;
 
