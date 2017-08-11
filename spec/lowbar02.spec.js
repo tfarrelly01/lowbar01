@@ -97,6 +97,13 @@ describe('_', function () {
       const result = [1, 2, 3, 4];
       expect(_.flatten(array)).to.eql(result); 
     });
+
+    it('should process a deeply nested array and return a flattened array', function () {
+      const array = [1, [1.5, [2, [2.5, 2.6, [2.51, 2.52, [2.521, 2.522]]]]], [3, [[4, ['five', 'six', [null, NaN, [undefined, [true, [false]]]]]]]]]; 
+      const result = [1, 1.5, 2, 2.5, 2.6, 2.51, 2.52, 2.521, 2.522,  3, 4, 'five', 'six', null, NaN, undefined, true, false];
+      console.log(_.flatten(array));
+      expect(_.flatten(array)).to.eql(result); 
+    });
   }); 
 
 });
