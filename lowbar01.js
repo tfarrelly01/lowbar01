@@ -315,11 +315,13 @@ _.once = function (func) {
     };
 };
 
-_.flatten = function (array) {
+_.flatten = function (array, shallow) {
     if (arguments.length === 0 || !Array.isArray(array)) return [];
 
+    shallow = shallow || false;
+
     return _.reduce(array, function (acc, item) {
-            return acc.concat(Array.isArray(item) ? _.flatten(item) : item);
+            return acc.concat(Array.isArray(item) && !shallow ? _.flatten(item) : item);
         }, []);
 };
 
