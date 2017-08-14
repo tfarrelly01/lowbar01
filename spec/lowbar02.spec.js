@@ -103,13 +103,23 @@ describe('_', function () {
       const result = [1, 1.5, 2, 2.5, 2.6, 2.51, 2.52, 2.521, 2.522,  3, 4, 'five', 'six', null, NaN, undefined, true, false];
       expect(_.flatten(array)).to.eql(result); 
     });
-
-      
+     
     it('flattens nested array to a single level if the second argument (shallow) passed to the function is set to true.', function () {
       const array = [1, [2], [3, [[4]]]]; 
       const shallow = true;
       const result = [1, 2, 3, [[4]]];
       expect(_.flatten(array, shallow)).to.eql(result); 
+    });
+
+    it('flattens deepley nested array to a single level if the second argument (shallow) passed to the function is set to true.', function () {
+      const array = [1, [1.5, [2, [2.5, 2.6, [2.51, 2.52, [2.521, 2.522]]]]], [3, [[4, ['five', 'six', [null, NaN, [undefined, [true, [false]]]]]]]]]; 
+      
+      const shallow = true;
+
+      const result = [1, 1.5, [2, [2.5, 2.6, [2.51, 2.52, [2.521, 2.522]]]], 3, [[4, ['five', 'six', [null, NaN, [undefined, [true, [false]]]]]]]]; 
+
+      let output = _.flatten(array, shallow);
+      expect(output).to.eql(result); 
     });
   }); 
 

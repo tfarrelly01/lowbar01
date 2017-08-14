@@ -298,6 +298,7 @@ _.defaults = function (list) {
   return list;
 };
 
+
 _.once = function (func) {
     // Creates a version of the function that can only be called once. Repeated calls to the modified
     // function will have no effect, returning the value from the original call.
@@ -315,38 +316,15 @@ _.once = function (func) {
     };
 };
 
-/*
 _.flatten = function (array, shallow) {
     if (arguments.length === 0 || !Array.isArray(array)) return [];
 
     shallow = shallow || false;
 
-    return _.reduce(array, function (acc, item) {
-            return acc.concat(Array.isArray(item) ? _.flatten(item) : item);
+  return _.reduce(array, function (acc, item) {
+            return acc.concat(Array.isArray(item) && !shallow ? _.flatten(item, shallow) : item);
         }, []);
 };
-*/
-
-function flattenItem (array, shallow, level1Flattened) {
-      
-  return _.reduce(array, function (acc, item) {
-      if (Array.isArray (item)) {
-        if (!shallow || (shallow && !level1Flattened)) {
-          level1Flattened = true;
-          return acc.concat(flattenItem(item, level1Flattened));
-        }
-      } 
-      return acc.concat(item);
-  }, []);
-}
-
-_.flatten = function (array, shallow) {
-    if (arguments.length === 0 || !Array.isArray(array)) return [];
-
-    shallow = shallow || false;
-    return flattenItem(array, shallow, false);
-};
-
 
 if (typeof module !== 'undefined') {
   module.exports = _;
