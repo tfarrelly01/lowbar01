@@ -317,12 +317,16 @@ _.once = function (func) {
 };
 
 _.flatten = function (array, shallow) {
-    if (arguments.length === 0 || !Array.isArray(array)) return [];
+  // Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will 
+  // only be flattened a single level
+  
+  // Defensive code to mimic the actual _.flatten method
+  if (arguments.length === 0 || !Array.isArray(array)) return [];
 
-    shallow = shallow || false;
+  shallow = shallow || false;
 
   return _.reduce(array, function (acc, item) {
-            return acc.concat(Array.isArray(item) && !shallow ? _.flatten(item, shallow) : item);
+          return acc.concat(Array.isArray(item) && !shallow ? _.flatten(item, shallow) : item);
         }, []);
 };
 
