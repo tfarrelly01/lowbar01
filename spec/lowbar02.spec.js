@@ -56,6 +56,13 @@ describe('_', function () {
       expect(callbackSpy.calledWith(1, 2, 3)).to.equal(true);
     });
 
+    it('should return the value returned from the original function', function () {
+      const callbackSpy = sinon.stub().returns('Hello World');
+      const spiedOnce = _.once(callbackSpy);
+
+      expect(spiedOnce()).to.equal('Hello World');
+    });
+
   });
 
   describe('#memoize', function () {
