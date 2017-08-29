@@ -65,9 +65,21 @@ describe('_', function () {
 
   });
 
-  describe('#memoize', function () {
+  describe.only('#memoize', function () {
     it('is a function', function () {
       expect(_.memoize).to.be.a('function');
+    });
+
+    it('should accept at least one argument', function () {
+      expect(_.memoize.length).to.be.at.least(1);
+    });
+
+    it('returns a function', function () {
+      let result = _.memoize (function () {  });
+      expect(result).to.be.a('function');
+
+      result = _.memoize(123);
+      expect(result).to.be.a('function');
     });
   });
   

@@ -315,7 +315,11 @@ _.once = function (func) {
     };
 };
 
-_.memoize = function () {
+_.memoize = function (func) {
+
+  return function () {
+    func();
+  };
 
 };
 
