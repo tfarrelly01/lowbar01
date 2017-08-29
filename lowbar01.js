@@ -345,9 +345,10 @@ _.flatten = function (array, shallow) {
 };
 
 _.delay = function (func, wait) {
-    return function () {
-        func(wait);
-    };
+
+    return setTimeout(function () {
+        func();
+    }, wait);
 };
 
 if (typeof module !== 'undefined') {

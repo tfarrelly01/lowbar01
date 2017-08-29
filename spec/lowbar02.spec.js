@@ -206,14 +206,46 @@ describe('_', function () {
   }); 
 
   describe('#delay', function () {
+    let clock;
+
+    before(function () { clock = sinon.useFakeTimers(); });
+    after(function () { clock.restore(); });
 
     it('is a function', function () {
       expect(_.delay).to.be.a('function');
     });
+
     it('should take two arguments', function () {
       expect(_.delay.length).to.equal(2);
     });
+
+    it('delays invocation of callback for 100ms', function () {
+      let callback = sinon.spy();
+      let wait = 100;
+
+      _.delay(callback, wait);
+
+      clock.tick(1);
+      expect(callback.callCount).to.equal(0);
+      expect(callback.notCalled).to.equal(true);
+      expect(callback.called).to.equal(false);
+
+      clock.tick(98);
+      expect(callback.callCount).to.equal(0);
+      expect(callback.notCalled).to.equal(true);
+      expect(callback.called).to.equal(false);
+
+      clock.tick(100);
+      expect(callback.callCount).to.equal(1);
+      expect(callback.notCalled).to.equal(false);  
+      expect(callback.called).to.equal(true);
+
+      clock.tick(101);
+      expect(callback.callCount).to.equal(1);
+      expect(callback.notCalled).to.equal(false);  
+      expect(callback.called).to.equal(true);
  
+    });
   });
 
 });
