@@ -205,4 +205,15 @@ describe('_', function () {
     });
   }); 
 
+  describe('#delay', function () {
+
+    it('is a function', function () {
+      expect(_.delay).to.be.a('function');
+    });
+    it('should take two arguments', function () {
+      expect(_.delay.length).to.equal(2);
+    });
+ 
+  });
+
 });

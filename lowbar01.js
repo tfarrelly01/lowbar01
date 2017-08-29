@@ -344,6 +344,12 @@ _.flatten = function (array, shallow) {
         }, []);
 };
 
+_.delay = function (func, wait) {
+    return function () {
+        func(wait);
+    };
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
