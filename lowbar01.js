@@ -298,7 +298,6 @@ _.defaults = function (list) {
   return list;
 };
 
-
 _.once = function (func) {
     // Creates a version of the function that can only be called once. Repeated calls to the modified
     // function will have no effect, returning the value from the original call.
@@ -311,9 +310,13 @@ _.once = function (func) {
     return function () {
         if (!functionInvoked) {
             functionInvoked = true;
-            return func.apply(null, arguments);
+            return func.apply(this, arguments);
         }
     };
+};
+
+_.memoize = function () {
+
 };
 
 _.flatten = function (array, shallow) {
