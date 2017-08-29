@@ -316,20 +316,17 @@ _.once = function (func) {
 };
 
 _.memoize = function (func, hashFunc) {
-  const cache = {};
-
+  // Memoizes a given function by caching the computed result, speeding up slow-running 
+  // computations. If passed an optional hashFunction, it will be used to compute the hash key for 
+  // storing the result, based on the arguments to the original function. 
   func = func || _.identity;
 
+  const cache = {};
   return function () {
     let key = JSON.stringify(hashFunc ? hashFunc.apply(this, arguments) : arguments);
-    
-    if (cache[key]) {
-      return cache[key];
-    }
-    else {
-      cache[key] = func.apply(this, arguments);
-      return cache[key];
-    }
+
+    if (cache[key]) return cache[key]; 
+    else return (cache[key] = func.apply(this, arguments));
   };
 };
 
