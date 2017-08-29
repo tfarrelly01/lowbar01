@@ -95,27 +95,36 @@ describe('_', function () {
     });
 
     it('should compute the hash key for storing the result when passed a hash function, based on the arguments to the original function.', function () {
-      const fn = function (item) { return item;};
       const hashFn = function (item) {
-        for (let idx in item) {
-          item[idx] = item[idx] += 1;
-        }
+        for (let idx in item) item[idx] = item[idx] += 1;
+
         return item;
       };
+      const spy = sinon.stub();
+      const rememberSpy = _.memoize(spy, hashFn);
 
-      let memoizedFn = _.memoize(fn, hashFn);
+      spy.returns({a: 3, b: 4, c: 5});
 
-      let obj = {a: 1, b: 2};
-      let result = {a: 2, b: 3};
-      expect(memoizedFn(obj)).to.eql(result);
+      rememberSpy({a: 2, b: 3, c: 4});
+      expect(spy.callCount).to.equal(1);
+      rememberSpy({a: 2, b: 3, c: 4});
+      expect(spy.callCount).to.equal(1);
+      rememberSpy({a: 2, b: 3, c: 4});
+      expect(spy.callCount).to.equal(1);
 
-      obj = {a: 2, b: 3, c: 4};
-      result = {a: 3, b: 4, c: 5};
-      expect(memoizedFn(obj)).to.eql(result);
+      spy.returns({a: 2, b: 3, c: 4});
 
-      obj = {a: 2, b: 3, c: 4};
-      result = {a: 3, b: 4, c: 5};
-      expect(memoizedFn(obj)).to.eql(result);
+      rememberSpy({a: 1, b: 2, c: 3});
+      expect(spy.callCount).to.equal(2);
+      rememberSpy({a: 1, b: 2, c: 3});
+      expect(spy.callCount).to.equal(2);
+
+      spy.returns({a: 10, b: 20, c: 30});
+
+      rememberSpy({a: 9, b: 19, c: 29});
+      expect(spy.callCount).to.equal(3);
+      rememberSpy({a: 9, b: 19, c: 29});
+      expect(spy.callCount).to.equal(3);
     });
   });
   

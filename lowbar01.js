@@ -322,6 +322,7 @@ _.memoize = function (func, hashFunc) {
 
   return function () {
     let key = JSON.stringify(hashFunc ? hashFunc.apply(this, arguments) : arguments);
+    
     if (cache[key]) {
       return cache[key];
     }
