@@ -316,11 +316,18 @@ _.once = function (func) {
 };
 
 _.memoize = function (func) {
+  const cache = {};
 
   return function () {
-    func();
+    let key = JSON.stringify(arguments);
+    if (cache[key]) {
+      return cache[key];
+    }
+    else {
+      cache[key] = func.apply(null, arguments);
+      return cache[key];
+    }
   };
-
 };
 
 _.flatten = function (array, shallow) {

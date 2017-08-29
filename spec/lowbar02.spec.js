@@ -65,7 +65,7 @@ describe('_', function () {
 
   });
 
-  describe.only('#memoize', function () {
+  describe('#memoize', function () {
     it('is a function', function () {
       expect(_.memoize).to.be.a('function');
     });
@@ -80,6 +80,18 @@ describe('_', function () {
 
       result = _.memoize(123);
       expect(result).to.be.a('function');
+    });
+
+    it('only runs the function when necessary', function () {
+      const spy = sinon.stub();
+      spy.returns(1);
+      const rememberSpy = _.memoize(spy);
+      rememberSpy(1);
+      expect(spy.callCount).to.equal(1);
+      rememberSpy(1);
+      expect(spy.callCount).to.equal(1);
+      rememberSpy(2);
+      expect(spy.callCount).to.equal(2);
     });
   });
   
