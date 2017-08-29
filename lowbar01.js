@@ -303,7 +303,7 @@ _.once = function (func) {
     // function will have no effect, returning the value from the original call.
     
     // defensive code
-    typeof func === 'function' || _.identity;
+    func = func || _.identity;
 
     let functionInvoked = false;
 
@@ -315,16 +315,18 @@ _.once = function (func) {
     };
 };
 
-_.memoize = function (func) {
+_.memoize = function (func, hashFunc) {
   const cache = {};
 
+  func = func || _.identity;
+
   return function () {
-    let key = JSON.stringify(arguments);
+    let key = JSON.stringify(hashFunc ? hashFunc.apply(this, arguments) : arguments);
     if (cache[key]) {
       return cache[key];
     }
     else {
-      cache[key] = func.apply(null, arguments);
+      cache[key] = func.apply(this, arguments);
       return cache[key];
     }
   };

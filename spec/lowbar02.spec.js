@@ -93,6 +93,30 @@ describe('_', function () {
       rememberSpy(2);
       expect(spy.callCount).to.equal(2);
     });
+
+    it('should compute the hash key for storing the result when passed a hash function, based on the arguments to the original function.', function () {
+      const fn = function (item) { return item;};
+      const hashFn = function (item) {
+        for (let idx in item) {
+          item[idx] = item[idx] += 1;
+        }
+        return item;
+      };
+
+      let memoizedFn = _.memoize(fn, hashFn);
+
+      let obj = {a: 1, b: 2};
+      let result = {a: 2, b: 3};
+      expect(memoizedFn(obj)).to.eql(result);
+
+      obj = {a: 2, b: 3, c: 4};
+      result = {a: 3, b: 4, c: 5};
+      expect(memoizedFn(obj)).to.eql(result);
+
+      obj = {a: 2, b: 3, c: 4};
+      result = {a: 3, b: 4, c: 5};
+      expect(memoizedFn(obj)).to.eql(result);
+    });
   });
   
   describe('#flatten', function () {
