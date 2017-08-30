@@ -249,6 +249,18 @@ describe('_', function () {
   });
 
   describe('#invoke', function () {
+    const animals = [
+      ['frog', 'dog', 'wolf' ],
+      ['cats', 'rats', 'bats'],
+      ['lion', 'tiger', 'puma']
+    ];
+
+    const sortedAnimals = [
+      ['dog', 'frog', 'wolf' ],
+      ['bats', 'cats', 'rats'],
+      ['lion', 'puma', 'tiger']
+    ];
+
     it('is a function', function () {
       expect(_.invoke).to.be.a('function');
     });
@@ -287,6 +299,11 @@ describe('_', function () {
 
       arg = false;
       expect(_.invoke(arg, method)).to.eql(result);
+    });
+
+    it('Invokes the passed method name on each value in the list', function () {
+      let result = _.invoke(animals, 'sort');
+      expect(result).to.eql(sortedAnimals);
     });
 
   });

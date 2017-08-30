@@ -358,8 +358,10 @@ _.invoke = function (list, method) {
   if ((arguments.length === 0)
     || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];  
-  
-  return method(list); 
+
+    return _.map(list, function (item) {
+      return item[method].apply(item);
+    });
 };
 
 if (typeof module !== 'undefined') {
