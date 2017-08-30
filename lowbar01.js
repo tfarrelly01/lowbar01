@@ -329,6 +329,13 @@ _.memoize = function (func, hashFunc) {
   };
 };
 
+_.zip = function () {
+
+  let args = [].slice.call(arguments);
+  if (arguments.length === 0) return [];
+  return args;
+};
+
 _.flatten = function (array, shallow) {
   // Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will 
   // only be flattened a single level

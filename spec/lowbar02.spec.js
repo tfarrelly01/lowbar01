@@ -127,6 +127,29 @@ describe('_', function () {
       expect(spy.callCount).to.equal(3);
     });
   });
+
+  describe('#zip', function () {
+    it('is a function', function () {
+      expect(_.zip).to.be.a('function');
+    });
+
+    it('should return an empty array if no arguments passed to the function', function () {
+      expect(_.zip()).to.eql([]);
+    });
+
+    it('should return an array', function () {
+      expect(_.zip()).to.eql([]);
+    });
+
+    it('should accept a variable number of array arguments', function () {
+      const arr = [1, 2, 3];
+      const arr1 = [4, 5, 6];
+      const arr2 = [7, 8, 9];
+      expect(Array.isArray(_.zip(arr))).to.equal(true);
+      expect(Array.isArray(_.zip(arr, arr1))).to.equal(true); 
+      expect(Array.isArray(_.zip(arr, arr1, arr2))).to.equal(true);
+    });
+  });
   
   describe('#flatten', function () {
     it('is a function', function () {
