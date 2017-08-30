@@ -291,7 +291,7 @@ describe('_', function () {
       expect(_.invoke()).to.eql([]);
     });
 
-    it('Returns an empty array if 1st argument is not of type array & not of type object', function () {
+    it('returns an empty array if 1st argument is not of type array & not of type object', function () {
       let arg = 123;
       const result = [];
       const method = function () {};
@@ -319,7 +319,7 @@ describe('_', function () {
       expect(_.invoke(arg, method)).to.eql(result);
     });
 
-    it('Invokes the passed method name (sort) on each value in the list', function () {
+    it('invokes the passed method name (sort) on each value in the list', function () {
       // repeated as array is mutated when passed to a sort method
       const animals = [
         ['frog', 'dog', 'wolf' ],
@@ -330,12 +330,12 @@ describe('_', function () {
       expect(result).to.eql(sortedAnimals);
     });
 
-    it('Invokes the passed method name (join) on each value in the list', function () {
+    it('invokes the passed method name (join) on each value in the list', function () {
       let result = _.invoke(sortedAnimals, 'join');
       expect(result).to.eql(joinedAnimals);
     });
 
-    it('Invokes the passed function declaration on each value in the list', function () {
+    it('invokes the passed function declaration on each value in the list', function () {
       // repeated as array is mutated when passed to a sort method
       const animals = [
         ['frog', 'dog', 'wolf' ],
@@ -349,7 +349,7 @@ describe('_', function () {
       expect(result).to.eql(reverseAnimals);
     });
 
-    it('Invokes the passed method name (sort) including additional passed arguments on each value in the list', function () {
+    it('invokes the passed method name (sort) including additional passed arguments on each value in the list', function () {
       // repeated as array is mutated when passed to a sort method
       const animals = [
         ['frog', 'dog', 'wolf' ],
@@ -363,12 +363,24 @@ describe('_', function () {
       expect(result).to.eql(reverseSortedAnimals);
     });
 
-    it('Invokes the passed method name (join) including additional passed arguments on each value in the list', function () {
+    it('invokes the passed method name (join) including additional passed arguments on each value in the list', function () {
       const delimiter = ':::';
       const result = _.invoke(sortedAnimals, 'join', delimiter);
       expect(result).to.eql(joinedAnimals1);
     });
 
+    it('handles a string list if passed to an appropriate method', function () {
+      const result = [['1'], ['2'], ['3']];
+      const delimiter = ' ';
+
+      let list = '123';
+      let value = _.invoke(list, 'split');
+      expect(result).to.eql(result);
+
+      list = '123';
+      value = _.invoke(list, 'split', delimiter);
+      expect(value).to.eql(result);
+    });
   });
 
 });
