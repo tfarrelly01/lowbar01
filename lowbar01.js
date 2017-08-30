@@ -333,6 +333,12 @@ _.zip = function () {
 
   let args = [].slice.call(arguments);
   if (arguments.length === 0) return [];
+
+  const longestArray = _.reduce(args, function (acc, curr) { 
+    return !Array.isArray(curr) || acc >= curr.length ? acc : curr.length;
+  }, 0);
+  console.log(longestArray);
+
   return args;
 };
 

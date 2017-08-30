@@ -143,7 +143,7 @@ describe('_', function () {
 
     it('should accept a variable number of array arguments', function () {
       const arr = [1, 2, 3];
-      const arr1 = [4, 5, 6];
+      const arr1 = [4, 5, 6, 10];
       const arr2 = [7, 8, 9];
       expect(Array.isArray(_.zip(arr))).to.equal(true);
       expect(Array.isArray(_.zip(arr, arr1))).to.equal(true); 
