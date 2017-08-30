@@ -346,6 +346,8 @@ _.flatten = function (array, shallow) {
 
 _.delay = function (func, wait) {
 
+  if (arguments.length === 0 || typeof func !== 'function') return undefined;
+
   let args = [].slice.call(arguments, 2);
   return setTimeout(function () {
     return func.apply(null, args);
@@ -355,6 +357,7 @@ _.delay = function (func, wait) {
 _.invoke = function (list, method) {
   // invokes the passed method on each value in the list. Any additional arguments passed to invoke 
   // are forwarded on to the method invocation.
+
 
   let isFunction = typeof method === 'function';
   let args = [].slice.call(arguments, 2);

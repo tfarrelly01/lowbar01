@@ -219,6 +219,49 @@ describe('_', function () {
       expect(_.delay.length).to.equal(2);
     });
 
+    it('returns undefined if no arguments passed to function', function () {
+      let result = undefined;
+      expect(_.delay()).to.equal(result);
+    });
+    
+    it('returns undefined if first argument is not a function', function () {
+      let result = undefined;
+      let wait = 0;
+
+      let func = 123;
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = 123.45;
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = 'string';
+      expect(_.delay(func, wait)).to.equal(result);
+      
+      func = [1, 2, 3];
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = {a: 1, b: 2, c: 3};
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = true;
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = false;
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = undefined;
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = NaN;
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = null;
+      expect(_.delay(func, wait)).to.equal(result);
+
+      func = new Date();
+      expect(_.delay(func, wait)).to.equal(result);
+    });
+
     it('delays invocation of callback for 100ms', function () {
       let callback = sinon.spy();
       let wait = 100;
