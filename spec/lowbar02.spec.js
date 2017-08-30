@@ -237,14 +237,24 @@ describe('_', function () {
 
       clock.tick(100);
       expect(callback.callCount).to.equal(1);
-      expect(callback.notCalled).to.equal(false);  
+      expect(callback.notCalled).to.equal(false); 
       expect(callback.called).to.equal(true);
 
       clock.tick(101);
       expect(callback.callCount).to.equal(1);
       expect(callback.notCalled).to.equal(false);  
       expect(callback.called).to.equal(true);
- 
+    });
+
+  });
+
+  describe('#invoke', function () {
+    it('is a function', function () {
+      expect(_.invoke).to.be.a('function');
+    });
+
+    it('should take at least two arguments', function () {
+      expect(_.invoke.length).to.be.at.least(2);
     });
   });
 

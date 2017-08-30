@@ -346,9 +346,15 @@ _.flatten = function (array, shallow) {
 
 _.delay = function (func, wait) {
 
+    let args = [].slice.call(arguments, 2);
     return setTimeout(function () {
-        func();
+        return func.apply(null, args);
     }, wait);
+};
+
+_.invoke = function (obj, method) {
+  
+  return method(obj); 
 };
 
 if (typeof module !== 'undefined') {
