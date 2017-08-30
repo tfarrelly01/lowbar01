@@ -353,25 +353,17 @@ _.delay = function (func, wait) {
 };
 
 _.invoke = function (list, method) {
+  // invokes the passed method on each value in the list. Any additional arguments passed to invoke 
+  // are forwarded on to the method invocation.
 
-  // Defensive code to mimic the functionality of the actual Underscore pluck method.
-  if ((arguments.length === 0)
-    || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
-    || (list === null || list instanceof Date)) return [];  
+  let isFunction = typeof method === 'function';
+  let args = [].slice.call(arguments, 2);
 
-    let isFunction = typeof method === 'function';
-    let args = [].slice.call(arguments, 2);
+  return _.map(list, function (item) {
+    let func = isFunction ? method : item[method];
 
-    return _.map(list, function (item) {
-      let func;
-      if (isFunction) {
-        func = method;
-      }
-      else {
-        func = item[method];
-      }
-      return func.apply(item, args);
-    });
+    return func === null ? func : func.apply(item, args);
+  });
 };
 
 if (typeof module !== 'undefined') {
