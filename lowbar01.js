@@ -346,15 +346,20 @@ _.flatten = function (array, shallow) {
 
 _.delay = function (func, wait) {
 
-    let args = [].slice.call(arguments, 2);
-    return setTimeout(function () {
-        return func.apply(null, args);
-    }, wait);
+  let args = [].slice.call(arguments, 2);
+  return setTimeout(function () {
+    return func.apply(null, args);
+  }, wait);
 };
 
-_.invoke = function (obj, method) {
+_.invoke = function (list, method) {
+
+  // Defensive code to mimic the functionality of the actual Underscore pluck method.
+  if ((arguments.length === 0)
+    || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
+    || (list === null || list instanceof Date)) return [];  
   
-  return method(obj); 
+  return method(list); 
 };
 
 if (typeof module !== 'undefined') {

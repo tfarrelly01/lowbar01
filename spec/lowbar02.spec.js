@@ -256,6 +256,39 @@ describe('_', function () {
     it('should take at least two arguments', function () {
       expect(_.invoke.length).to.be.at.least(2);
     });
+
+    it('returns an empty array if no arguments are passed to the function', function () {
+      expect(_.invoke()).to.eql([]);
+    });
+
+    it('Returns an empty array if 1st argument is not of type array & not of type object', function () {
+      let arg = 123;
+      const result = [];
+      const method = function () {};
+      expect(_.invoke(arg, method)).to.eql(result);
+
+      arg = 123.34;
+      expect(_.invoke(arg, method)).to.eql(result);
+
+      arg = new Date();
+      expect(_.invoke(arg, method)).to.eql(result);
+
+      arg = null;
+      expect(_.invoke(arg, method)).to.eql(result);
+
+      arg = NaN;
+      expect(_.invoke(arg, method)).to.eql(result);
+
+      arg = undefined;
+      expect(_.invoke(arg, method)).to.eql(result);
+
+      arg = true;
+      expect(_.invoke(arg, method)).to.eql(result);
+
+      arg = false;
+      expect(_.invoke(arg, method)).to.eql(result);
+    });
+
   });
 
 });
