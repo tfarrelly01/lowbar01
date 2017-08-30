@@ -267,6 +267,13 @@ describe('_', function () {
       'lion,puma,tiger'
     ];
 
+    const reverseAnimals = [ 
+      ['wolf', 'frog', 'dog'],
+      ['rats', 'cats', 'bats'],
+      ['tiger', 'puma', 'lion']
+    ];
+
+
     it('is a function', function () {
       expect(_.invoke).to.be.a('function');
     });
@@ -313,8 +320,16 @@ describe('_', function () {
     });
 
     it('Invokes the passed method name (join) on each value in the list', function () {
-      let result = _.invoke(sortedAnimals, 'join');
+      let result = _.invoke(animals, 'join');
       expect(result).to.eql(joinedAnimals);
+    });
+
+    it('Invokes the passed function declaration on each value in the list', function () {
+      let func = function () { 
+        return this.reverse();
+      };
+      let result = _.invoke(animals, func);
+      expect(result).to.eql(reverseAnimals);
     });
 
   });

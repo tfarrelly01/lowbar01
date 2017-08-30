@@ -359,8 +359,18 @@ _.invoke = function (list, method) {
     || (!Array.isArray(list) && typeof list !== 'object' && typeof list !== 'string')
     || (list === null || list instanceof Date)) return [];  
 
+    let isFunction = typeof method === 'function';
+    let args = [].slice.call(arguments, 2);
+
     return _.map(list, function (item) {
-      return item[method].apply(item);
+      let func;
+      if (isFunction) {
+        func = method;
+      }
+      else {
+        func = item[method];
+      }
+      return func.apply(item, args);
     });
 };
 
