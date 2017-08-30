@@ -260,6 +260,12 @@ describe('_', function () {
       ['bats', 'cats', 'rats'],
       ['lion', 'puma', 'tiger']
     ];
+    
+    const joinedAnimals = [
+      'dog,frog,wolf',
+      'bats,cats,rats',
+      'lion,puma,tiger'
+    ];
 
     it('is a function', function () {
       expect(_.invoke).to.be.a('function');
@@ -301,9 +307,14 @@ describe('_', function () {
       expect(_.invoke(arg, method)).to.eql(result);
     });
 
-    it('Invokes the passed method name on each value in the list', function () {
+    it('Invokes the passed method name (sort) on each value in the list', function () {
       let result = _.invoke(animals, 'sort');
       expect(result).to.eql(sortedAnimals);
+    });
+
+    it('Invokes the passed method name (join) on each value in the list', function () {
+      let result = _.invoke(sortedAnimals, 'join');
+      expect(result).to.eql(joinedAnimals);
     });
 
   });
