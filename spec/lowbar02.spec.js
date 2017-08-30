@@ -249,12 +249,6 @@ describe('_', function () {
   });
 
   describe('#invoke', function () {
-    const animals = [
-      ['frog', 'dog', 'wolf' ],
-      ['cats', 'rats', 'bats'],
-      ['lion', 'tiger', 'puma']
-    ];
-
     const sortedAnimals = [
       ['dog', 'frog', 'wolf' ],
       ['bats', 'cats', 'rats'],
@@ -267,12 +261,23 @@ describe('_', function () {
       'lion,puma,tiger'
     ];
 
-    const reverseAnimals = [ 
+    const joinedAnimals1 = [
+      'dog:::frog:::wolf',
+      'bats:::cats:::rats',
+      'lion:::puma:::tiger'
+    ];
+
+    const reverseSortedAnimals = [
       ['wolf', 'frog', 'dog'],
       ['rats', 'cats', 'bats'],
       ['tiger', 'puma', 'lion']
     ];
 
+    const reverseAnimals = [ 
+      ['wolf', 'dog', 'frog'],
+      ['bats', 'rats', 'cats'],
+      ['puma', 'tiger', 'lion']
+    ];
 
     it('is a function', function () {
       expect(_.invoke).to.be.a('function');
@@ -315,21 +320,53 @@ describe('_', function () {
     });
 
     it('Invokes the passed method name (sort) on each value in the list', function () {
+      // repeated as array is mutated when passed to a sort method
+      const animals = [
+        ['frog', 'dog', 'wolf' ],
+        ['cats', 'rats', 'bats'],
+        ['lion', 'tiger', 'puma']
+      ];
       let result = _.invoke(animals, 'sort');
       expect(result).to.eql(sortedAnimals);
     });
 
     it('Invokes the passed method name (join) on each value in the list', function () {
-      let result = _.invoke(animals, 'join');
+      let result = _.invoke(sortedAnimals, 'join');
       expect(result).to.eql(joinedAnimals);
     });
 
     it('Invokes the passed function declaration on each value in the list', function () {
-      let func = function () { 
+      // repeated as array is mutated when passed to a sort method
+      const animals = [
+        ['frog', 'dog', 'wolf' ],
+        ['cats', 'rats', 'bats'],
+        ['lion', 'tiger', 'puma']
+      ];
+      const func = function () { 
         return this.reverse();
       };
       let result = _.invoke(animals, func);
       expect(result).to.eql(reverseAnimals);
+    });
+
+    it('Invokes the passed method name (sort) including additional passed arguments on each value in the list', function () {
+      // repeated as array is mutated when passed to a sort method
+      const animals = [
+        ['frog', 'dog', 'wolf' ],
+        ['cats', 'rats', 'bats'],
+        ['lion', 'tiger', 'puma']
+      ];
+      const iteratee = function (a, b) {
+        return a < b;
+      };
+      const result = _.invoke(animals, 'sort', iteratee);
+      expect(result).to.eql(reverseSortedAnimals);
+    });
+
+    it('Invokes the passed method name (join) including additional passed arguments on each value in the list', function () {
+      const delimiter = ':::';
+      const result = _.invoke(sortedAnimals, 'join', delimiter);
+      expect(result).to.eql(joinedAnimals1);
     });
 
   });
