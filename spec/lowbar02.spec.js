@@ -262,7 +262,7 @@ describe('_', function () {
       expect(_.delay(func, wait)).to.equal(result);
     });
 
-    it('delays invocation of callback for 100ms', function () {
+    it('delays invocation of callback for specified period', function () {
       let callback = sinon.spy();
       let wait = 100;
 

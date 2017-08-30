@@ -294,25 +294,24 @@ _.defaults = function (list) {
         if (!list[key]) list[key] = item;
       });
  });
-
   return list;
 };
 
 _.once = function (func) {
-    // Creates a version of the function that can only be called once. Repeated calls to the modified
-    // function will have no effect, returning the value from the original call.
+  // Creates a version of the function that can only be called once. Repeated calls to the modified
+  // function will have no effect, returning the value from the original call.
     
-    // defensive code
-    func = func || _.identity;
+  // defensive code
+  func = func || _.identity;
 
-    let functionInvoked = false;
+  let functionInvoked = false;
 
-    return function () {
-        if (!functionInvoked) {
-            functionInvoked = true;
-            return func.apply(this, arguments);
-        }
-    };
+  return function () {
+    if (!functionInvoked) {
+      functionInvoked = true;
+      return func.apply(this, arguments);
+    }
+  };
 };
 
 _.memoize = function (func, hashFunc) {
@@ -345,6 +344,8 @@ _.flatten = function (array, shallow) {
 };
 
 _.delay = function (func, wait) {
+  // Invokes function after `wait` milliseconds. Optional argument passed are forwarded to the
+  // function when it is invoked
 
   if (arguments.length === 0 || typeof func !== 'function') return undefined;
 
@@ -357,7 +358,6 @@ _.delay = function (func, wait) {
 _.invoke = function (list, method) {
   // invokes the passed method on each value in the list. Any additional arguments passed to invoke 
   // are forwarded on to the method invocation.
-
 
   let isFunction = typeof method === 'function';
   let args = [].slice.call(arguments, 2);
