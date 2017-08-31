@@ -478,6 +478,12 @@ describe('_', function () {
       expect(_.intersection()).to.eql([]);
     });
 
+    it('should return original array if only one array argument passed to the function', function () {
+      const arr = [1, 3, 5, 7];
+      const result = [1, 3, 5, 7];
+      expect(_.intersection(arr)).to.eql(result);
+    });
+
     it('should return an array', function () {
       const arr = [1, 2, 3];
       expect(Array.isArray(_.intersection(arr))).to.equal(true);

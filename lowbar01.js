@@ -380,6 +380,7 @@ _.flatten = function (array, shallow) {
 _.intersection = function (array) {
   if (arguments.length === 0) return [];
 
+  // store all arguments passed into function into an array
   const args = [].slice.call(arguments);
   const noOfArrays  = args.length;
   const result = [];
@@ -389,15 +390,18 @@ _.intersection = function (array) {
     const item = array[i];
 
     // iterate through each subsequent array
+    let noOfIterations = 0;
     for (let j = 1; j < noOfArrays; j++) {
-      // for each array args[j]
-      // call _.contains to check if item is present in array args[j]
-      // if item not present then break out of loop as item not present in every array
+      // for each array - args[j]
+      // call _.contains to check if item is present in array - args[j]
+      // if item not present then break out of for loop as item not present in every array
       if (!_.contains(args[j], item)) break;
 
-      // if j === noOfArrays - 1 then item present in every array so push item into result array
-      if (j === noOfArrays - 1) result.push(item);
+      noOfIterations += 1;
     }
+    // if noOfIterations === noOfArrays - 1 then item present in every array 
+    // so push item into result array
+    if (noOfIterations === noOfArrays  - 1) result.push(item);
   }
   return result;
 };
