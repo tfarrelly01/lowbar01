@@ -483,6 +483,38 @@ describe('_', function () {
       expect(_.intersection()).to.eql([]);
     });
 
+    it('should return an empty array if 1st argument is not an array or string data type', function () {
+      let value = 12;
+      expect(_.intersection(value)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.intersection(value)).to.eql([]);
+
+      value = {a: 1, b: 2, c: 3};
+      expect(_.intersection(value)).to.eql([]); 
+
+      value = function (a) {return a * 2;};
+      expect(_.intersection(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.intersection(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.intersection(value)).to.eql([]);
+
+      value = NaN;   
+      expect(_.intersection(value)).to.eql([]);
+
+      value = null;
+      expect(_.intersection(value)).to.eql([]);     
+
+      value = true;   
+      expect(_.intersection(value)).to.eql([]);
+
+      value = false;
+      expect(_.intersection(value)).to.eql([]); 
+    });
+
     it('should return original array if only one array argument passed to the function', function () {
       const arr = [1, 3, 5, 7];
       const result = [1, 3, 5, 7];
@@ -527,14 +559,11 @@ describe('_', function () {
       const str2 = '2acd';
       const arr1 = ['2', 'b', 'd'];
       const arr2 = ['1', '2', 'd',];
- //     const arr3 = [9, 10];
-
       const result = ['2', 'd'];
 
       expect(_.intersection(arr1, str1, arr2, str2)).to.eql(result);
-
+      expect(_.intersection(str1, arr1, str2, arr2)).to.eql(result);
     });
-
   });
 
   describe('#difference', function () {

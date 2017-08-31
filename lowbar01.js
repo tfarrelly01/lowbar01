@@ -379,7 +379,7 @@ _.flatten = function (array, shallow) {
 };
 
 _.intersection = function (array) {
-  if (arguments.length === 0) return [];
+  if (arguments.length === 0 || !Array.isArray(array) & typeof array !== 'string') return [];
 
   // store all arguments passed into function into an array and get array length
   const args = [].slice.call(arguments);

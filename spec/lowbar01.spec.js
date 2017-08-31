@@ -1102,10 +1102,7 @@ describe('_', function () {
       expect(_.contains(value, 12)).to.equal(false);
 
       value = 1234.56;
-      expect(_.contains(value, 1234.56)).to.equal(false);
-
- //     value = '123456';
- //     expect(_.contains(value, '1')).to.equal(false);   
+      expect(_.contains(value, 1234.56)).to.equal(false); 
 
       value = function (a) {return a * 2;};
       expect(_.contains(value, 'function')).to.equal(false);
