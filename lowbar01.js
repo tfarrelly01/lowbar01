@@ -347,7 +347,6 @@ _.zip = function () {
       zippedArray[idx] = _.pluck(args, idx);
   }
   return zippedArray;
-
 };
 
 _.flatten = function (array, shallow) {

@@ -158,6 +158,7 @@ describe('_', function () {
       const result = [ [4, 7], [5, 8], [6, 9] ];
       expect(_.zip(arr1, arr2)).to.eql(result);
     });
+
     it('merges together the values of several arrays of objects with the values at the corresponding position', function () {
       const arr1 = [{a: 1}, {b: 2}, {c: 3}];
       const arr2 = [{d: 'foo'}, {e: 'bar'}, {f: 'baz'}];
@@ -169,6 +170,25 @@ describe('_', function () {
       ];
       expect(_.zip(arr1, arr2, arr3)).to.eql(result);
     });
+
+    it('merges together the values of several arrays of differing lengths with the values at the corresponding position', function () {
+      const arr = [];
+      const arr1 = [1, 2, 3, 4, 100];
+      const arr2 = [4];
+      const arr3 = [7, 8, 9];
+      const arr4 = [{a: 1}, {b: 2}, {c: 3}, {d: 5}];
+      const arr5 = [{d: 'foo'}, {e: 'bar'}];
+      const arr6 = [{a: 'dog', b: 'cat'}, {c: 'bat', d: 'rat'}, {e: 'frog', f: 'toad', g: 'newt'}];
+      const result = [ 
+        [undefined, 1, 4, 7, {a: 1}, {d: 'foo'}, {a: 'dog', b: 'cat'}], 
+        [undefined, 2, undefined, 8, {b: 2}, {e: 'bar'}, {c: 'bat', d: 'rat'}], 
+        [undefined, 3, undefined, 9, {c: 3}, undefined, {e: 'frog', f: 'toad', g: 'newt'}],
+        [undefined, 4, undefined, undefined, {d: 5}, undefined, undefined],
+        [undefined, 100, undefined, undefined, undefined, undefined, undefined]
+      ];
+      expect(_.zip(arr, arr1, arr2, arr3, arr4, arr5, arr6)).to.eql(result);
+    });
+
   });
   
   describe('#flatten', function () {
