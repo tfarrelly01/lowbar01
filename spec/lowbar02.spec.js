@@ -415,6 +415,15 @@ describe('_', function () {
       expect(_.difference(arr, arr1, arr2)).to.eql(result);  
     });
 
+    it('should return the difference if a string is passed as the first argument to the function', function () {
+      const arr = '123abcd';
+      const arr1 = ['2', '5', '3', '10', 'd'];
+      const arr2 = ['b', 'a'];
+      const result = ['1','c'];
+
+      expect(_.difference(arr, arr1, arr2)).to.eql(result);  
+    });
+
   });
 
   describe('#delay', function () {
