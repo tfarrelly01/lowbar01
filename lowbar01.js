@@ -376,18 +376,18 @@ _.flatten = function (array, shallow) {
 };
 
 _.difference = function (array) {
+  // Takes the difference between one array and a number of other arrays. Only the elements present in // just the first array will remain.
   
   // store all arguments (other than the 1st argument) in an array
   let args = [].slice.call(arguments, 1);
 
-  // shallow flatten arguments down to a single array keeping any original array nesting
+  // shallow flatten arg array down to a single array keeping any original array nesting
   let flattenedArgs = _.flatten(args, true);
 
   return _.filter(array, function (value) {
       // if value in array is not present in the flattened array then keep the value
-      if (!_.contains(flattenedArgs, value)) return value;
+      return !_.contains(flattenedArgs, value);
     });
-
 };
 
 _.delay = function (func, wait) {
