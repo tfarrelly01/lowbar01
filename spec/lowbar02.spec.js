@@ -406,6 +406,15 @@ describe('_', function () {
       expect(_.difference(arr, arr1, arr2, arr3, arr4)).to.eql(result);
     });
 
+    it('should return the difference if an object is passed as the first argument to the function', function () {
+      const arr = {a: 1, b: 2, c: 3, e: 'bill', f: 'fred'};
+      const arr1 = [2, 5, 6, 10, 'fred'];
+      const arr2 = ['Bill', 1];
+      const result = [3,'bill'];
+
+      expect(_.difference(arr, arr1, arr2)).to.eql(result);  
+    });
+
   });
 
   describe('#delay', function () {
