@@ -142,7 +142,35 @@ describe('_', function () {
     });
 
     it('should return an empty array if first argument is not an array', function () {
+      let value = 12;
+      expect(_.zip(value)).to.eql([]);
 
+      value = 1234.56;
+      expect(_.zip(value)).to.eql([]);
+
+      value = {a: 1, b: 2, c: 3};
+      expect(_.zip(value)).to.eql([]); 
+
+      value = function (a) {return a * 2;};
+      expect(_.zip(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.zip(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.zip(value)).to.eql([]);
+
+      value = NaN;   
+      expect(_.zip(value)).to.eql([]);
+
+      value = null;
+      expect(_.zip(value)).to.eql([]);     
+
+      value = true;
+      expect(_.zip(value)).to.eql([]); 
+
+      value = false;
+      expect(_.zip(value)).to.eql([]); 
     });
 
     it('should accept a variable number of array arguments', function () {
