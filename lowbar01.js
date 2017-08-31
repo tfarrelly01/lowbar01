@@ -377,15 +377,22 @@ _.flatten = function (array, shallow) {
 
 _.difference = function (array) {
   
+  // Defensive code to mimic the actual underscore 'difference' method 
   if (arguments.length === 0 || array instanceof Date || array === null
   || !Array.isArray(array) && typeof array !== 'object' && typeof array !== 'string')   
     return [];
 
-  let args = [].slice.call(arguments);
-  let numberOfArgs = args.length;
-  console.log(numberOfArgs);
-  
-  return array;
+  // store all arguments (other than the 1st argument) in an array
+  let args = [].slice.call(arguments, 1);
+
+  // shallow flatten arguments down to a single array keeping any original array nesting
+  let flattenedArgs = _.flatten(args, true);
+
+  return _.filter(array, function (value) {
+      // if value in array is not present in the flattened array then keep the value
+      if (!_.contains(flattenedArgs, value)) return value;
+    });
+
 };
 
 _.delay = function (func, wait) {

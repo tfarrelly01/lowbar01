@@ -386,6 +386,15 @@ describe('_', function () {
       expect(Array.isArray(_.difference(arr, arr1, arr2))).to.equal(true);
       expect(Array.isArray(_.difference(arr, arr1, arr2, arr3))).to.equal(true);
     });
+
+    it('should return the difference between 2 arrays', function () {
+      const arr = [1, 2, 3];
+      const arr1 = [2, 5, 6, 10];
+      const result = [1, 3];
+
+      expect(_.difference(arr, arr1)).to.eql(result);
+    });
+
   });
 
   describe('#delay', function () {
