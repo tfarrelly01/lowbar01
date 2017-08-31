@@ -479,9 +479,18 @@ describe('_', function () {
     });
 
     it('should return an array', function () {
-      let arr = [1, 2, 3];
+      const arr = [1, 2, 3];
       expect(Array.isArray(_.intersection(arr))).to.equal(true);
     });
+
+    it('should return an array containing all elements present in each of the two seperate arrays', function () {
+      const arr1 = [1, 2, 'a', 10, 'fred', 'z', 'bob', false, undefined];
+      const arr2 = [1, 3, 'a', 11, 'bob', 'bill', 15, true, undefined];
+      const result = [1, 'a', 'bob', undefined];
+
+      expect(_.intersection(arr1, arr2)).to.eql(result);
+    });
+
   });
 
   describe('#difference', function () {

@@ -62,7 +62,9 @@ _.each = function (list, iteratee, context) {
 };
 
 _.indexOf = function (array, value, isSorted) {
-  // Returns the index at which value can be found in the array, or -1 if value is not present in the // array. If working with a large array, and that array is already sorted, pass true for isSorted to // use a faster binary search ... or, pass a number as the third argument in order to look for the // first matching value in the array after the given index.
+  // Returns the index at which value can be found in the array, or -1 if value is not present in the 
+  // array. If working with a large array, and that array is already sorted, pass true for isSorted to // use a faster binary search, or, pass a number as the third argument in order to look for the 
+  // first matching value in the array after the given index.
 
   // Defensive code to mimic the functionality of the actual Underscore indexOf method.
   if (arguments.length < 2 || !Array.isArray(array) && typeof array !== 'string') return -1;
@@ -377,7 +379,27 @@ _.flatten = function (array, shallow) {
 
 _.intersection = function (array) {
   if (arguments.length === 0) return [];
-  return array;
+
+  const args = [].slice.call(arguments);
+  const noOfArrays  = args.length;
+  const result = [];
+
+  // iterate through each element of the first array
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i];
+
+    // iterate through each subsequent array
+    for (var j = 1; j < noOfArrays; j++) {
+      // for each array args[j]
+      // call _.contains to check if item is present in array args[j]
+      // if item not present then break out of loop as item not present in every array
+      if (!_.contains(args[j], item)) break;
+
+      // if j === noOfArrays - 1 then item present in every array so push item into result array
+      if (j === noOfArrays - 1) result.push(item);
+    }
+  }
+  return result;
 };
 
 _.difference = function (array) {
