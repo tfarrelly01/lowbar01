@@ -381,6 +381,10 @@ _.difference = function (array) {
   || !Array.isArray(array) && typeof array !== 'object' && typeof array !== 'string')   
     return [];
 
+  let args = [].slice.call(arguments);
+  let numberOfArgs = args.length;
+  console.log(numberOfArgs);
+  
   return array;
 };
 

@@ -376,6 +376,16 @@ describe('_', function () {
       expect(_.difference(value)).to.eql([]); 
     });
 
+    it('should accept a variable number of array arguments', function () {
+      const arr = [1, 2, 3];
+      const arr1 = [4, 5, 6, 10];
+      const arr2 = [7, 8, 9];
+      const arr3 = 1;
+      expect(Array.isArray(_.difference(arr))).to.equal(true);
+      expect(Array.isArray(_.difference(arr, arr1))).to.equal(true); 
+      expect(Array.isArray(_.difference(arr, arr1, arr2))).to.equal(true);
+      expect(Array.isArray(_.difference(arr, arr1, arr2, arr3))).to.equal(true);
+    });
   });
 
   describe('#delay', function () {
