@@ -329,6 +329,20 @@ _.memoize = function (func, hashFunc) {
   };
 };
 
+_.invoke = function (list, method) {
+  // invokes the passed method on each value in the list. Any additional arguments passed to invoke 
+  // are forwarded on to the method invocation.
+
+  let isFunction = typeof method === 'function';
+  let args = [].slice.call(arguments, 2);
+
+  return _.map(list, function (item) {
+    let func = isFunction ? method : item[method];
+
+    return func === null ? func : func.apply(item, args);
+  });
+};
+
 _.zip = function () {
   // Zips together multiple lists into a single array — elements that share an index go together.
 
@@ -338,10 +352,10 @@ _.zip = function () {
   // find the length of the longest array
   const longestArray = _.reduce(args, function (acc, curr) { 
     return (!Array.isArray(curr) && typeof curr !== 'string') || acc >= curr.length ? acc : curr.length;
-
   }, 0);
 
   let zippedArray = Array(longestArray);
+
   return  _.map(zippedArray, function (array, idx) {
         return _.pluck(args, idx);
       });
@@ -361,6 +375,15 @@ _.flatten = function (array, shallow) {
         }, []);
 };
 
+_.difference = function (array) {
+  
+  if (arguments.length === 0 || array instanceof Date || array === null
+  || !Array.isArray(array) && typeof array !== 'object' && typeof array !== 'string')   
+    return [];
+
+  return array;
+};
+
 _.delay = function (func, wait) {
   // Invokes function after `wait` milliseconds. Optional argument passed are forwarded to the
   // function when it is invoked
@@ -371,20 +394,6 @@ _.delay = function (func, wait) {
   return setTimeout(function () {
     return func.apply(null, args);
   }, wait);
-};
-
-_.invoke = function (list, method) {
-  // invokes the passed method on each value in the list. Any additional arguments passed to invoke 
-  // are forwarded on to the method invocation.
-
-  let isFunction = typeof method === 'function';
-  let args = [].slice.call(arguments, 2);
-
-  return _.map(list, function (item) {
-    let func = isFunction ? method : item[method];
-
-    return func === null ? func : func.apply(item, args);
-  });
 };
 
 if (typeof module !== 'undefined') {

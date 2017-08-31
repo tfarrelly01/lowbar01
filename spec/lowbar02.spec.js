@@ -330,6 +330,54 @@ describe('_', function () {
     });
   }); 
 
+  describe('#difference', function () {
+    it('is a function', function () {
+      expect(_.difference).to.be.a('function');
+    });
+
+    it('should expect at least one argument', function () {
+      expect(_.difference.length).to.be.at.least(1);
+    });
+
+    it('should return an empty array if no arguments passed to the function', function () {
+      expect(_.difference()).to.eql([]);
+    });
+
+    it('should return an array', function () {
+      expect(_.difference()).to.eql([]);
+    });
+
+    it('should return an empty array if first argument is not an array, object or string', function () {
+      let value = 12;
+      expect(_.difference(value)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.difference(value)).to.eql([]); 
+
+      value = function (a) {return a * 2;};
+      expect(_.difference(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.difference(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.difference(value)).to.eql([]);
+
+      value = NaN;   
+      expect(_.difference(value)).to.eql([]);
+
+      value = null;
+      expect(_.difference(value)).to.eql([]);     
+
+      value = true;
+      expect(_.difference(value)).to.eql([]); 
+
+      value = false;
+      expect(_.difference(value)).to.eql([]); 
+    });
+
+  });
+
   describe('#delay', function () {
     let clock;
 
