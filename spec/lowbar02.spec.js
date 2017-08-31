@@ -395,6 +395,17 @@ describe('_', function () {
       expect(_.difference(arr, arr1)).to.eql(result);
     });
 
+    it('should return the difference between the first array and mulitiple other arrays passed to the function', function () {
+      const arr = [1, 2, 3, 10, 15, 16, 20, 'tom', 'ted'];
+      const arr1 = [2, 5, 6, 10];
+      const arr2 = [10, 11, 12, 19];
+      const arr3 = [19, 15, 16];
+      const arr4 = ['tom', 1];
+      const result = [3, 20, 'ted'];
+
+      expect(_.difference(arr, arr1, arr2, arr3, arr4)).to.eql(result);
+    });
+
   });
 
   describe('#delay', function () {
