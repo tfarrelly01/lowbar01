@@ -511,6 +511,44 @@ describe('_', function () {
       expect(_.difference(value)).to.eql([]); 
     });
 
+    it('should return an array if one argument is passed to the function of type array, string or object', function () {
+      const arr = ['1', '2', '3'];
+      const obj = {a: '1', b: '2', c: '3'};
+      const str = '123';
+      const result = ['1', '2', '3'];
+
+      expect(_.difference(arr)).to.eql(result);
+      expect(_.difference(obj)).to.eql(result);
+      expect(_.difference(str)).to.eql(result);            
+    });
+
+    it('should return an array if a second argument is passed to the function which is not an array', function () {
+      const arr = ['a', 'b', 'c'];
+      const obj = {a: 'a', b: 'b', c: 'c'};
+      const str = 'abc';
+
+      const secondArgStr = '134';
+      const secondArgObj = {a: 1, b: 3, c: 4};
+      const secondArgNum = 12.34;
+
+      const result = ['a', 'b', 'c'];
+
+      expect(_.difference(arr, secondArgStr)).to.eql(result);
+      expect(_.difference(arr, secondArgObj)).to.eql(result);
+      expect(_.difference(arr, secondArgNum)).to.eql(result);
+      expect(_.difference(arr, null)).to.eql(result);
+
+      expect(_.difference(obj, secondArgStr)).to.eql(result);
+      expect(_.difference(obj, secondArgObj)).to.eql(result);
+      expect(_.difference(obj, secondArgNum)).to.eql(result);
+      expect(_.difference(obj, NaN)).to.eql(result);
+
+      expect(_.difference(str, secondArgStr)).to.eql(result);
+      expect(_.difference(str, secondArgObj)).to.eql(result); 
+      expect(_.difference(str, secondArgNum)).to.eql(result); 
+      expect(_.difference(str, undefined)).to.eql(result); 
+    });
+
     it('should accept a variable number of array arguments', function () {
       const arr = [1, 2, 3];
       const arr1 = [4, 5, 6, 10];
@@ -569,7 +607,7 @@ describe('_', function () {
       const arr6 = NaN;
       const arr7 = [3, 'bill'];
       const result = [2, 'bob'];
-      
+
       expect(_.difference(arr, arr1, arr2, arr3, arr4, arr5, arr6, arr7)).to.eql(result);
     });
   });

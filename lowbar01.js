@@ -377,11 +377,6 @@ _.flatten = function (array, shallow) {
 
 _.difference = function (array) {
   
-  // Defensive code to mimic the actual underscore 'difference' method 
-  if (arguments.length === 0 || array instanceof Date || array === null
-  || !Array.isArray(array) && typeof array !== 'object' && typeof array !== 'string')   
-    return [];
-
   // store all arguments (other than the 1st argument) in an array
   let args = [].slice.call(arguments, 1);
 
