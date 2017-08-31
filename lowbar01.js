@@ -389,7 +389,7 @@ _.intersection = function (array) {
     const item = array[i];
 
     // iterate through each subsequent array
-    for (var j = 1; j < noOfArrays; j++) {
+    for (let j = 1; j < noOfArrays; j++) {
       // for each array args[j]
       // call _.contains to check if item is present in array args[j]
       // if item not present then break out of loop as item not present in every array
