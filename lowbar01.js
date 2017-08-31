@@ -331,9 +331,7 @@ _.memoize = function (func, hashFunc) {
 
 _.zip = function () {
 
-  if (arguments.length === 0) return [];
-
-  // find the length of the longest array
+  // put all arguments into an array
   let args = [].slice.call(arguments);
 
   // find the length of the longest array
@@ -346,6 +344,7 @@ _.zip = function () {
   for (let idx = 0; idx < longestArray; idx++) {
       zippedArray[idx] = _.pluck(args, idx);
   }
+
   return zippedArray;
 };
 

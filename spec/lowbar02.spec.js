@@ -189,6 +189,22 @@ describe('_', function () {
       expect(_.zip(arr, arr1, arr2, arr3, arr4, arr5, arr6)).to.eql(result);
     });
 
+    it('continues to merge arrays whilst handling non-array types also passed as arguments', function () {
+      const arr = [1, 2, 3];
+      const arr1 = 'foo';
+      const arr2 = [4, 5];
+      const arr3 = 1;
+      const arr4 = true;
+      const arr5 = {a: 'foo', b: 'bar'};
+      const arr6 = NaN;
+      const result = [ 
+        [1, 'f', 4, undefined, undefined, undefined, undefined],
+        [2, 'o', 5, undefined, undefined, undefined, undefined],
+        [3, 'o', undefined, undefined, undefined, undefined, undefined] 
+      ];
+      expect(_.zip(arr, arr1, arr2, arr3, arr4, arr5, arr6)).to.eql(result);
+    });
+
   });
   
   describe('#flatten', function () {
