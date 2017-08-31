@@ -145,9 +145,18 @@ describe('_', function () {
       const arr = [1, 2, 3];
       const arr1 = [4, 5, 6, 10];
       const arr2 = [7, 8, 9];
+      const arr3 = 1;
       expect(Array.isArray(_.zip(arr))).to.equal(true);
       expect(Array.isArray(_.zip(arr, arr1))).to.equal(true); 
       expect(Array.isArray(_.zip(arr, arr1, arr2))).to.equal(true);
+      expect(Array.isArray(_.zip(arr, arr1, arr2, arr3))).to.equal(true);
+    });
+
+    it('merges together the values of two arrays with the values at the corresponding position', function () {
+      const arr1 = [4, 5, 6];
+      const arr2 = [7, 8, 9];
+      const result = [ [4, 7], [5, 8], [6, 9] ];
+      expect(_.zip(arr1, arr2)).to.eql(result);
     });
   });
   

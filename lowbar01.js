@@ -331,15 +331,23 @@ _.memoize = function (func, hashFunc) {
 
 _.zip = function () {
 
-  let args = [].slice.call(arguments);
   if (arguments.length === 0) return [];
 
+  // find the length of the longest array
+  let args = [].slice.call(arguments);
+
+  // find the length of the longest array
   const longestArray = _.reduce(args, function (acc, curr) { 
     return !Array.isArray(curr) || acc >= curr.length ? acc : curr.length;
   }, 0);
-  console.log(longestArray);
 
-  return args;
+  let zippedArray = Array(longestArray);
+
+  for (let idx = 0; idx < longestArray; idx++) {
+      zippedArray[idx] = _.pluck(args, idx);
+  }
+    return zippedArray;
+
 };
 
 _.flatten = function (array, shallow) {
