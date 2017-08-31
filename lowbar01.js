@@ -171,7 +171,8 @@ _.contains = function (list, value, fromIndex) {
 
   fromIndex = fromIndex || 0;
 
-  if (Array.isArray(list)) return simpleSearch(list, value, fromIndex) != -1;
+  if (Array.isArray(list) || typeof list === 'string') 
+    return simpleSearch(list, value, fromIndex) != -1;
 
   if (typeof list === 'object') {
     let values = Object.values(list);
@@ -380,9 +381,10 @@ _.flatten = function (array, shallow) {
 _.intersection = function (array) {
   if (arguments.length === 0) return [];
 
-  // store all arguments passed into function into an array
+  // store all arguments passed into function into an array and get array length
   const args = [].slice.call(arguments);
-  const noOfArrays  = args.length;
+  const noOfArgs  = args.length;
+
   const result = [];
 
   // iterate through each element of the first array
@@ -391,7 +393,7 @@ _.intersection = function (array) {
 
     // iterate through each subsequent array
     let noOfIterations = 0;
-    for (let j = 1; j < noOfArrays; j++) {
+    for (let j = 1; j < noOfArgs; j++) {
       // for each array - args[j]
       // call _.contains to check if item is present in array - args[j]
       // if item not present then break out of for loop as item not present in every array
@@ -399,9 +401,9 @@ _.intersection = function (array) {
 
       noOfIterations += 1;
     }
-    // if noOfIterations === noOfArrays - 1 then item present in every array 
+    // if noOfIterations === noOfArgs - 1 then item present in every array 
     // so push item into result array
-    if (noOfIterations === noOfArrays  - 1) result.push(item);
+    if (noOfIterations === noOfArgs  - 1) result.push(item);
   }
   return result;
 };

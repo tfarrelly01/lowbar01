@@ -474,6 +474,11 @@ describe('_', function () {
       expect(_.intersection.length).to.be.at.least(1);
     });
 
+    it('should return an array', function () {
+      const arr = [1, 2, 3];
+      expect(Array.isArray(_.intersection(arr))).to.equal(true);
+    });
+
     it('should return an empty array if no arguments passed to the function', function () {
       expect(_.intersection()).to.eql([]);
     });
@@ -484,11 +489,6 @@ describe('_', function () {
       expect(_.intersection(arr)).to.eql(result);
     });
 
-    it('should return an array', function () {
-      const arr = [1, 2, 3];
-      expect(Array.isArray(_.intersection(arr))).to.equal(true);
-    });
-
     it('should return an array containing all elements present in each of the two seperate arrays', function () {
       const arr1 = [1, 2, 'a', 10, 'fred', 'z', 'bob', false, undefined];
       const arr2 = [1, 3, 'a', 11, 'bob', 'bill', 15, true, undefined];
@@ -497,14 +497,6 @@ describe('_', function () {
       expect(_.intersection(arr1, arr2)).to.eql(result);
     });
 
-    it('should return an array containing all elements present in each of the two seperate arrays', function () {
-      const arr1 = [1, 2, 'a', 10, 'fred', 'z', 'bob', false, undefined];
-      const arr2 = [1, 3, 'a', 11, 'bob', 'bill', 15, true, undefined];
-      const result = [1, 'a', 'bob', undefined];
-
-      expect(_.intersection(arr1, arr2)).to.eql(result);
-    });    
-    
     it('should return an array containing all elements present in each array passed to the function', function () {
       const arr1 = [1, 2, 'a', 10, 'fred', 'z', 'bob', true, false, undefined, null, NaN];
       const arr2 = [1, 3, 'a', 11, 'bob', 'bill', 15, true, undefined, NaN, false];
@@ -516,6 +508,33 @@ describe('_', function () {
 
       expect(_.intersection(arr1, arr2, arr3, arr4, arr5, arr6)).to.eql(result);
     });
+
+    it('should return an array if first argument is a string', function () {
+      const str = '12aze';
+      const arr = ['1', 'z', 'b'];
+      const arr1 = [1, 2];
+      const result = ['1', '2', 'a', 'z', 'e'];
+      const result1 = ['1', 'z'];
+      const result2 = [];
+
+      expect(_.intersection(str)).to.eql(result);
+      expect(_.intersection(str, arr)).to.eql(result1);
+      expect(_.intersection(str, arr1)).to.eql(result2);
+    });
+
+    it('should return an array if arguments are a mixture of arrays and strings', function () {
+      const str1 = '123d';
+      const str2 = '2acd';
+      const arr1 = ['2', 'b', 'd'];
+      const arr2 = ['1', '2', 'd',];
+ //     const arr3 = [9, 10];
+
+      const result = ['2', 'd'];
+
+      expect(_.intersection(arr1, str1, arr2, str2)).to.eql(result);
+
+    });
+
   });
 
   describe('#difference', function () {
