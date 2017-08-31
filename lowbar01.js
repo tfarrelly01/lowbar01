@@ -346,7 +346,7 @@ _.zip = function () {
   for (let idx = 0; idx < longestArray; idx++) {
       zippedArray[idx] = _.pluck(args, idx);
   }
-    return zippedArray;
+  return zippedArray;
 
 };
 
