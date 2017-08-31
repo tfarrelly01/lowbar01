@@ -379,6 +379,8 @@ _.flatten = function (array, shallow) {
 };
 
 _.intersection = function (array) {
+  // Returns an array containing every item shared between all passed-in arrays / string arguments.
+  
   if (arguments.length === 0 || !Array.isArray(array) & typeof array !== 'string') return [];
 
   // store all arguments passed into function into an array and get array length
@@ -387,21 +389,25 @@ _.intersection = function (array) {
 
   const result = [];
 
-  // iterate through each element of the first array
+  // iterate through each element of the first array / string
   for (let i = 0; i < array.length; i++) {
     const item = array[i];
+
+    // Check if element has already been included in the result array. If present then do not search
+    // the other arrays / strings. More efficient as there is no need to perform the search
+    if (_.contains(result, item)) continue;
 
     // iterate through each subsequent array
     let noOfIterations = 0;
     for (let j = 1; j < noOfArgs; j++) {
-      // for each array - args[j]
-      // call _.contains to check if item is present in array - args[j]
-      // if item not present then break out of for loop as item not present in every array
+      // for each array / string - args[j]
+      // call _.contains to check if item is present in array / string - args[j]
+      // if item not present then break out of for loop as item not present in every array / string
       if (!_.contains(args[j], item)) break;
 
       noOfIterations += 1;
     }
-    // if noOfIterations === noOfArgs - 1 then item present in every array 
+    // if noOfIterations === noOfArgs - 1 then item present in every array /string 
     // so push item into result array
     if (noOfIterations === noOfArgs  - 1) result.push(item);
   }
