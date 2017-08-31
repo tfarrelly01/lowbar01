@@ -158,6 +158,15 @@ describe('_', function () {
       const result = [ [4, 7], [5, 8], [6, 9] ];
       expect(_.zip(arr1, arr2)).to.eql(result);
     });
+
+    it('merges together the values of several arrays with the values at the corresponding position', function () {
+      const arr1 = [4, 5, 6];
+      const arr2 = [7, 8, 9];
+      const arr3 = [10, 11, 12];
+      const arr4 = ['Tom', 'Dick', 'Harry'];
+      const result = [ [4, 7, 10, 'Tom'], [5, 8, 11, 'Dick'], [6, 9, 12, 'Harry'] ];
+      expect(_.zip(arr1, arr2, arr3, arr4)).to.eql(result);
+    });
   });
   
   describe('#flatten', function () {
