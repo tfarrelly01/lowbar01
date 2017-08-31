@@ -141,6 +141,10 @@ describe('_', function () {
       expect(_.zip()).to.eql([]);
     });
 
+    it('should return an empty array if first argument is not an array', function () {
+
+    });
+
     it('should accept a variable number of array arguments', function () {
       const arr = [1, 2, 3];
       const arr1 = [4, 5, 6, 10];

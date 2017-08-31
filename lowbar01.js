@@ -330,6 +330,7 @@ _.memoize = function (func, hashFunc) {
 };
 
 _.zip = function () {
+  // Zips together multiple lists into a single array — elements that share an index go together.
 
   // put all arguments into an array
   let args = [].slice.call(arguments);
@@ -340,12 +341,9 @@ _.zip = function () {
   }, 0);
 
   let zippedArray = Array(longestArray);
-
-  for (let idx = 0; idx < longestArray; idx++) {
-      zippedArray[idx] = _.pluck(args, idx);
-  }
-
-  return zippedArray;
+  return  _.map(zippedArray, function (array, idx) {
+        return _.pluck(args, idx);
+      });
 };
 
 _.flatten = function (array, shallow) {
