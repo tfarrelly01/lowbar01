@@ -1,30 +1,32 @@
-function simpleSearch (list, num, startIndex) {
+function simpleSearch (list, item, startIndex) {
     /*
     Simple Search
 
-    Simple search that finds an number in a sorted list. The function takes an array, a search term and an optional startIndex,
-    Function returns the index position where the first instance of the number is found. If the number is not found, the function returns -1.
+    Simple search that finds an item in a sorted list. The function takes an array, a search term and an optional startIndex,
+    Function returns the index position where the first instance of the item is found. If the item is not found, the function returns -1.
     */
     if (arguments.length < 2 || !Array.isArray(list) && typeof list !== 'string') return -1;
 
     startIndex = startIndex || 0;
 
+    // (list[idx] !== list[idx] && item !== item) is required to check for NaN === NaN
+    // which returns false when using === operator
     for (let idx = startIndex; idx < list.length; idx++) {
-        if (list[idx] === num) return idx;
+        if (list[idx] === item || (list[idx] !== list[idx] && item !== item)) return idx;
     }
     return -1;
 }
 
-function binarySearch (list, num) {
+function binarySearch (list, item) {
         
     /* 
     Binary Search
 
     splice array into 2 halves
-    if last element of first array < num  then number in 1st array
-    if first element of second array < num then num in 2nd array
+    if last element of first array < item  then item in 1st array
+    if first element of second array < item then item in 2nd array
 
-    Function returns the index position where the first instance of the number is found. If the number is not found, the function returns -1.
+    Function returns the index position where the first instance of the item is found. If the item is not found, the function returns -1.
     */
 
     if (arguments.length < 2 || !Array.isArray(list)) return -1;
@@ -35,12 +37,13 @@ function binarySearch (list, num) {
   
     while (startIdx <= endIdx) {
 
-        if (list[middleIdx] === num) return middleIdx;
-        
-        // num is in the first half of the array
-        if (list[middleIdx] > num)  endIdx = middleIdx - 1;
+        // (list[middleIdx] !== list[middleIdx] && item !== item) is required to check for NaN === NaN
+        // which returns false when using === operator
+        if (list[middleIdx] === item || (list[middleIdx] !== list[middleIdx] && item !== item)) return middleIdx;
+        // item is in the first half of the array
+        if (list[middleIdx] > item)  endIdx = middleIdx - 1;
 
-        // num is in the second half of the array
+        // item is in the second half of the array
         else startIdx = middleIdx + 1; 
        
         middleIdx = Math.floor((startIdx + endIdx) / 2);
