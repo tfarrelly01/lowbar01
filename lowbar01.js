@@ -356,7 +356,7 @@ _.zip = function () {
 
   let zippedArray = Array(longestArray);
 
-  return  _.map(zippedArray, function (array, idx) {
+  return _.map(zippedArray, function (array, idx) {
         return _.pluck(args, idx);
       });
 };
@@ -373,6 +373,11 @@ _.flatten = function (array, shallow) {
   return _.reduce(array, function (acc, item) {
           return acc.concat(Array.isArray(item) && !shallow ? _.flatten(item, shallow) : item);
         }, []);
+};
+
+_.intersection = function (array) {
+  if (arguments.length === 0) return [];
+  return array;
 };
 
 _.difference = function (array) {

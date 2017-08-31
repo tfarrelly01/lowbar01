@@ -465,6 +465,25 @@ describe('_', function () {
     });
   }); 
 
+  describe('#intersection', function () {
+    it('is a function', function () {
+      expect(_.intersection).to.be.a('function');
+    });
+
+    it('should expect at least one argument', function () {
+      expect(_.intersection.length).to.be.at.least(1);
+    });
+
+    it('should return an empty array if no arguments passed to the function', function () {
+      expect(_.intersection()).to.eql([]);
+    });
+
+    it('should return an array', function () {
+      let arr = [1, 2, 3];
+      expect(Array.isArray(_.intersection(arr))).to.equal(true);
+    });
+  });
+
   describe('#difference', function () {
     it('is a function', function () {
       expect(_.difference).to.be.a('function');
