@@ -337,7 +337,8 @@ _.zip = function () {
 
   // find the length of the longest array
   const longestArray = _.reduce(args, function (acc, curr) { 
-    return !Array.isArray(curr) || acc >= curr.length ? acc : curr.length;
+    return (!Array.isArray(curr) && typeof curr !== 'string') || acc >= curr.length ? acc : curr.length;
+
   }, 0);
 
   let zippedArray = Array(longestArray);

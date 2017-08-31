@@ -221,6 +221,20 @@ describe('_', function () {
       expect(_.zip(arr, arr1, arr2, arr3, arr4, arr5, arr6)).to.eql(result);
     });
 
+    it('merges together the values of several strings of differing lengths with the values at the corresponding position', function () {
+      const str = '123';
+      const str1 = 'abc';
+      const str2 = '45';
+      const str3 = 'd';
+      const str4 = '';
+      const result = [ 
+        ['1', 'a', '4', 'd',undefined], 
+        ['2', 'b', '5', undefined, undefined], 
+        ['3', 'c', undefined, undefined, undefined]
+      ];
+      expect(_.zip(str, str1, str2, str3, str4)).to.eql(result);
+    });
+
     it('continues to merge arrays whilst handling non-array types also passed as arguments', function () {
       const arr = [1, 2, 3];
       const arr1 = 'foo';
