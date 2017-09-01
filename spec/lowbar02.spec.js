@@ -185,6 +185,17 @@ describe('_', function () {
       expect(Array.isArray(_.shuffle(str))).to.equal(true);
     });
 
+    it('should return a shuffled array if an array argument is passed-in to the function', function () {
+      const arr = [1, 2, 3, 4, 5];
+      const arrLength = arr.length;
+      const result = _.shuffle(arr);
+
+      expect(result.length).to.equal(arrLength);
+
+      // This test possible in this scenario as array do not contain any object elements
+      expect(_.intersection(arr, result)).to.eql(arr);
+    });
+
   });
 
   describe('#invoke', function () {
