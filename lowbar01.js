@@ -337,8 +337,10 @@ _.shuffle = function (list) {
   if (arguments.length === 0 
     || !Array.isArray(list) && typeof list !== 'string' || typeof list !== 'object')
     return [];
+
+  let copyOfList = typeof list === 'object' ? Object.values(list) : copyOfList = list.slice();
   
-  return list;
+  return copyOfList;
 };
 
 _.invoke = function (list, method) {

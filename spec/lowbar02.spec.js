@@ -169,6 +169,11 @@ describe('_', function () {
       value = false;
       expect(_.shuffle(value)).to.eql([]); 
     });
+
+    it('should return an array', function () {
+      let arr = [9, 1, 3, 8, 6, 5];
+      expect(Array.isArray(_.shuffle(arr))).to.equal(true);
+    });
   });
 
   describe('#invoke', function () {
