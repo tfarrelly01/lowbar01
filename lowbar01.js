@@ -373,19 +373,23 @@ _.invoke = function (list, method) {
   });
 };
 
-_.sortBy = function (list, iteratee) {
+_.sortBy = function (list, iteratee, context) {
+  // Returns a sorted copy of list, ranked in ascending order by the results of running each
+  // value through iteratee. iteratee may also be the string name of the property to sort by 
 
   // If list is an object copy values into an array. If list is an array then create a copy
   // so as not to mutate the argument. If list is a string convert to an array.
   // Otherwise return an empty array
   let copyOfList;
-  if (typeof list === 'object' 
-    && list !== null && !(list instanceof Date)) copyOfList = Object.values(list);
+  if (Array.isArray(list)) copyOfList = list.slice();
   else if (typeof list === 'string') copyOfList = list.split('');
-  else if (Array.isArray(list)) copyOfList = list.slice();
+  else if (typeof list === 'object' && list !== null && !(list instanceof Date)) 
+      copyOfList = Object.values(list);
   else return [];
 
   iteratee = iteratee || _.identity;
+
+  if (context) iteratee = iteratee.bind(context);
 
   const mapListToSort = function (item) { 
       return {element: item, sortby: typeof iteratee === 'string' ? item[iteratee] : iteratee(item)};
@@ -395,7 +399,6 @@ _.sortBy = function (list, iteratee) {
   };
 
   let sortedList = _.map(copyOfList, mapListToSort).sort(compareFunction);
-  
   return _.pluck(sortedList, 'element');
 };
 
