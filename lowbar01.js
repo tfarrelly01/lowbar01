@@ -334,14 +334,16 @@ _.memoize = function (func, hashFunc) {
 };
 
 _.shuffle = function (list) {
+  // Returns a shuffled copy of a list, using the Fisher-Yates shuffle algorithm.
 
   // If list is an object copy values into an array. If list is an array then create a copy
   // so as not to mutate the argument. If list is a string convert to an array.
+  // Otherwise return an empty array
   let copyOfList;
   if (typeof list === 'object' 
     && list !== null && !(list instanceof Date)) copyOfList = Object.values(list);
 
-  else if (typeof list === 'string') copyOfList = list.split('').slice();
+  else if (typeof list === 'string') copyOfList = list.split('');
   else if (Array.isArray(list)) copyOfList = list.slice();
   else return [];
 
@@ -349,12 +351,11 @@ _.shuffle = function (list) {
   let shuffled = [];
 
   while (listLength) {
-    let randomIndex = Math.floor(Math.random() * listLength);
+    let randomIndex = Math.floor(Math.random() * listLength--);
     let element = copyOfList.splice(randomIndex, 1);
     shuffled.push(element[0]);
-    listLength -= 1;
   }
-  
+
   return shuffled;
 };
 
