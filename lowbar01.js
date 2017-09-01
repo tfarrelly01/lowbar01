@@ -373,21 +373,28 @@ _.invoke = function (list, method) {
   });
 };
 
-_.sortBy = function (list) {
+_.sortBy = function (list, iteratee) {
 
   // If list is an object copy values into an array. If list is an array then create a copy
   // so as not to mutate the argument. If list is a string convert to an array.
   // Otherwise return an empty array
-  let sortedList;
-  if (typeof list === 'object' 
-    && list !== null && !(list instanceof Date)) sortedList = Object.values(list);
+  
+  iteratee = iteratee || _.identity;
 
-  else if (typeof list === 'string') sortedList = list.split('');
-  else if (Array.isArray(list)) sortedList = list.slice();
+  let copyOfList;
+  if (typeof list === 'object' 
+    && list !== null && !(list instanceof Date)) copyOfList = Object.values(list);
+
+  else if (typeof list === 'string') copyOfList = list.split('');
+  else if (Array.isArray(list)) copyOfList = list.slice();
   else return [];
 
-  return sortedList.sort(function (a, b) { return a > b;});
+  let sortedList = _.map(copyOfList, function (item) { 
+      return {value: item, sortby: iteratee(item)}; 
+    })
+    .sort(function (a, b) { return a.sortby > b.sortby;});
 
+  return _.pluck(sortedList, 'value');
 };
 
 _.zip = function () {
