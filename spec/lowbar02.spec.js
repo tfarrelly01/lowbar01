@@ -398,6 +398,49 @@ describe('_', function () {
     });
   });
 
+  describe('#sortBy', function () {
+    it('is a function', function () {
+      expect(_.sortBy).to.be.a('function');
+    });
+
+    it('should expect at least one argument', function () {
+      expect(_.sortBy.length).to.be.at.least(1);
+    });
+
+    it('should return an empty array if no arguments passed to the function', function () {
+      expect(_.sortBy()).to.eql([]);
+    });
+
+    it('should return an empty array if first argument is not an array, object or string', function () {
+      let value = 12;
+      expect(_.sortBy(value)).to.eql([]);
+
+      value = 1234.56;
+      expect(_.sortBy(value)).to.eql([]); 
+
+      value = function (a) {return a * 2;};
+      expect(_.sortBy(value)).to.eql([]);
+
+      value = new Date();
+      expect(_.sortBy(value)).to.eql([]);
+
+      value = undefined;
+      expect(_.sortBy(value)).to.eql([]);
+
+      value = NaN;   
+      expect(_.sortBy(value)).to.eql([]);
+
+      value = null;
+      expect(_.sortBy(value)).to.eql([]);     
+
+      value = true;
+      expect(_.sortBy(value)).to.eql([]); 
+
+      value = false;
+      expect(_.sortBy(value)).to.eql([]); 
+    });
+  });
+
   describe('#zip', function () {
     it('is a function', function () {
       expect(_.zip).to.be.a('function');

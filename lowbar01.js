@@ -373,6 +373,22 @@ _.invoke = function (list, method) {
   });
 };
 
+_.sortBy = function (list) {
+
+  // If list is an object copy values into an array. If list is an array then create a copy
+  // so as not to mutate the argument. If list is a string convert to an array.
+  // Otherwise return an empty array
+  let sortedList;
+  if (typeof list === 'object' 
+    && list !== null && !(list instanceof Date)) sortedList = Object.values(list);
+
+  else if (typeof list === 'string') sortedList = list.split('');
+  else if (Array.isArray(list)) sortedList = list.slice();
+  else return [];
+
+  return sortedList;
+};
+
 _.zip = function () {
   // Zips together multiple lists into a single array — elements that share an index go together.
 
