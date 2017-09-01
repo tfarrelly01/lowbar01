@@ -196,6 +196,18 @@ describe('_', function () {
       expect(_.intersection(arr, result)).to.eql(arr);
     });
 
+    it('should return a shuffled array if an object argument is passed-in to the function', function () {
+      const obj = {a: 1, b: 2, c: 3, d: 4, e: 5};
+      const objValues = Object.values(obj);
+      const arrLength = objValues.length;
+      const result = _.shuffle(obj);
+
+      expect(result.length).to.equal(arrLength);
+
+      // This test possible in this scenario as array do not contain any object elements
+      expect(_.intersection(objValues, result)).to.eql(objValues);
+    });
+
   });
 
   describe('#invoke', function () {
