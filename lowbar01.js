@@ -374,8 +374,9 @@ _.invoke = function (list, method) {
 };
 
 _.sortBy = function (list, iteratee, context) {
-  // Returns a sorted copy of list, ranked in ascending order by the results of running each
-  // value through iteratee. iteratee may also be the string name of the property to sort by 
+  // Returns a sorted copy of list (array, string or object), in ascending order by the results of 
+  // running each value through iteratee. iteratee may also be the string name of the property to 
+  // sort by 
 
   // If list is an object copy values into an array. If list is an array then create a copy
   // so as not to mutate the argument. If list is a string convert to an array.
@@ -399,6 +400,7 @@ _.sortBy = function (list, iteratee, context) {
   };
 
   let sortedList = _.map(copyOfList, mapListToSort).sort(compareFunction);
+  
   return _.pluck(sortedList, 'element');
 };
 
