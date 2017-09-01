@@ -439,6 +439,27 @@ describe('_', function () {
       value = false;
       expect(_.sortBy(value)).to.eql([]); 
     });
+
+    it('should sort an array argument into ascending order', function () {
+      const array = [4, 5, 1, 2, 3, 12, 10];
+      const result = [1, 2, 3, 4, 5, 10, 12];
+
+      expect(_.sortBy(array)).to.eql(result);
+    });
+
+    it('should sort a string argument into ascending order', function () {
+      const string = '45213';
+      const result = ['1', '2', '3', '4', '5'];
+
+      expect(_.sortBy(string)).to.eql(result);
+    });
+
+    it('should sort an object argument into ascending order', function () {
+      const obj = {a: 'Bob', b: 'Ian', c: 'Roger', d: 'Albert', e: 'Fred'};
+      const result = ['Albert', 'Bob', 'Fred', 'Ian', 'Roger'];
+
+      expect(_.sortBy(obj)).to.eql(result);
+    });
   });
 
   describe('#zip', function () {

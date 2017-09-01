@@ -386,7 +386,8 @@ _.sortBy = function (list) {
   else if (Array.isArray(list)) sortedList = list.slice();
   else return [];
 
-  return sortedList;
+  return sortedList.sort(function (a, b) { return a > b;});
+
 };
 
 _.zip = function () {
