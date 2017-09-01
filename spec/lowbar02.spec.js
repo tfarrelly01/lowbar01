@@ -192,7 +192,6 @@ describe('_', function () {
 
       expect(result.length).to.equal(arrLength);
 
-      // This test possible in this scenario as array does not contain any object elements
       expect(_.intersection(arr, result)).to.eql(arr);
     });
 
@@ -204,10 +203,8 @@ describe('_', function () {
 
       expect(result.length).to.equal(arrLength);
 
-      // This test possible in this scenario as array does not contain any object elements
       expect(_.intersection(objValues, result)).to.eql(objValues);
     });
-
 
     it('should return a shuffled array if a string argument is passed-in to the function', function () {
       const str = '12345';
@@ -217,8 +214,22 @@ describe('_', function () {
 
       expect(result.length).to.equal(arrLength);
 
-      // This test possible in this scenario as array does not contain any object elements
       expect(_.intersection(arr, result)).to.eql(arr);
+    });
+
+    it('should return a shuffled array if an array of objects is passed-in to the function', function () {
+      const people = [
+        {name: 'Barney Rubble', age: 1032},
+        {name: 'Mildred Rubble', age: 1024},
+        {name: 'Fred Flintstone', age: 1032},
+        {name: 'Wilmar Flintstone', age: 1026}
+      ];
+      const arrLength = people.length;
+      const result = _.shuffle(people);
+
+      expect(result.length).to.equal(arrLength);
+
+      expect(_.intersection(people, result)).to.eql(people);
     });
 
   });

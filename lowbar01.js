@@ -335,8 +335,8 @@ _.memoize = function (func, hashFunc) {
 
 _.shuffle = function (list) {
 
-  // If list is an object copy values into an array. If list is an Array then create a copy
-  // so as not to mutate list.
+  // If list is an object copy values into an array. If list is an array then create a copy
+  // so as not to mutate the argument. If list is a string convert to an array.
   let copyOfList;
   if (typeof list === 'object' 
     && list !== null && !(list instanceof Date)) copyOfList = Object.values(list);
@@ -354,6 +354,7 @@ _.shuffle = function (list) {
     shuffled.push(element[0]);
     listLength -= 1;
   }
+
   return shuffled;
 };
 
