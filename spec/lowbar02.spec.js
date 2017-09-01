@@ -480,6 +480,16 @@ describe('_', function () {
 
       expect(_.sortBy(names, reverseString)).to.eql(result);
     });
+
+    it('should sort a string in ascending order via the results of passing each value through an iteratee', function () {
+      const str = '521634';
+      const modChar = function (value) {
+        return '' + Number(value) % 2;
+      };
+      const result = ['2', '6', '4', '5', '1', '3'];
+
+      expect(_.sortBy(str, modChar)).to.eql(result);
+    });
   });
 
   describe('#zip', function () {
