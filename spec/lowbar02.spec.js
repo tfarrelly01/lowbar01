@@ -170,10 +170,21 @@ describe('_', function () {
       expect(_.shuffle(value)).to.eql([]); 
     });
 
-    it('should return an array', function () {
-      let arr = [9, 1, 3, 8, 6, 5];
+    it('should return an array if an array argument is passed-in to the function', function () {
+      const arr = [1, 2, 3, 4, 5];
       expect(Array.isArray(_.shuffle(arr))).to.equal(true);
     });
+
+    it('should return an array if an object argument is passed-in to the functon', function () {
+      const obj = {a: 1, b: 2, c: 3, d: 4, e: 5};
+      expect(Array.isArray(_.shuffle(obj))).to.equal(true);
+    });
+
+    it('should return an array if a string argument is passed-in to the function', function () {
+      const str = '12345';
+      expect(Array.isArray(_.shuffle(str))).to.equal(true);
+    });
+
   });
 
   describe('#invoke', function () {

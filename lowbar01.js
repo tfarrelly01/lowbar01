@@ -334,13 +334,27 @@ _.memoize = function (func, hashFunc) {
 };
 
 _.shuffle = function (list) {
-  if (arguments.length === 0 
-    || !Array.isArray(list) && typeof list !== 'string' || typeof list !== 'object')
-    return [];
 
-  let copyOfList = typeof list === 'object' ? Object.values(list) : copyOfList = list.slice();
-  
-  return copyOfList;
+  // If list is an object copy values into an array. If list is an Array then create a copy
+  // so as not to mutate list.
+  let copyOfList;
+  if (typeof list === 'object' 
+    && list !== null && !(list instanceof Date)) copyOfList = Object.values(list);
+
+  else if (typeof list === 'string') copyOfList = list.split('').slice();
+  else if (Array.isArray(list)) copyOfList = list.slice();
+  else return [];
+
+  let listLength = copyOfList.length;
+  let shuffled = [];
+
+  while (listLength) {
+    let randomIndex = Math.floor(Math.random() * listLength);
+    let element = copyOfList.splice(randomIndex, 1);
+    shuffled.push(element[0]);
+    listLength -= 1;
+  }
+  return shuffled;
 };
 
 _.invoke = function (list, method) {
