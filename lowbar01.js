@@ -384,15 +384,18 @@ _.sortBy = function (list, iteratee) {
   let copyOfList;
   if (typeof list === 'object' 
     && list !== null && !(list instanceof Date)) copyOfList = Object.values(list);
-
   else if (typeof list === 'string') copyOfList = list.split('');
   else if (Array.isArray(list)) copyOfList = list.slice();
   else return [];
 
-  let sortedList = _.map(copyOfList, function (item) { 
-      return {value: item, sortby: iteratee(item)}; 
-    })
-    .sort(function (a, b) { return a.sortby > b.sortby;});
+  const compareFunction = function (a, b) { 
+    return (a.sortby < b.sortby) ? -1 : (a.sortby > b.sortby) ? 1 : 0; 
+  };
+  const mapList = function (item) { 
+      return {value: item, sortby: iteratee(item)};
+  };
+
+  let sortedList = _.map(copyOfList, mapList).sort(compareFunction);
 
   return _.pluck(sortedList, 'value');
 };

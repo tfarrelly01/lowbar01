@@ -490,6 +490,46 @@ describe('_', function () {
 
       expect(_.sortBy(str, modChar)).to.eql(result);
     });
+
+    it('should sort an array of objects in ascending order via the results of passing each value through an iteratee', function () {
+      const people = [
+        {firstName: 'Barney', lastName: 'Rubble', age: 1032, nationality: 'Caveman'},
+        {firstName: 'Mildred', lastName: 'Rubble', age: 1024, nationality: 'Cavewoman'},
+        {firstName: 'Fred', lastName: 'Flintstone', age: 1032, nationality: 'Caveman'},
+        {firstName: 'Wilmar', lastName: 'Flintstone', age: 1026, nationality: 'Cavewoman'},
+        {firstName: 'Elvis', lastName: 'Presley', age: 0, nationality: 'American'},
+        {firstName: 'Frank', lastName: 'Sinatra', age: 0, nationality: 'American'},
+        {firstName: 'Tom', lastName: 'Jones', age: 81, nationality: 'Welsh'},
+        {firstName: 'Annie', lastName: 'Jones', age: 22, nationality: 'Welsh'},
+        {firstName: 'Engelbert', lastName: 'Humperdinck', age: 78, nationality: 'English'},
+        {firstName: 'Harry', lastName: 'Karl', age: 22, nationality: 'Canadian'},
+        {firstName: 'Kseniya', lastName: 'Welcome', age: 49, nationality: 'Nigerian'},
+        {firstName: 'Jing', lastName: 'Xing', age: 34, nationality: 'Chinese'},
+        {firstName: 'Piotr', lastName: 'Benoit', age: 52, nationality: 'Polish'}
+      ];
+
+      const result = [
+        {firstName: 'Piotr', lastName: 'Benoit', age: 52, nationality: 'Polish'},
+        {firstName: 'Fred', lastName: 'Flintstone', age: 1032, nationality: 'Caveman'},
+        {firstName: 'Wilmar', lastName: 'Flintstone', age: 1026, nationality: 'Cavewoman'},
+        {firstName: 'Engelbert', lastName: 'Humperdinck', age: 78, nationality: 'English'},
+        {firstName: 'Annie', lastName: 'Jones', age: 22, nationality: 'Welsh'},
+        {firstName: 'Tom', lastName: 'Jones', age: 81, nationality: 'Welsh'},
+        {firstName: 'Harry', lastName: 'Karl', age: 22, nationality: 'Canadian'},
+        {firstName: 'Elvis', lastName: 'Presley', age: 0, nationality: 'American'},
+        {firstName: 'Barney', lastName: 'Rubble', age: 1032, nationality: 'Caveman'},
+        {firstName: 'Mildred', lastName: 'Rubble', age: 1024, nationality: 'Cavewoman'},
+        {firstName: 'Frank', lastName: 'Sinatra', age: 0, nationality: 'American'},
+        {firstName: 'Kseniya', lastName: 'Welcome', age: 49, nationality: 'Nigerian'},
+        {firstName: 'Jing', lastName: 'Xing', age: 34,nationality: 'Chinese'},
+      ];
+
+      const sortValues = function (value) {
+        return (value.lastName + value.firstName).toUpperCase();
+      };
+
+      expect(_.sortBy(people, sortValues)).to.eql(result);
+    });
   });
 
   describe('#zip', function () {
