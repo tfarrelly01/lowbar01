@@ -113,7 +113,8 @@ _.reject = function (list, predicate, context) {
 };
 
 _.uniq = function (list, isSorted, iteratee) {
-  // Produces a duplicate-free version of the array, using === to test object equality. Only the first // occurence of each value is kept. If you know in advance that the array is sorted, passing true  // for isSorted will run a faster algorithm. To compute unique items based on a transformation
+  // Produces a duplicate-free version of the array, using === to test object equality. Only the first // occurence of each value is kept. If you know in advance that the array is sorted, passing true  
+  // for isSorted will run a faster algorithm. To compute unique items based on a transformation
   // (sorted or unsorted), pass an iteratee function.
 
   // Defensive code to mimic the functionality of the actual Underscore uniq method.
@@ -332,6 +333,14 @@ _.memoize = function (func, hashFunc) {
   };
 };
 
+_.shuffle = function (list) {
+  if (arguments.length === 0 
+    || !Array.isArray(list) && typeof list !== 'string' || typeof list !== 'object')
+    return [];
+  
+  return list;
+};
+
 _.invoke = function (list, method) {
   // invokes the passed method on each value in the list. Any additional arguments passed to invoke 
   // are forwarded on to the method invocation.
@@ -380,7 +389,7 @@ _.flatten = function (array, shallow) {
 
 _.intersection = function (array) {
   // Returns an array containing every item shared between all passed-in arrays / string arguments.
-  
+
   if (arguments.length === 0 || !Array.isArray(array) & typeof array !== 'string') return [];
 
   // store all arguments passed into function into an array and get array length
