@@ -393,7 +393,7 @@ _.sortBy = function (list, iteratee) {
       return {value: item, sortby: iteratee(item)}; 
     })
     .sort(function (a, b) { return a.sortby > b.sortby;});
-
+console.log(sortedList);
   return _.pluck(sortedList, 'value');
 };
 

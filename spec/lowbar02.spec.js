@@ -470,6 +470,16 @@ describe('_', function () {
 
       expect(_.sortBy(names, stringLength)).to.eql(result);
     });
+
+    it('should sort an object in ascending order via the results of passing each value through an iteratee', function () {
+      const names = {a: 'Bobby', b: 'Ian', c: 'Roger', d: 'Albert', e:'Jonathon', f: 'Fred'};
+      const reverseString = function (value) {
+        return value.split('').reverse().join('');
+      };
+      const result = ['Fred', 'Ian', 'Jonathon', 'Roger', 'Albert', 'Bobby'];
+
+      expect(_.sortBy(names, reverseString)).to.eql(result);
+    });
   });
 
   describe('#zip', function () {
