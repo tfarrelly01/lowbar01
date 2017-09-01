@@ -378,9 +378,6 @@ _.sortBy = function (list, iteratee) {
   // If list is an object copy values into an array. If list is an array then create a copy
   // so as not to mutate the argument. If list is a string convert to an array.
   // Otherwise return an empty array
-  
-  iteratee = iteratee || _.identity;
-
   let copyOfList;
   if (typeof list === 'object' 
     && list !== null && !(list instanceof Date)) copyOfList = Object.values(list);
@@ -388,16 +385,18 @@ _.sortBy = function (list, iteratee) {
   else if (Array.isArray(list)) copyOfList = list.slice();
   else return [];
 
+  iteratee = iteratee || _.identity;
+
+  const mapListToSort = function (item) { 
+      return {element: item, sortby: typeof iteratee === 'string' ? item[iteratee] : iteratee(item)};
+  };
   const compareFunction = function (a, b) { 
     return (a.sortby < b.sortby) ? -1 : (a.sortby > b.sortby) ? 1 : 0; 
   };
-  const mapList = function (item) { 
-      return {value: item, sortby: iteratee(item)};
-  };
 
-  let sortedList = _.map(copyOfList, mapList).sort(compareFunction);
-
-  return _.pluck(sortedList, 'value');
+  let sortedList = _.map(copyOfList, mapListToSort).sort(compareFunction);
+  
+  return _.pluck(sortedList, 'element');
 };
 
 _.zip = function () {

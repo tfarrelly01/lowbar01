@@ -530,6 +530,24 @@ describe('_', function () {
 
       expect(_.sortBy(people, sortValues)).to.eql(result);
     });
+
+    it('should sort an array of objects in ascending order by the string name of the property to sort by ', function () {
+      const stooges = [
+        {name: 'moe', age: 40}, 
+        {name: 'larry', age: 50}, 
+        {name: 'curly', age: 60}
+      ];
+
+      const result = [
+        {name: 'curly', age: 60}, 
+        {name: 'larry', age: 50}, 
+        {name: 'moe', age: 40}
+      ];
+
+      expect(_.sortBy(stooges, 'name')).to.eql(result);
+
+      expect(_.sortBy(result, 'age')).to.eql(stooges);      
+    });
   });
 
   describe('#zip', function () {
@@ -654,7 +672,6 @@ describe('_', function () {
       ];
       expect(_.zip(arr, arr1, arr2, arr3, arr4, arr5, arr6)).to.eql(result);
     });
-
   });
   
   describe('#flatten', function () {
