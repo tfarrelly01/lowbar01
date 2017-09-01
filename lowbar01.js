@@ -354,7 +354,7 @@ _.shuffle = function (list) {
     shuffled.push(element[0]);
     listLength -= 1;
   }
-
+  
   return shuffled;
 };
 

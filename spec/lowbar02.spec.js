@@ -232,6 +232,35 @@ describe('_', function () {
       expect(_.intersection(people, result)).to.eql(people);
     });
 
+    it('should return a shuffled array if an array of assorted data types is passed-in to the function', function () {
+      const junk = [
+        {name: 'Barney Rubble', age: 1032},
+        1,
+        {name: 'Mildred Rubble', age: 1024},
+        '2',
+        {name: 'Fred Flintstone', age: 1032},
+        [1, 2, 4],
+        {name: 'Wilmar Flintstone', age: 1026},
+        ['Bob', 'fred'],
+        102.34,
+        null,
+        undefined,
+        NaN,
+        true,
+        false,
+        new Date(),
+        function () {},
+        [1, [2, 3, [4]], 5],
+        {a: 1, b : {c: 2, d: 3}, c: 4}
+      ];
+      const arrLength = junk.length;
+      const result = _.shuffle(junk);
+
+      expect(result.length).to.equal(arrLength);
+
+      expect(_.intersection(junk, result)).to.eql(junk);
+    });
+
   });
 
   describe('#invoke', function () {
