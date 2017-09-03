@@ -764,6 +764,22 @@ describe('_', function () {
       value = false;
       expect(_.sortedIndex(value, element)).to.equal(0); 
     });
+    
+    it('should return the index at which passed value should be inserted into the passed array', function () {
+      let list = [1, 2, 4];
+      let value = 3;
+      let result = 2;
+
+      expect(_.sortedIndex(list, value)).to.equal(result);
+    });
+
+    it('should return the index at which passed value should be inserted into the passed string', function () {
+      let list = '124';
+      let value = '3';
+      let result = 2;
+
+      expect(_.sortedIndex(list, value)).to.equal(result);
+    });
   });
   
   describe('#flatten', function () {

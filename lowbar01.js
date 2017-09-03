@@ -425,7 +425,9 @@ _.zip = function () {
 _.sortedIndex = function (list, value) {
   if (arguments.length <= 1 || !Array.isArray(list) && typeof list !== 'string') return 0;
 
-  return value;
+  let retVal = binarySearch(list, value, true);
+
+  return retVal + 1;
 };
 
 _.flatten = function (array, shallow) {
