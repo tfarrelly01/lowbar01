@@ -17,7 +17,7 @@ function simpleSearch (list, item, startIndex) {
     return -1;
 }
 
-function binarySearch (list, item) {
+function binarySearch (list, item, insertAtIndex) {
         
     /* 
     Binary Search
@@ -28,8 +28,9 @@ function binarySearch (list, item) {
 
     Function returns the index position where the first instance of the item is found. If the item is not found, the function returns -1.
     */
-
     if (arguments.length < 2 || !Array.isArray(list)) return -1;
+
+    insertAtIndex = insertAtIndex || false;
 
     let startIdx = 0;
     let middleIdx = Math.floor(list.length / 2 - 1);
@@ -48,7 +49,7 @@ function binarySearch (list, item) {
        
         middleIdx = Math.floor((startIdx + endIdx) / 2);
     }
-    return -1;
+    return insertAtIndex ? middleIdx : -1;
 }
 
 module.exports = {simpleSearch, binarySearch};

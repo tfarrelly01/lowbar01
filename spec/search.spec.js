@@ -83,8 +83,8 @@ describe('binarySearch', function () {
     expect(binarySearch).to.be.a('function');
   });
 
-  it('should take 2 arguments', function () {
-    expect(binarySearch.length).to.equal(2);
+  it('should take at least 2 arguments', function () {
+    expect(binarySearch.length).to.be.at.least(2);
   });
 
   it('should return -1 if less than 2 agruments passsed to the function', function () {
