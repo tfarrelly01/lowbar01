@@ -423,7 +423,7 @@ _.zip = function () {
 };
 
 _.sortedIndex = function (list, value) {
-  if (arguments.length === 0 || !Array.isArray(list) && typeof list !== 'string') return 0;
+  if (arguments.length <= 1 || !Array.isArray(list) && typeof list !== 'string') return 0;
 
   return value;
 };

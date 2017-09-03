@@ -692,12 +692,16 @@ describe('_', function () {
       expect(_.sortedIndex.length).to.be.at.least(2);
     });
 
-    it('should return an zero if no arguments passed to the function', function () {
+    it('should return zero if one or less arguments passed to the function', function () {
       expect(_.sortedIndex()).to.equal(0);
-    });
 
-    it('should return an zero if first argument is not an array, object or string', function () {
-      let value = 12;
+      let value = [1, 3, 4];
+      expect(_.sortedIndex(value)).to.equal(0);
+
+      value  = '134';
+      expect(_.sortedIndex(value)).to.equal(0);
+      
+      value = 12;
       expect(_.sortedIndex(value)).to.equal(0);
 
       value = 1234.56;
@@ -726,6 +730,39 @@ describe('_', function () {
 
       value = false;
       expect(_.sortedIndex(value)).to.equal(0); 
+    });
+
+    it('should return zero if first argument is not an array, object or string', function () {
+      let value = 12;
+      let element = 3;
+      expect(_.sortedIndex(value, element)).to.equal(0);
+
+      value = 1234.56;
+      expect(_.sortedIndex(value, element)).to.equal(0); 
+
+      value = function (a) {return a * 2;};
+      expect(_.sortedIndex(value, element)).to.equal(0);
+
+      value = {a: 1, b: 2, d: 4};
+      expect(_.sortedIndex(value, element)).to.equal(0);
+
+      value = new Date();
+      expect(_.sortedIndex(value, element)).to.equal(0);
+
+      value = undefined;
+      expect(_.sortedIndex(value, element)).to.equal(0);
+
+      value = NaN;   
+      expect(_.sortedIndex(value, element)).to.equal(0);
+
+      value = null;
+      expect(_.sortedIndex(value, element)).to.equal(0);     
+
+      value = true;
+      expect(_.sortedIndex(value, element)).to.equal(0); 
+
+      value = false;
+      expect(_.sortedIndex(value, element)).to.equal(0); 
     });
   });
   
