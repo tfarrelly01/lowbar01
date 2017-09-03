@@ -682,6 +682,52 @@ describe('_', function () {
       expect(_.zip(arr, arr1, arr2, arr3, arr4, arr5, arr6)).to.eql(result);
     });
   });
+
+  describe('#sortedIndex', function () {
+    it('is a function', function () {
+      expect(_.sortedIndex).to.be.a('function');
+    });
+
+    it('should expect at least two argument', function () {
+      expect(_.sortedIndex.length).to.be.at.least(2);
+    });
+
+    it('should return an zero if no arguments passed to the function', function () {
+      expect(_.sortedIndex()).to.equal(0);
+    });
+
+    it('should return an zero if first argument is not an array, object or string', function () {
+      let value = 12;
+      expect(_.sortedIndex(value)).to.equal(0);
+
+      value = 1234.56;
+      expect(_.sortedIndex(value)).to.equal(0); 
+
+      value = function (a) {return a * 2;};
+      expect(_.sortedIndex(value)).to.equal(0);
+
+      value = {a: 1, b: 2, d: 4};
+      expect(_.sortedIndex(value)).to.equal(0);
+
+      value = new Date();
+      expect(_.sortedIndex(value)).to.equal(0);
+
+      value = undefined;
+      expect(_.sortedIndex(value)).to.equal(0);
+
+      value = NaN;   
+      expect(_.sortedIndex(value)).to.equal(0);
+
+      value = null;
+      expect(_.sortedIndex(value)).to.equal(0);     
+
+      value = true;
+      expect(_.sortedIndex(value)).to.equal(0); 
+
+      value = false;
+      expect(_.sortedIndex(value)).to.equal(0); 
+    });
+  });
   
   describe('#flatten', function () {
     it('is a function', function () {

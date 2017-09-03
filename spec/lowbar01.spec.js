@@ -634,6 +634,9 @@ describe('_', function () {
       expect(_.indexOf(largeArray, -1, true)).to.equal(-1);
       expect(_.indexOf(largeArray, 10000000, true)).to.equal(-1);
       expect(_.indexOf(largeArray, 10000001, true)).to.equal(-1);
+
+      let arr = [1, 2, 3, 5, 6, 8, 11, 12, 15, 17, 20];
+      expect(_.indexOf(arr, 10, true)).to.equal(-1);
     });
   });
 

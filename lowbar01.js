@@ -422,6 +422,12 @@ _.zip = function () {
       });
 };
 
+_.sortedIndex = function (list, value) {
+  if (arguments.length === 0 || !Array.isArray(list) && typeof list !== 'string') return 0;
+
+  return value;
+};
+
 _.flatten = function (array, shallow) {
   // Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will 
   // only be flattened a single level
