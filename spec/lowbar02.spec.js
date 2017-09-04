@@ -1149,6 +1149,10 @@ describe('_', function () {
   });
 
   describe('#throttle', function () {
+    let clock;
+
+    before(function () { clock = sinon.useFakeTimers(); });
+    after(function () { clock.restore(); });
 
     it('is a function', function () {
       expect(_.throttle).to.be.a('function');
@@ -1206,6 +1210,36 @@ describe('_', function () {
 
       expect(callback.callCount).to.equal(1);
     });
+
+    it('executes the throttled function once every 100 millisecond period, eventhough the function has been invoked many times during the period ', function () {
+      let callback = sinon.spy();
+      let wait = 100;
+
+      let throttled = _.throttle(callback, wait);
+
+      throttled();
+      expect(callback.callCount).to.equal(1);
+
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+
+      expect(callback.callCount).to.equal(1);
+      clock.tick(99);
+      expect(callback.callCount).to.equal(1);
+      clock.tick(1);
+      expect(callback.callCount).to.equal(2);
+      clock.tick(100);
+      expect(callback.callCount).to.equal(2);
+
+    });
+
   });
 
   describe('#delay', function () {
