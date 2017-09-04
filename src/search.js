@@ -27,6 +27,8 @@ function binarySearch (list, item, insertAtIndex) {
     if first element of second array < item then item in 2nd array
 
     Function returns the index position where the first instance of the item is found. If the item is not found, the function returns -1.
+
+    If 'insertAtIndex' is passed into the function with a value of true then the function returns the index at which the value searched for should be inserted into the array.
     */
     if (arguments.length < 2 || !Array.isArray(list) && typeof list !== 'string') return -1;
 
@@ -49,7 +51,7 @@ function binarySearch (list, item, insertAtIndex) {
        
         middleIdx = Math.floor((startIdx + endIdx) / 2);
     }
-    return insertAtIndex ? middleIdx : -1;
+    return insertAtIndex ? middleIdx + 1 : -1;
 }
 
 module.exports = {simpleSearch, binarySearch};

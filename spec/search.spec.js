@@ -172,4 +172,9 @@ describe('binarySearch', function () {
     expect(binarySearch(str, 'z')).to.equal(-1);
     expect(binarySearch(str, '1')).to.equal(-1);
   });
+    
+  it('should return the index at which passed value should be inserted into the passed array', function () {
+    expect(binarySearch([1, 2, 4], 3, true)).to.equal(2);
+    expect(binarySearch('abcdfghi', 'e', true)).to.equal(4);
+  });
 });
