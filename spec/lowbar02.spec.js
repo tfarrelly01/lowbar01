@@ -780,6 +780,18 @@ describe('_', function () {
 
       expect(_.sortedIndex(list, value)).to.equal(result);
     });
+
+    it('should return the index at which passed value should be inserted into an array of objects', function () {
+      const stooges =  [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+
+      let value = {name: 'larry', age: 50};
+      let result = 2;
+      expect(_.sortedIndex(stooges, value, 'age')).to.equal(result);
+
+      value = {name: 'larry', age: 61};
+      result = 3;
+      expect(_.sortedIndex(stooges, value, 'age')).to.equal(result);
+    });
   });
   
   describe('#flatten', function () {

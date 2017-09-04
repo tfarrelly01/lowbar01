@@ -422,12 +422,12 @@ _.zip = function () {
       });
 };
 
-_.sortedIndex = function (list, value) {
+_.sortedIndex = function (list, value, iteratee) {
   if (arguments.length <= 1 || !Array.isArray(list) && typeof list !== 'string') return 0;
 
-  let retVal = binarySearch(list, value, true);
+  let retVal = binarySearch(list, value, true, iteratee);
 
-  return retVal + 1;
+  return retVal;
 };
 
 _.flatten = function (array, shallow) {
