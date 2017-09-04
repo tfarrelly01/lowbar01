@@ -792,6 +792,17 @@ describe('_', function () {
       result = 3;
       expect(_.sortedIndex(stooges, value, 'age')).to.equal(result);
     });
+
+    it('binds a context to the iteratee', function () {
+      const context = {a: 1, b: 2, c: 3};
+
+      _.sortedIndex([1,2,4,5], 3, function () {
+        // the value of 'this' in here should be the context object
+        this.a = 'changed!';
+      }, context);
+
+      expect(context).to.eql({a: 'changed!', b: 2, c: 3});
+    });
   });
   
   describe('#flatten', function () {

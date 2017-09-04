@@ -422,9 +422,11 @@ _.zip = function () {
       });
 };
 
-_.sortedIndex = function (list, value, iteratee) {
+_.sortedIndex = function (list, value, iteratee, context) {
   if (arguments.length <= 1 || !Array.isArray(list) && typeof list !== 'string') return 0;
 
+  if (context) iteratee = iteratee.bind(context);
+  
   let retVal = binarySearch(list, value, true, iteratee);
 
   return retVal;
