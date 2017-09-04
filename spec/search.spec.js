@@ -76,6 +76,24 @@ describe('simpleSearch', function () {
     expect(simpleSearch(array, 1001, 17)).to.equal(17);    
     expect(simpleSearch(array, 1001, 20)).to.equal(-1); 
   });
+
+  it('should return the index position where the first instance of the string is found in a string', function () {
+    const str = 'abcdefghijklmnopqrstuvwxyz';
+    expect(simpleSearch(str, 't')).to.equal(19);
+    expect(simpleSearch(str, 'b')).to.equal(1);
+    expect(simpleSearch(str, 'z')).to.equal(25);
+    expect(simpleSearch(str, 'j')).to.equal(9);
+    expect(simpleSearch(str, 'p')).to.equal(15);
+  });
+
+  it('should return the index position where the first instance of the string is found in a string', function () {
+    const str = 'cdefghijklmnopqrstuvwx';
+    expect(simpleSearch(str, 'a')).to.equal(-1);
+    expect(simpleSearch(str, 'b')).to.equal(-1);
+    expect(simpleSearch(str, 'y')).to.equal(-1);
+    expect(simpleSearch(str, 'z')).to.equal(-1);
+    expect(simpleSearch(str, '1')).to.equal(-1);
+  });
 });
 
 describe('binarySearch', function () {
@@ -135,5 +153,23 @@ describe('binarySearch', function () {
     expect(binarySearch(largeArray, -1)).to.equal(-1);
     expect(binarySearch(largeArray, 1000000)).to.equal(-1);
     expect(binarySearch(largeArray, 1000001)).to.equal(-1);
+  });
+
+  it('should return the index position where the first instance of the string is found in a string', function () {
+    const str = 'abcdefghijklmnopqrstuvwxyz';
+    expect(binarySearch(str, 't')).to.equal(19);
+    expect(binarySearch(str, 'b')).to.equal(1);
+    expect(binarySearch(str, 'z')).to.equal(25);
+    expect(binarySearch(str, 'j')).to.equal(9);
+    expect(binarySearch(str, 'p')).to.equal(15);
+  });
+
+  it('should return -1 position where the first instance of the string is found in a string', function () {
+    const str = 'cdefghijklmnopqrstuvwx';
+    expect(binarySearch(str, 'a')).to.equal(-1);
+    expect(binarySearch(str, 'b')).to.equal(-1);
+    expect(binarySearch(str, 'y')).to.equal(-1);
+    expect(binarySearch(str, 'z')).to.equal(-1);
+    expect(binarySearch(str, '1')).to.equal(-1);
   });
 });

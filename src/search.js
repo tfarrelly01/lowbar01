@@ -28,7 +28,7 @@ function binarySearch (list, item, insertAtIndex) {
 
     Function returns the index position where the first instance of the item is found. If the item is not found, the function returns -1.
     */
-    if (arguments.length < 2 || !Array.isArray(list)) return -1;
+    if (arguments.length < 2 || !Array.isArray(list) && typeof list !== 'string') return -1;
 
     insertAtIndex = insertAtIndex || false;
 
