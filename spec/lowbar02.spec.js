@@ -1148,6 +1148,18 @@ describe('_', function () {
     });
   });
 
+  describe('#throttle', function () {
+
+    it('is a function', function () {
+      expect(_.throttle).to.be.a('function');
+    });
+
+    it('should take two arguments', function () {
+      expect(_.throttle.length).to.equal(2);
+    });
+
+  });
+
   describe('#delay', function () {
     let clock;
 

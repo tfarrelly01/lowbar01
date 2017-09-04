@@ -500,6 +500,15 @@ _.difference = function (array) {
     });
 };
 
+_.throttle = function (func, wait) {
+
+  return function () {
+    return setTimeout(function () {
+      return func();
+    }, wait);
+  };
+};
+
 _.delay = function (func, wait) {
   // Invokes function after `wait` milliseconds. Optional argument passed are forwarded to the
   // function when it is invoked
