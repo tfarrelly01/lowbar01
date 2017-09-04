@@ -1195,6 +1195,17 @@ describe('_', function () {
       expect(typeof (_.throttle(func, wait))).to.equal('function');
     });
 
+    it('Invokes the passed-in function immediately', function () {
+      let callback = sinon.spy();
+      let wait = 100;
+
+      let throttled = _.throttle(callback, wait);
+
+      throttled();
+      throttled();
+
+      expect(callback.callCount).to.equal(1);
+    });
   });
 
   describe('#delay', function () {
