@@ -793,6 +793,24 @@ describe('_', function () {
       expect(_.sortedIndex(stooges, value, 'age')).to.equal(result);
     });
 
+    it('should use a binary search and comparator function to determine the smallest index at which an item can be inserted into the list whilst maintaining order', function () {
+      const people = [
+          {firstName: 'Piotr', lastName: 'Benoit', age: 52, nationality: 'Polish'},
+          {firstName: 'Engelbert', lastName: 'Humperdinck', age: 78, nationality: 'English'},
+          {firstName: 'Annie', lastName: 'Jones', age: 22, nationality: 'Welsh'},
+          {firstName: 'Tom', lastName: 'Jones', age: 81, nationality: 'Welsh'},
+          {firstName: 'Harry', lastName: 'Karl', age: 22, nationality: 'Canadian'},
+          {firstName: 'Jing', lastName: 'Xing', age: 34,nationality: 'Chinese'},
+      ];
+      const person = {firstName: 'Kseniya', lastName: 'Welcome', age: 49, nationality: 'Nigerian'};  
+      const sortBy = function (value) {
+          return (value.lastName + value.firstName).toUpperCase();
+      };
+      const result = 5;
+
+      expect(_.sortedIndex(people, person, sortBy)).to.equal(result);
+    });
+
     it('binds a context to the iteratee', function () {
       const context = {a: 1, b: 2, c: 3};
 
