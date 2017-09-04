@@ -177,4 +177,22 @@ describe('binarySearch', function () {
     expect(binarySearch([1, 2, 4], 3, true)).to.equal(2);
     expect(binarySearch('abcdfghi', 'e', true)).to.equal(4);
   });
+      
+  it('should return the index at which passed value should be inserted into the passed array', function () {
+    expect(binarySearch([1, 2, 4], 3, true)).to.equal(2);
+    expect(binarySearch('abcdfghi', 'e', true)).to.equal(4);
+  });
+
+  it('should search for the value of a specific property in an array of objects, returning the index where a match is found', function () {
+    const stooges =  [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+    const result = 1;
+    expect(binarySearch(stooges, {name: 'larry', age: 50}, false, 'age')).to.equal(result);
+  });
+
+  it('should search for the value of a specific property in an array of objects, returning -1  where a match is not found', function () {
+    const stooges =  [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+    const result = -1;
+    expect(binarySearch(stooges, {name: 'larry', age: 61}, false, 'age')).to.equal(result);
+  });
+
 });

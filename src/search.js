@@ -1,3 +1,15 @@
+// require doesnt work - commented out and identify funcion coipied
+
+// const path = require('path');
+// const _ = require(path.join(__dirname, '..', './lowbar01'));
+
+const identity = function (value) {
+
+  // Returns the same value that is used as the argument. 
+  // This function looks useless, but can be used as a default iteratee.
+  return value;
+};
+
 function simpleSearch (list, item, startIndex) {
     /*
     Simple Search
@@ -17,7 +29,7 @@ function simpleSearch (list, item, startIndex) {
     return -1;
 }
 
-function binarySearch (list, item, insertAtIndex) {
+function binarySearch (list, item, insertAtIndex, iteratee) {
         
     /* 
     Binary Search
@@ -33,6 +45,9 @@ function binarySearch (list, item, insertAtIndex) {
     if (arguments.length < 2 || !Array.isArray(list) && typeof list !== 'string') return -1;
 
     insertAtIndex = insertAtIndex || false;
+    iteratee = iteratee || identity;
+
+    const searchItem = typeof iteratee === 'string' ? item[iteratee] : iteratee(item); 
 
     let startIdx = 0;
     let middleIdx = Math.floor(list.length / 2 - 1);
@@ -40,13 +55,18 @@ function binarySearch (list, item, insertAtIndex) {
   
     while (startIdx <= endIdx) {
 
-        // (list[middleIdx] !== list[middleIdx] && item !== item) is required to check for NaN === NaN
-        // which returns false when using === operator
-        if (list[middleIdx] === item || (list[middleIdx] !== list[middleIdx] && item !== item)) return middleIdx;
-        // item is in the first half of the array
-        if (list[middleIdx] > item)  endIdx = middleIdx - 1;
+        let currElement = list[middleIdx];
+        const currItem = typeof iteratee === 'string' ? currElement[iteratee] : iteratee(currElement);
 
-        // item is in the second half of the array
+        // (currItem !== currItem && searchItem !== searchItem) is required to check for NaN === NaN
+        // which returns false when using === operator
+        if (currItem === searchItem || (currItem !== currItem && searchItem !== searchItem)) 
+            return insertAtIndex ? middleIdx + 1 : middleIdx;
+
+        // searchItem is in the first half of the array
+        if (currItem > searchItem)  endIdx = middleIdx - 1;
+
+        // searchItem is in the second half of the array
         else startIdx = middleIdx + 1; 
        
         middleIdx = Math.floor((startIdx + endIdx) / 2);
