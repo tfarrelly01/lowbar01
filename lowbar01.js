@@ -423,13 +423,16 @@ _.zip = function () {
 };
 
 _.sortedIndex = function (list, value, iteratee, context) {
+  // Uses a binary search algorithm to determine the index at which a value should be inserted into // the list in order to maintain the list's sorted order. Pass an iteratee function to compute the 
+  // sort ranking of each value, including the value passed. The iteratee can also be the string name of 
+  // a property (i.e. array of objects)
+
+  // function must be passed at least 2 arguments with the first argument of type array or string
   if (arguments.length <= 1 || !Array.isArray(list) && typeof list !== 'string') return 0;
 
   if (context) iteratee = iteratee.bind(context);
-  
-  let retVal = binarySearch(list, value, true, iteratee);
 
-  return retVal;
+  return binarySearch(list, value, true, iteratee);
 };
 
 _.flatten = function (array, shallow) {
