@@ -1158,6 +1158,43 @@ describe('_', function () {
       expect(_.throttle.length).to.equal(2);
     });
 
+    it('returns a function if first argument is not a function', function () {
+      let wait = 0;
+
+      let func = 123;
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = 123.45;
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = 'string';
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+      
+      func = [1, 2, 3];
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = {a: 1, b: 2, c: 3};
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = true;
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = false;
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = undefined;
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = NaN;
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = null;
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+
+      func = new Date();
+      expect(typeof (_.throttle(func, wait))).to.equal('function');
+    });
+
   });
 
   describe('#delay', function () {

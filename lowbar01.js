@@ -502,6 +502,9 @@ _.difference = function (array) {
 
 _.throttle = function (func, wait) {
 
+  // ensures that 1st argument is a function
+  func = (typeof func === 'function') ? func : _.identity; 
+
   return function () {
     return setTimeout(function () {
       return func();
