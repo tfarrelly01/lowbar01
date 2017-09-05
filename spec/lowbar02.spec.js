@@ -1333,6 +1333,24 @@ describe('_', function () {
       expect(callback.callCount).to.equal(1);
     });
 
+    it('disables execution of the leading and trailing edge function calls if {leading: false, trailing: false} option set', function () {
+      const callback = sinon.spy();
+      const wait = 100;  
+      const options = {leading: false, trailing: false};
+      const throttled = _.throttle(callback, wait, options);
+
+      throttled();
+      expect(callback.callCount).to.equal(0);
+
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+
+      clock.tick(100);
+      expect(callback.callCount).to.equal(0);
+    });
+
   });
 
   describe('#delay', function () {

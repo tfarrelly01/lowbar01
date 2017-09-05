@@ -502,10 +502,10 @@ _.difference = function (array) {
 
 _.throttle = function (func, wait, options) {
 
-  // ensures that 1st argument is a function else default to _.identity
+  // ensure that 1st argument is a function else default to _.identity
   func = (typeof func === 'function') ? func : _.identity; 
 
-  // ensures that the 2nd argument is a +ve integer else default to 0
+  // ensure that the 2nd argument is a +ve integer else default to 0
   wait = (parseInt(wait) === wait && wait > 0) ? wait : 0; 
 
   // ensure that the options object is populated with default values if no options or incomplete
@@ -520,10 +520,10 @@ _.throttle = function (func, wait, options) {
     if (!invokeFunc || wait === 0) {
       if (options.leading) func();     
 
-      invokeFunc = true;  
+      invokeFunc = true;
       setTimeout(function () {
-      if (options.trailing) func(); 
-      }, wait);
+          if (options.trailing) func(); 
+        }, wait);
     }
   };
 };
@@ -536,8 +536,8 @@ _.delay = function (func, wait) {
 
   let args = [].slice.call(arguments, 2);
   return setTimeout(function () {
-    return func.apply(null, args);
-  }, wait);
+      return func.apply(null, args);
+    }, wait);
 };
 
 if (typeof module !== 'undefined') {
