@@ -254,7 +254,6 @@ describe('_', function () {
       ];
       const arrLength = junk.length;
       const result = _.shuffle(junk);
-
       expect(result.length).to.equal(arrLength);
 
       expect(_.intersection(junk, result)).to.eql(junk);
@@ -1350,7 +1349,6 @@ describe('_', function () {
       clock.tick(100);
       expect(callback.callCount).to.equal(0);
     });
-
   });
 
   describe('#delay', function () {
