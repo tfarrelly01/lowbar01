@@ -505,14 +505,18 @@ _.throttle = function (func, wait) {
   // ensures that 1st argument is a function
   func = (typeof func === 'function') ? func : _.identity; 
 
+  // ensures that the 2nd argument is a +ve integer or 0
+  wait = (parseInt(wait) === wait && wait > 0) ? wait : 0; 
+
   let invokeFunc = false;
   return function () {
-    if (!invokeFunc) {
+    if (!invokeFunc || wait === 0) {
       func();
       invokeFunc = true;
-      return setTimeout(function () {
-        func();
+
+      setTimeout(function () {
         invokeFunc = false;
+        return func();
       }, wait);
     }
   };

@@ -1237,9 +1237,65 @@ describe('_', function () {
       expect(callback.callCount).to.equal(2);
       clock.tick(100);
       expect(callback.callCount).to.equal(2);
-
     });
 
+    it('ensure that the wait period is set to zero if the value passed-in to the function is NOT a positive integer', function () {
+      let callback = sinon.spy();
+      
+      let wait = -1;
+      let throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(2);
+
+      wait = 12.45;
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(4);
+
+      wait = 'asv';
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(6);
+      
+      wait = [1, 2, 3];
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(8);
+
+      wait = {a: 1, b: 2, c: 3};
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(10);
+
+      wait = undefined;
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(12);
+
+      wait = null;
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(14);
+
+      wait = true;
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(16);
+
+      wait = NaN;
+      throttled = _.throttle(callback, wait);
+      throttled();
+      throttled();
+      expect(callback.callCount).to.equal(18);
+    });
   });
 
   describe('#delay', function () {
