@@ -1235,7 +1235,7 @@ describe('_', function () {
       expect(callback.callCount).to.equal(1);
       clock.tick(1);
       expect(callback.callCount).to.equal(2);
-      clock.tick(100);
+      clock.tick(1);
       expect(callback.callCount).to.equal(2);
     });
 

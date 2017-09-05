@@ -502,6 +502,12 @@ _.difference = function (array) {
 
 _.throttle = function (func, wait, options) {
 
+  // Returns a new, throttled version of the passed function, that, when invoked repeatedly,
+  // will only call the original function at most once per every wait milliseconds.
+  // By default, throttle will execute the function as soon as you call it for the first time. The 
+  // leading-edge call can be disabled by passing in the option {leading: false}. The trailing-edge  
+  // execution of the function can also be disabled by passing in the option {trailing: false} 
+
   // ensure that 1st argument is a function else default to _.identity
   func = (typeof func === 'function') ? func : _.identity; 
 
@@ -514,15 +520,26 @@ _.throttle = function (func, wait, options) {
   options.leading = options.hasOwnProperty('leading') ? options.leading : options.leading = true;
   options.trailing = options.hasOwnProperty('trailing') ? options.trailing : options.trailing = true;
 
-  let invokeFunc = false;
+  let args = [].slice.call(arguments);
+  let delayFuncCall = false;
 
+  // returns a throttled function
   return function () {
-    if (!invokeFunc || wait === 0) {
-      if (options.leading) func();     
+    // Execute user function if we are not delaying invocation or there is no wait period
+    if (!delayFuncCall || wait === 0) {
 
-      invokeFunc = true;
+      // only execute function if options.leading set to true (this is default behaviour)
+      if (options.leading) func.apply(null, args);     
+
+      // prevent future invocations
+      delayFuncCall = true;
       setTimeout(function () {
-          if (options.trailing) func(); 
+          // only execute function if options.trailing set to true (this is default behaviour)
+          // after the wait period of time
+          if (options.trailing) func.apply(null, args); 
+
+          // Allow future invocations
+          delayFuncCall = false;
         }, wait);
     }
   };
