@@ -1153,6 +1153,36 @@ describe('_', function () {
       expect(result).to.equal(false);
     });    
 
+    it('should return true if value exists in the string', function () {
+      const str = '123456789';
+      let result = _.contains(str, '1');
+      expect(result).to.equal(true);
+
+      result = _.contains(str, '4');
+      expect(result).to.equal(true);
+
+      result = _.contains(str, '6');
+      expect(result).to.equal(true);
+
+      result = _.contains(str, '9');
+      expect(result).to.equal(true);
+    });  
+
+    it('should return false if value does NOT exist in the string', function () {
+      const str = '123456789';
+      let result = _.contains(str, '0');
+      expect(result).to.equal(false);
+
+      result = _.contains(str, 'a');
+      expect(result).to.equal(false);
+
+      result = _.contains(str, ';');
+      expect(result).to.equal(false);
+
+      result = _.contains(str, 'u');
+      expect(result).to.equal(false);
+    });    
+
     it('should return true if value exists in the object ', function () {
       const obj = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9};
       let result = _.contains(obj, 1);
@@ -1205,6 +1235,7 @@ describe('_', function () {
       result = _.contains(arr, 'Z', startIndex);
       expect(result).to.equal(true);
     });  
+  
     
     it('should return false if value does NOT exist in the array from a specified start index', function () {
       const arr = [1, 2, 3, 4, 2, 'a', 'a', 'z', 5, 1, 6, 4, 6, 6.5, 7, 7, 8, 9, 'y', 'z', 'Z'];
@@ -1228,6 +1259,44 @@ describe('_', function () {
       result = _.contains(arr, 'z', startIndex);
       expect(result).to.equal(false);
     });     
+
+    it('should return true if value exists in the string from a specified start index', function () {
+      const str = '123456789';
+      let startIndex = 0;
+      let result = _.contains(str, '3', startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 1;
+      result = _.contains(str, '4', startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 5;
+      result = _.contains(str, '6', startIndex);
+      expect(result).to.equal(true);
+
+      startIndex = 6;
+      result = _.contains(str, '9', startIndex);
+      expect(result).to.equal(true);
+    });   
+
+    it('should return false if value does NOT exist in the string from a specified start index', function () {
+      const str = '123456789';
+      let startIndex = 0;
+      let result = _.contains(str, '0', startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 1;
+      result = _.contains(str, '%', startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 5;
+      result = _.contains(str, 'P', startIndex);
+      expect(result).to.equal(false);
+
+      startIndex = 6;
+      result = _.contains(str, '-', startIndex);
+      expect(result).to.equal(false);
+    }); 
 
     it('should return true if value exists in the object from a specified start index', function () {
       const obj = {a: 1, b: 2, c: 3, d: 4, e: 2, f: 'a', g: 'a', h: 'z', i: 5, j: 1, k: 6, l: 4, m: 6,
