@@ -500,7 +500,7 @@ _.difference = function (array) {
     });
 };
 
-_.throttle = function (func, wait) {
+_.throttle = function (func, wait, options) {
 
   // ensures that 1st argument is a function
   func = (typeof func === 'function') ? func : _.identity; 
@@ -508,12 +508,14 @@ _.throttle = function (func, wait) {
   // ensures that the 2nd argument is a +ve integer or 0
   wait = (parseInt(wait) === wait && wait > 0) ? wait : 0; 
 
+  options = options || {leading: true, trailing: true};
+
   let invokeFunc = false;
+
   return function () {
     if (!invokeFunc || wait === 0) {
-      func();
-      invokeFunc = true;
-
+      if (options.leading) func();     
+      invokeFunc = true;  
       setTimeout(function () {
         invokeFunc = false;
         return func();

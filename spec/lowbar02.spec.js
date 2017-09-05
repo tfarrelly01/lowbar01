@@ -1158,8 +1158,8 @@ describe('_', function () {
       expect(_.throttle).to.be.a('function');
     });
 
-    it('should take two arguments', function () {
-      expect(_.throttle.length).to.equal(2);
+    it('should take three arguments', function () {
+      expect(_.throttle.length).to.equal(3);
     });
 
     it('returns a function if first argument is not a function', function () {
@@ -1200,10 +1200,10 @@ describe('_', function () {
     });
 
     it('Invokes the passed-in function immediately', function () {
-      let callback = sinon.spy();
-      let wait = 100;
+      const callback = sinon.spy();
+      const wait = 100;
 
-      let throttled = _.throttle(callback, wait);
+      const throttled = _.throttle(callback, wait);
 
       throttled();
       throttled();
@@ -1212,10 +1212,10 @@ describe('_', function () {
     });
 
     it('executes the throttled function once every 100 millisecond period, eventhough the function has been invoked many times during the period ', function () {
-      let callback = sinon.spy();
-      let wait = 100;
+      const callback = sinon.spy();
+      const wait = 100;
 
-      let throttled = _.throttle(callback, wait);
+      const throttled = _.throttle(callback, wait);
 
       throttled();
       expect(callback.callCount).to.equal(1);
@@ -1240,7 +1240,7 @@ describe('_', function () {
     });
 
     it('ensure that the wait period is set to zero if the value passed-in to the function is NOT a positive integer', function () {
-      let callback = sinon.spy();
+      const callback = sinon.spy();
       
       let wait = -1;
       let throttled = _.throttle(callback, wait);
@@ -1295,6 +1295,24 @@ describe('_', function () {
       throttled();
       throttled();
       expect(callback.callCount).to.equal(18);
+    });
+
+    it('disables execution of the leading edge function call if {leading: false} option set', function () {
+      const callback = sinon.spy();
+      const wait = 100;  
+      const options = {leading: false};
+      const throttled = _.throttle(callback, wait, options);
+
+      throttled();
+      expect(callback.callCount).to.equal(0);
+
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+
+      clock.tick(100);
+      expect(callback.callCount).to.equal(1);
     });
   });
 
