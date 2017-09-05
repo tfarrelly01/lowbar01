@@ -1314,6 +1314,25 @@ describe('_', function () {
       clock.tick(100);
       expect(callback.callCount).to.equal(1);
     });
+
+    it('disables execution of the trailing edge function call if {trailing: false} option set', function () {
+      const callback = sinon.spy();
+      const wait = 100;  
+      const options = {trailing: false};
+      const throttled = _.throttle(callback, wait, options);
+
+      throttled();
+      expect(callback.callCount).to.equal(1);
+
+      throttled();
+      throttled();
+      throttled();
+      throttled();
+
+      clock.tick(100);
+      expect(callback.callCount).to.equal(1);
+    });
+
   });
 
   describe('#delay', function () {

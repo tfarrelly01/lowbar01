@@ -502,23 +502,27 @@ _.difference = function (array) {
 
 _.throttle = function (func, wait, options) {
 
-  // ensures that 1st argument is a function
+  // ensures that 1st argument is a function else default to _.identity
   func = (typeof func === 'function') ? func : _.identity; 
 
-  // ensures that the 2nd argument is a +ve integer or 0
+  // ensures that the 2nd argument is a +ve integer else default to 0
   wait = (parseInt(wait) === wait && wait > 0) ? wait : 0; 
 
-  options = options || {leading: true, trailing: true};
+  // ensure that the options object is populated with default values if no options or incomplete
+  // options arguments passed to function
+  options = options || {};
+  options.leading = options.hasOwnProperty('leading') ? options.leading : options.leading = true;
+  options.trailing = options.hasOwnProperty('trailing') ? options.trailing : options.trailing = true;
 
   let invokeFunc = false;
 
   return function () {
     if (!invokeFunc || wait === 0) {
       if (options.leading) func();     
+
       invokeFunc = true;  
       setTimeout(function () {
-        invokeFunc = false;
-        return func();
+      if (options.trailing) func(); 
       }, wait);
     }
   };
