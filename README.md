@@ -1,10 +1,8 @@
-# lowbar01 - Lowbar Part 1
+# lowbar01
 Re-implementation of various methods from the Underscore JS Library 
 
-
 ## Goal
-
-The Lowbar01 project involves reimplementing core methods from the popular `Underscore JS` library as if I were its author. Part 1 re-implements the following:
+The Lowbar01 project involves re-implementing core methods from the popular `Underscore JS` library as if I were its author. The list of methods below have been developed to mimic the functionality provided by the corresponding methods from the Underscore library
 
 1. identity
 2. first
@@ -22,6 +20,18 @@ The Lowbar01 project involves reimplementing core methods from the popular `Unde
 14. some
 15. extends
 16. defaults
+17. once
+18. memoize
+19. shuffle
+20. invoke
+21. sortBy (using my own sort algorithm!)
+22. zip
+23. sortedIndex
+24. flatten
+25. intersection
+26. difference
+27. throttle
+28. delay
 
 
 ## References
@@ -31,6 +41,7 @@ whilst developing the project I have referenced the following API's;
 1. [Underscore](http://underscorejs.org/)
 2. [The Mocha Test Framework](https://mochajs.org/)
 3. [The Chai Assertion Library](http://chaijs.com/)
+4. [Sinon - spies, stubs & mocks](http://sinonjs.org/)
 
 ## Installation Instructions
 
@@ -38,7 +49,7 @@ You will need to install Node.js to use the function library. Type the command b
 
 `$ node -v`
 
-If node is already installed the output of the command will display the version (e.g. v7.9.0). If you need to install node please follow the link (http://nodejs.org/en/).
+If node is already installed the output of the command will display the version (e.g. v7.9.0). If you need to install node please follow link (http://nodejs.org/en/).
 
 To install all dependencies please enter the following command into the terminal once you have navigated to the root directory:
 
