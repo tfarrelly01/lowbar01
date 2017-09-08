@@ -29,8 +29,7 @@ function simpleSearch (list, item, startIndex) {
     return -1;
 }
 
-function binarySearch (list, item, insertAtIndex, iteratee) {
-        
+function binarySearch (list, item, insertAtIndex, iteratee) {    
     /* 
     Binary Search
 
@@ -41,6 +40,8 @@ function binarySearch (list, item, insertAtIndex, iteratee) {
     Function returns the index position where the first instance of the item is found. If the item is not found, the function returns -1.
 
     If 'insertAtIndex' is passed into the function with a value of true then the function returns the index at which the value searched for should be inserted into the array.
+
+    If an 'iteratee' function is passed this is used to compute the sort ranking of each value, including the value passed. The 'iteratee' can also be the string name of a property (e.g. within an array of objects)
     */
     if (arguments.length < 2 || !Array.isArray(list) && typeof list !== 'string') return -1;
 
