@@ -410,20 +410,11 @@ _.zip = function () {
   // put all arguments into an array
   let args = [].slice.call(arguments);
 
-  // find the length of the longest array
-  /*
-  const longestArray = _.reduce(args, function (acc, curr) { 
-    return (!Array.isArray(curr) && typeof curr !== 'string') || acc >= curr.length ? acc : curr.length;
-  }, 0);
-
-  let zippedArray = Array(longestArray);
-  */
-
   const zippedArray = Array(_.reduce(args, function (acc, curr) { 
       return (!Array.isArray(curr) && typeof curr !== 'string') || acc >= curr.length 
-        ? acc 
-        : curr.length;
-      }, 0));
+          ? acc 
+          : curr.length;
+        }, 0));
 
   return _.map(zippedArray, function (array, idx) {
         return _.pluck(args, idx);
