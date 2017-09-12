@@ -411,11 +411,19 @@ _.zip = function () {
   let args = [].slice.call(arguments);
 
   // find the length of the longest array
+  /*
   const longestArray = _.reduce(args, function (acc, curr) { 
     return (!Array.isArray(curr) && typeof curr !== 'string') || acc >= curr.length ? acc : curr.length;
   }, 0);
 
   let zippedArray = Array(longestArray);
+  */
+
+  const zippedArray = Array(_.reduce(args, function (acc, curr) { 
+      return (!Array.isArray(curr) && typeof curr !== 'string') || acc >= curr.length 
+        ? acc 
+        : curr.length;
+      }, 0));
 
   return _.map(zippedArray, function (array, idx) {
         return _.pluck(args, idx);
@@ -423,7 +431,8 @@ _.zip = function () {
 };
 
 _.sortedIndex = function (list, value, iteratee, context) {
-  // Uses a binary search algorithm to determine the index at which a value should be inserted into // the list in order to maintain the list's sorted order. Pass an iteratee function to compute the 
+  // Uses a binary search algorithm to determine the index at which a value should be inserted into 
+  // the list in order to maintain the list's sorted order. Pass an iteratee function to compute the 
   // sort ranking of each value, including the value passed. The iteratee can also be the string name of 
   // a property (i.e. array of objects)
 
@@ -494,9 +503,9 @@ _.difference = function (array) {
   // shallow flatten arg array down to a single array keeping any original array nesting
   let flattenedArgs = _.flatten(args, true);
 
-  return _.filter(array, function (value) {
-      // if value in array is not present in the flattened array then keep the value
-      return !_.contains(flattenedArgs, value);
+  // if value in array is not present in the flattened array then keep the value
+  return _.reject(array, function (value) {
+      return _.contains(flattenedArgs, value);
     });
 };
 
