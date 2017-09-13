@@ -24,7 +24,7 @@ The Lowbar01 project involves re-implementing core methods from the popular `Und
 18. memoize
 19. shuffle
 20. invoke
-21. sortBy (using my own sort algorithm!)
+21. sortBy
 22. zip
 23. sortedIndex
 24. flatten
