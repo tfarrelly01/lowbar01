@@ -226,7 +226,7 @@ _.every = function (list,  predicate, context) {
   if (context) predicate = predicate.bind(context);
   
   if (Array.isArray(list) || typeof list === 'string')
-    for (let i = 0; i < list.length; i++) if (!predicate.call(null, list[i], i, list)) return false;
+    for (let i = 0; i < list.length; i++) if (!predicate(list[i], i, list)) return false;
 
   if (typeof list === 'object') 
     for (let idx in list) if (!predicate(list[idx], idx, list)) return false;
@@ -245,7 +245,7 @@ _.some = function (list,  predicate, context) {
   if (context) predicate = predicate.bind(context);
 
   if (Array.isArray(list) || typeof list === 'string')
-    for (let i = 0; i < list.length; i++) if (predicate.call(null, list[i], i, list)) return true;
+    for (let i = 0; i < list.length; i++) if (predicate(list[i], i, list)) return true;
 
   if (typeof list === 'object') 
     for (let idx in list) if (predicate(list[idx], idx, list)) return true;
@@ -369,7 +369,7 @@ _.invoke = function (list, method) {
   return _.map(list, function (item) {
     let func = isFunction ? method : item[method];
 
-    return func === null ? func : func.apply(item, args);
+    return func === undefined ? func : func.apply(item, args);
   });
 };
 
