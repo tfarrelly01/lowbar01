@@ -2,7 +2,7 @@ const path = require('path');
 const expect = require('chai').expect;
 const _ = require(path.join(__dirname, '..', './lowbar01'));
 
-describe.only('#zip', function () {
+describe('#zip', function () {
 	it('is a function', function () {
 		expect(_.zip).to.be.a('function');
 	});
