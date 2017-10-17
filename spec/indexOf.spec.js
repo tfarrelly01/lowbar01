@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 const _ = require(path.join(__dirname, '..', './lowbar01'));
 const largeArray = [...Array(1000000).keys()];
 
-describe.only('#indexOf', function () {
+describe('#indexOf', function () {
 	it('is a function', function () {
 		expect(_.indexOf).to.be.a('function');
 	});
